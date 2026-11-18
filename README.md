@@ -12,7 +12,7 @@
   <a href="mailto:mohammedbasith490@gmail.com"><b>📧 Email Me</b></a>
 </p>
 
-[![UAE Relocation Badge](https://img.shields.io/badge/UAE%20Relocation-Immediate%20Joiner%20%7C%20Visit%20Visa%20Ready%20(0%20Days%20Notice)-0078D6?style=for-the-badge&logo=airplane&logoColor=white)](https://www.linkedin.com/in/mohammedbasith05)
+[![UAE Relocation Badge](https://img.shields.io/badge/UAE%20Relocation-Immediate%20Joiner%20%7C%200%20Days%20Notice-0078D6?style=for-the-badge&logo=airplane&logoColor=white)](https://www.linkedin.com/in/mohammedbasith05)
 [![Status](https://img.shields.io/badge/Status-Open%20to%20Technical%20Roles%20in%20Dubai%20%26%20UAE-00D9A3?style=for-the-badge)](mailto:mohammedbasith490@gmail.com)
 
 </div>
