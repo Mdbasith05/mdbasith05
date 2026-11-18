@@ -3,7 +3,7 @@
 # Hi there, I'm Mohammed Basith 👋
 
 <a href="https://git.io/typing-svg">
-  <img src="https://readme-typing-svg.demolab.com?font=Syne&weight=700&size=22&duration=2500&pause=1000&color=4F8EF7&center=true&vCenter=true&width=650&lines=Full+Stack+Software+Developer;Data+%26+Systems+Infrastructure+Analyst;FastAPI+%E2%80%A2+Python+%E2%80%A2+PostgreSQL+%E2%80%A2+SQL;AI-Augmented+Engineering+%7C+10x+Productivity;Immediate+UAE+Relocation+%7C+Visit+Visa+Ready" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=Syne&weight=700&size=22&duration=2500&pause=1000&color=4F8EF7&center=true&vCenter=true&width=650&lines=Full+Stack+Software+Developer;Data+%26+Systems+Infrastructure+Analyst;FastAPI+%E2%80%A2+Python+%E2%80%A2+PostgreSQL+%E2%80%A2+SQL;AI-Augmented+Engineering+%7C+10x+Productivity;Immediate+UAE+Relocation+%7C+0+Days+Notice" alt="Typing SVG" />
 </a>
 
 <p align="center">
