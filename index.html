@@ -3,822 +3,1293 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mohammed Basith — Software Engineer & Data Systems Analyst</title>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<title>Mohammed Basith — Software Engineer & Systems Infrastructure Analyst</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --bg: #080C14;
-    --surface: #0E1420;
-    --card: #131A28;
-    --border: rgba(255,255,255,0.07);
-    --accent: #4F8EF7;
-    --accent2: #7C5CFC;
-    --accent3: #00D9A3;
-    --text: #E8EDF5;
-    --muted: #6B7A96;
-    --glow: rgba(79,142,247,0.15);
+    --bg-base: #090B10;
+    --bg-surface: #0E121A;
+    --bg-card: #131824;
+    --bg-card-hover: #171E2D;
+    --border-subtle: rgba(255, 255, 255, 0.08);
+    --border-strong: rgba(255, 255, 255, 0.16);
+    --border-accent: rgba(56, 139, 253, 0.35);
+    
+    --text-primary: #F0F4F8;
+    --text-secondary: #94A3B8;
+    --text-muted: #64748B;
+    
+    --accent-blue: #388BFD;
+    --accent-cyan: #00D2B4;
+    --accent-purple: #8B5CF6;
+    --accent-emerald: #10B981;
+    
+    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+    --font-heading: 'Space Grotesk', sans-serif;
+    --font-mono: 'JetBrains Mono', monospace;
   }
 
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-  html { scroll-behavior: smooth; }
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    background-color: var(--bg-base);
+    color: var(--text-primary);
+  }
+
   body {
-    font-family: 'DM Sans', sans-serif;
-    background: var(--bg);
-    color: var(--text);
+    font-family: var(--font-sans);
+    line-height: 1.6;
+    background-color: var(--bg-base);
+    color: var(--text-primary);
     overflow-x: hidden;
-    cursor: none;
+    -webkit-font-smoothing: antialiased;
   }
 
-  .cursor {
-    width: 12px; height: 12px;
-    background: var(--accent);
-    border-radius: 50%;
-    position: fixed; top: 0; left: 0;
-    pointer-events: none; z-index: 9999;
-    transition: transform 0.15s ease;
-    mix-blend-mode: screen;
-  }
-  .cursor-ring {
-    width: 36px; height: 36px;
-    border: 1.5px solid rgba(79,142,247,0.5);
-    border-radius: 50%;
-    position: fixed; top: 0; left: 0;
-    pointer-events: none; z-index: 9998;
-    transition: all 0.25s ease;
+  /* SUBTLE GRID PATTERN (ENGINEERING VIBE) */
+  .grid-background {
+    position: fixed;
+    inset: 0;
+    background-image: 
+      linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+      linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    background-size: 48px 48px;
+    pointer-events: none;
+    z-index: 0;
   }
 
-  body::before {
-    content: '';
-    position: fixed; inset: 0;
-    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-    pointer-events: none; z-index: 0; opacity: 0.4;
+  .ambient-glow {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 900px;
+    height: 400px;
+    background: radial-gradient(ellipse at center top, rgba(56, 139, 253, 0.08), transparent 70%);
+    pointer-events: none;
+    z-index: 0;
   }
 
-  body::after {
-    content: '';
-    position: fixed; inset: 0;
-    background-image:
-      linear-gradient(rgba(79,142,247,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(79,142,247,0.03) 1px, transparent 1px);
-    background-size: 60px 60px;
-    pointer-events: none; z-index: 0;
-  }
-
+  /* NAVIGATION BAR */
   nav {
-    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-    padding: 20px 40px;
-    display: flex; justify-content: space-between; align-items: center;
-    background: rgba(8,12,20,0.85);
-    backdrop-filter: blur(20px);
-    border-bottom: 1px solid var(--border);
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(9, 11, 16, 0.85);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border-subtle);
   }
-  .nav-logo {
-    font-family: 'Syne', sans-serif;
-    font-weight: 800; font-size: 1.25rem;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .nav-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    text-decoration: none;
+  }
+
+  .brand-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, #1E293B, #0F172A);
+    border: 1px solid var(--border-strong);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 0.9rem;
+    color: var(--text-primary);
+  }
+
+  .brand-name {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 1.05rem;
+    color: var(--text-primary);
     letter-spacing: -0.02em;
   }
-  .nav-links { display: flex; gap: 28px; list-style: none; }
-  .nav-links a {
-    color: var(--muted); text-decoration: none;
-    font-size: 0.85rem; font-weight: 500; letter-spacing: 0.05em;
-    text-transform: uppercase; transition: color 0.2s;
-  }
-  .nav-links a:hover { color: var(--text); }
 
-  .hero {
-    min-height: 100vh;
-    display: flex; align-items: center;
-    padding: 130px 40px 80px;
-    position: relative; z-index: 1;
-    max-width: 1200px; margin: 0 auto;
-  }
-  .hero-content { max-width: 720px; }
-
-  .hero-badge {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: rgba(79,142,247,0.1);
-    border: 1px solid rgba(79,142,247,0.25);
-    padding: 7px 16px; border-radius: 100px;
-    font-size: 0.78rem; color: var(--accent);
-    letter-spacing: 0.08em; text-transform: uppercase;
-    margin-bottom: 28px;
-    animation: fadeUp 0.6s ease both;
-  }
-  .hero-badge::before {
-    content: ''; width: 6px; height: 6px;
-    background: var(--accent3); border-radius: 50%;
-    animation: pulse 2s infinite;
-  }
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.5; transform: scale(0.8); }
+  .status-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.25);
+    padding: 4px 10px;
+    border-radius: 100px;
+    font-size: 0.74rem;
+    color: var(--accent-emerald);
+    font-weight: 600;
+    letter-spacing: 0.02em;
   }
 
-  .hero h1 {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(3rem, 7vw, 5.5rem);
-    font-weight: 800; line-height: 1.02;
+  .status-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background-color: var(--accent-emerald);
+    box-shadow: 0 0 8px var(--accent-emerald);
+  }
+
+  .nav-menu {
+    display: flex;
+    gap: 28px;
+    list-style: none;
+    align-items: center;
+  }
+
+  .nav-menu a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.88rem;
+    font-weight: 500;
+    transition: color 0.2s ease;
+  }
+
+  .nav-menu a:hover {
+    color: var(--text-primary);
+  }
+
+  .nav-cta {
+    background: var(--text-primary);
+    color: var(--bg-base) !important;
+    padding: 8px 16px;
+    border-radius: 6px;
+    font-weight: 600 !important;
+    font-size: 0.85rem !important;
+    transition: all 0.2s ease;
+  }
+
+  .nav-cta:hover {
+    opacity: 0.9;
+    transform: translateY(-1px);
+  }
+
+  @media (max-width: 860px) {
+    .nav-menu { display: none; }
+    .status-pill { display: none; }
+  }
+
+  /* LAYOUT CONTAINER */
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* HERO SECTION */
+  .hero-section {
+    padding-top: 150px;
+    padding-bottom: 90px;
+  }
+
+  .hero-meta {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+  }
+
+  .role-tag {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--accent-blue);
+    background: rgba(56, 139, 253, 0.1);
+    border: 1px solid rgba(56, 139, 253, 0.2);
+    padding: 4px 12px;
+    border-radius: 4px;
+    font-weight: 500;
+  }
+
+  .location-tag {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .hero-title {
+    font-family: var(--font-heading);
+    font-size: clamp(2.8rem, 6vw, 4.4rem);
+    font-weight: 700;
+    line-height: 1.08;
     letter-spacing: -0.03em;
     margin-bottom: 24px;
-    animation: fadeUp 0.6s 0.1s ease both;
-  }
-  .hero h1 .line1 { display: block; color: var(--text); }
-  .hero h1 .line2 {
-    display: block;
-    background: linear-gradient(135deg, var(--accent) 0%, var(--accent2) 50%, var(--accent3) 100%);
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    color: var(--text-primary);
+    max-width: 900px;
   }
 
-  .hero-desc {
-    font-size: 1.1rem; color: var(--muted); line-height: 1.75;
-    max-width: 580px; margin-bottom: 40px;
-    font-weight: 300;
-    animation: fadeUp 0.6s 0.2s ease both;
+  .hero-title span {
+    color: var(--text-secondary);
+    font-weight: 400;
+  }
+
+  .hero-subtitle {
+    font-size: 1.15rem;
+    line-height: 1.7;
+    color: var(--text-secondary);
+    max-width: 720px;
+    margin-bottom: 36px;
+    font-weight: 400;
+  }
+
+  .hero-subtitle strong {
+    color: var(--text-primary);
+    font-weight: 600;
   }
 
   .hero-actions {
-    display: flex; gap: 16px; flex-wrap: wrap;
-    animation: fadeUp 0.6s 0.3s ease both;
+    display: flex;
+    gap: 16px;
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: 60px;
+  }
+
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.92rem;
+    font-weight: 600;
+    padding: 12px 24px;
+    border-radius: 8px;
+    text-decoration: none;
+    transition: all 0.2s ease;
   }
 
   .btn-primary {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: linear-gradient(135deg, var(--accent), var(--accent2));
-    color: white; text-decoration: none;
-    padding: 14px 28px; border-radius: 8px;
-    font-weight: 600; font-size: 0.95rem;
-    transition: all 0.2s; border: none; cursor: none;
-    position: relative; overflow: hidden;
+    background: #FFFFFF;
+    color: #090B10;
   }
-  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 30px rgba(79,142,247,0.4); }
 
-  .btn-secondary {
-    display: inline-flex; align-items: center; gap: 8px;
-    background: transparent;
-    border: 1px solid var(--border);
-    color: var(--text); text-decoration: none;
-    padding: 14px 28px; border-radius: 8px;
-    font-weight: 500; font-size: 0.95rem;
-    transition: all 0.2s; cursor: none;
+  .btn-primary:hover {
+    background: #E2E8F0;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 25px -5px rgba(255, 255, 255, 0.15);
   }
-  .btn-secondary:hover {
-    border-color: rgba(79,142,247,0.4);
-    background: rgba(79,142,247,0.05);
+
+  .btn-outline {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-strong);
+    color: var(--text-primary);
+  }
+
+  .btn-outline:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.3);
     transform: translateY(-2px);
   }
 
-  .hero-visual {
-    position: absolute; right: 40px; top: 50%;
-    transform: translateY(-50%);
-    display: flex; flex-direction: column; gap: 16px;
-    animation: fadeLeft 0.8s 0.4s ease both;
-  }
-  @media (max-width: 1020px) { .hero-visual { display: none; } }
-
-  .stat-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 16px; padding: 22px 26px;
-    min-width: 200px;
-    transition: transform 0.3s;
-  }
-  .stat-card:hover { transform: translateX(-4px); }
-  .stat-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 2rem; font-weight: 800;
-    background: linear-gradient(135deg, var(--accent), var(--accent3));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  }
-  .stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
-
-  section {
-    max-width: 1200px; margin: 0 auto;
-    padding: 100px 40px; position: relative; z-index: 1;
+  /* SYSTEM SPECS BAR */
+  .system-specs-bar {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 20px 24px;
   }
 
-  .section-tag {
-    font-size: 0.75rem; letter-spacing: 0.12em;
-    text-transform: uppercase; color: var(--accent);
-    font-weight: 600; margin-bottom: 12px;
-    display: flex; align-items: center; gap: 10px;
+  @media (max-width: 900px) {
+    .system-specs-bar { grid-template-columns: repeat(2, 1fr); }
   }
-  .section-tag::before {
-    content: ''; width: 24px; height: 1px; background: var(--accent);
+  @media (max-width: 500px) {
+    .system-specs-bar { grid-template-columns: 1fr; }
   }
 
-  .section-title {
-    font-family: 'Syne', sans-serif;
-    font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 800; letter-spacing: -0.02em;
-    margin-bottom: 50px; line-height: 1.15;
+  .spec-item {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
   }
 
-  .about-grid {
-    display: grid; grid-template-columns: 1fr 1fr;
-    gap: 60px; align-items: center;
+  .spec-label {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
   }
-  @media (max-width: 768px) { .about-grid { grid-template-columns: 1fr; } }
 
-  .about-text p {
-    color: var(--muted); font-size: 1.05rem;
-    line-height: 1.8; margin-bottom: 20px; font-weight: 300;
+  .spec-value {
+    font-size: 0.96rem;
+    font-weight: 600;
+    color: var(--text-primary);
   }
-  .about-text p span { color: var(--text); font-weight: 500; }
 
-  .about-stats {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 16px;
+  /* SECTION COMMON */
+  .section {
+    padding: 90px 0;
+    border-top: 1px solid var(--border-subtle);
   }
-  .about-stat {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 16px; padding: 24px;
-    text-align: center; transition: all 0.3s;
+
+  .section-header {
+    margin-bottom: 48px;
   }
-  .about-stat:hover { border-color: rgba(79,142,247,0.3); transform: translateY(-3px); }
-  .about-stat-num {
-    font-family: 'Syne', sans-serif;
-    font-size: 2rem; font-weight: 800;
-    background: linear-gradient(135deg, var(--accent), var(--accent3));
-    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+
+  .section-eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--accent-blue);
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
   }
-  .about-stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 6px; }
+
+  .section-eyebrow::before {
+    content: '//';
+    color: var(--text-muted);
+  }
+
+  .section-heading {
+    font-family: var(--font-heading);
+    font-size: clamp(1.9rem, 4vw, 2.6rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+  }
+
+  .section-desc {
+    color: var(--text-secondary);
+    font-size: 1.05rem;
+    margin-top: 12px;
+    max-width: 650px;
+  }
+
+  /* INTERACTIVE TERMINAL PREVIEW (THE ENGINEERING CREDIBILITY HOOK) */
+  .terminal-window {
+    background: #0B0E14;
+    border: 1px solid var(--border-strong);
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 40px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.7);
+  }
+
+  .terminal-topbar {
+    background: #11151F;
+    padding: 12px 18px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+
+  .terminal-dots {
+    display: flex;
+    gap: 8px;
+  }
+
+  .terminal-dot {
+    width: 11px;
+    height: 11px;
+    border-radius: 50%;
+  }
+
+  .terminal-dot.red { background: #FF5F56; }
+  .terminal-dot.yellow { background: #FFBD2E; }
+  .terminal-dot.green { background: #27C93F; }
+
+  .terminal-tabs {
+    display: flex;
+    gap: 8px;
+  }
+
+  .terminal-tab-btn {
+    background: transparent;
+    border: none;
+    color: var(--text-muted);
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    padding: 4px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+
+  .terminal-tab-btn.active {
+    background: rgba(255, 255, 255, 0.08);
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .terminal-body {
+    padding: 24px;
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    line-height: 1.65;
+    color: #CBD5E1;
+    overflow-x: auto;
+  }
+
+  .term-cmd { color: #388BFD; font-weight: 600; }
+  .term-dim { color: #64748B; }
+  .term-success { color: #10B981; }
+  .term-highlight { color: #F59E0B; }
+  .term-cyan { color: #00D2B4; }
 
   /* EXPERIENCE SECTION */
-  .experience-timeline {
-    display: flex; flex-direction: column; gap: 28px;
+  .experience-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
   }
+
   .experience-card {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 20px; padding: 36px 40px;
-    transition: all 0.3s; position: relative; overflow: hidden;
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 36px;
+    transition: border-color 0.2s ease, transform 0.2s ease;
   }
-  .experience-card::before {
-    content: ''; position: absolute;
-    top: 0; left: 0; bottom: 0; width: 4px;
-    background: linear-gradient(180deg, var(--accent), var(--accent2));
-    opacity: 0.8;
-  }
+
   .experience-card:hover {
-    border-color: rgba(79,142,247,0.35); transform: translateY(-4px);
-    box-shadow: 0 12px 35px rgba(0,0,0,0.3);
-  }
-  .experience-header {
-    display: flex; justify-content: space-between; align-items: flex-start;
-    flex-wrap: wrap; gap: 12px; margin-bottom: 8px;
-  }
-  .experience-role {
-    font-family: 'Syne', sans-serif; font-size: 1.35rem;
-    font-weight: 700; color: var(--text);
-  }
-  .experience-company {
-    color: var(--accent); font-weight: 600; font-size: 1.05rem;
-    margin-top: 4px; display: flex; align-items: center; gap: 8px;
-  }
-  .experience-dates {
-    font-size: 0.85rem; color: var(--muted);
-    background: rgba(255,255,255,0.05); padding: 5px 14px;
-    border-radius: 100px; border: 1px solid var(--border);
-    font-weight: 500;
-  }
-  .experience-focus {
-    font-size: 0.85rem; color: var(--muted); margin-top: 8px; margin-bottom: 16px;
-    font-style: italic;
-  }
-  .experience-focus strong { color: var(--accent3); }
-  .experience-points {
-    list-style: none; display: flex; flex-direction: column; gap: 10px;
-  }
-  .experience-point {
-    display: flex; align-items: flex-start; gap: 12px;
-    font-size: 0.95rem; color: var(--muted); line-height: 1.65;
-  }
-  .experience-point::before {
-    content: '▹'; color: var(--accent);
-    font-size: 1.1rem; flex-shrink: 0; margin-top: -1px;
-  }
-
-  /* SKILLS */
-  .skills-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-  }
-  .skill-card {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 16px; padding: 28px;
-    transition: all 0.3s; position: relative; overflow: hidden;
-  }
-  .skill-card::before {
-    content: ''; position: absolute;
-    top: 0; left: 0; right: 0; height: 2px;
-    background: linear-gradient(90deg, var(--accent), var(--accent2));
-    opacity: 0; transition: opacity 0.3s;
-  }
-  .skill-card:hover { border-color: rgba(79,142,247,0.3); transform: translateY(-4px); }
-  .skill-card:hover::before { opacity: 1; }
-
-  .skill-icon {
-    width: 44px; height: 44px; border-radius: 10px;
-    display: flex; align-items: center; justify-content: center;
-    font-size: 1.4rem; margin-bottom: 16px;
-  }
-  .skill-icon.blue { background: rgba(79,142,247,0.1); }
-  .skill-icon.purple { background: rgba(124,92,252,0.1); }
-  .skill-icon.green { background: rgba(0,217,163,0.1); }
-  .skill-icon.orange { background: rgba(255,150,50,0.1); }
-
-  .skill-title {
-    font-family: 'Syne', sans-serif; font-size: 1.1rem;
-    font-weight: 700; margin-bottom: 14px;
-  }
-  .skill-tags { display: flex; flex-wrap: wrap; gap: 8px; }
-  .skill-tag {
-    background: rgba(255,255,255,0.04); border: 1px solid var(--border);
-    padding: 5px 12px; border-radius: 100px;
-    font-size: 0.8rem; color: var(--muted);
-  }
-
-  /* PROJECTS */
-  .projects-grid {
-    display: grid; grid-template-columns: repeat(auto-fit, minmax(480px, 1fr));
-    gap: 28px;
-  }
-  @media (max-width: 650px) { .projects-grid { grid-template-columns: 1fr; } }
-
-  .project-card {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 20px; padding: 40px;
-    transition: all 0.3s; position: relative; overflow: hidden;
-    display: flex; flex-direction: column; justify-content: space-between;
-  }
-  .project-card:hover { border-color: rgba(79,142,247,0.35); transform: translateY(-6px); }
-  .project-number {
-    font-family: 'Syne', sans-serif; font-size: 3.5rem;
-    font-weight: 800; color: rgba(79,142,247,0.1);
-    line-height: 1; margin-bottom: 14px;
-  }
-  .project-card.security .project-number { color: rgba(0,217,163,0.1); }
-  .project-title {
-    font-family: 'Syne', sans-serif; font-size: 1.6rem;
-    font-weight: 700; margin-bottom: 12px; letter-spacing: -0.02em;
-  }
-  .project-badge-tag {
-    display: inline-flex; align-items: center; gap: 6px;
-    background: rgba(79,142,247,0.12); border: 1px solid rgba(79,142,247,0.25);
-    padding: 4px 12px; border-radius: 100px; font-size: 0.72rem;
-    color: var(--accent); letter-spacing: 0.06em; text-transform: uppercase;
-    font-weight: 600; margin-bottom: 14px;
-  }
-  .project-card.security .project-badge-tag {
-    background: rgba(0,217,163,0.1); border-color: rgba(0,217,163,0.25);
-    color: var(--accent3);
-  }
-  .project-desc {
-    color: var(--muted); font-size: 0.95rem; line-height: 1.7;
-    margin-bottom: 24px; font-weight: 300;
-  }
-  .project-features { margin-bottom: 26px; }
-  .feature {
-    display: flex; align-items: flex-start; gap: 10px;
-    margin-bottom: 10px; font-size: 0.88rem; color: var(--muted);
-  }
-  .feature::before {
-    content: '→'; color: var(--accent3);
-    font-size: 0.85rem; margin-top: 2px; flex-shrink: 0;
-  }
-  .project-tech { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
-  .tech-badge {
-    font-size: 0.74rem; padding: 5px 12px; border-radius: 100px; font-weight: 500;
-  }
-  .tech-badge.blue { background: rgba(79,142,247,0.12); color: var(--accent); border: 1px solid rgba(79,142,247,0.2); }
-  .tech-badge.purple { background: rgba(124,92,252,0.12); color: #9B7DFF; border: 1px solid rgba(124,92,252,0.2); }
-  .tech-badge.green { background: rgba(0,217,163,0.1); color: var(--accent3); border: 1px solid rgba(0,217,163,0.2); }
-  .tech-badge.orange { background: rgba(255,150,50,0.1); color: #FFA94D; border: 1px solid rgba(255,150,50,0.2); }
-
-  .project-links { display: flex; gap: 14px; }
-  .project-link {
-    display: inline-flex; align-items: center; gap: 8px;
-    font-size: 0.88rem; font-weight: 600; text-decoration: none;
-    padding: 10px 22px; border-radius: 8px; transition: all 0.2s; cursor: none;
-  }
-  .project-link.github {
-    background: rgba(255,255,255,0.06); border: 1px solid var(--border);
-    color: var(--text);
-  }
-  .project-link.github:hover {
-    border-color: rgba(79,142,247,0.4); background: rgba(79,142,247,0.1);
+    border-color: var(--border-accent);
     transform: translateY(-2px);
   }
 
-  /* CERTIFICATIONS */
-  .cert-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 20px; }
-  .cert-card {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 16px; padding: 28px; display: flex; align-items: flex-start; gap: 16px;
-    transition: all 0.3s;
+  .experience-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-wrap: wrap;
+    gap: 16px;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border-subtle);
   }
-  .cert-card:hover { border-color: rgba(79,142,247,0.3); transform: translateY(-3px); }
-  .cert-icon {
-    width: 48px; height: 48px; flex-shrink: 0; border-radius: 12px;
-    background: rgba(79,142,247,0.1); display: flex; align-items: center; justify-content: center;
-    font-size: 1.5rem;
-  }
-  .cert-name { font-family: 'Syne', sans-serif; font-size: 0.95rem; font-weight: 700; margin-bottom: 6px; }
-  .cert-issuer { font-size: 0.82rem; color: var(--accent); font-weight: 500; }
-  .cert-year { font-size: 0.78rem; color: var(--muted); margin-top: 4px; }
 
-  /* CONTACT */
-  .contact-wrapper {
-    background: var(--card); border: 1px solid var(--border);
-    border-radius: 24px; padding: 60px 40px; text-align: center;
-    position: relative; overflow: hidden;
+  .exp-role-title {
+    font-family: var(--font-heading);
+    font-size: 1.35rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 4px;
   }
+
+  .exp-company {
+    font-size: 1rem;
+    color: var(--accent-blue);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .exp-company span {
+    color: var(--text-muted);
+    font-weight: 400;
+    font-size: 0.9rem;
+  }
+
+  .exp-dates {
+    font-family: var(--font-mono);
+    font-size: 0.82rem;
+    color: var(--text-secondary);
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-subtle);
+    padding: 4px 12px;
+    border-radius: 6px;
+  }
+
+  .exp-bullets {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .exp-bullet {
+    display: flex;
+    gap: 12px;
+    font-size: 0.98rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+  }
+
+  .exp-bullet::before {
+    content: '—';
+    color: var(--accent-cyan);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  .exp-bullet strong {
+    color: var(--text-primary);
+    font-weight: 600;
+  }
+
+  .exp-tech-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 24px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(255, 255, 255, 0.04);
+  }
+
+  .tech-pill {
+    font-family: var(--font-mono);
+    font-size: 0.76rem;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    padding: 3px 10px;
+    border-radius: 4px;
+  }
+
+  /* TWO FLAGSHIP SYSTEMS (LARGE SHOWCASE CARDS) */
+  .flagship-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .system-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 16px;
+    padding: 44px;
+    display: grid;
+    grid-template-columns: 1.2fr 1fr;
+    gap: 44px;
+    align-items: center;
+    transition: all 0.3s ease;
+  }
+
+  @media (max-width: 950px) {
+    .system-card {
+      grid-template-columns: 1fr;
+      padding: 32px;
+      gap: 32px;
+    }
+  }
+
+  .system-card:hover {
+    border-color: var(--border-accent);
+    box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.5);
+  }
+
+  .system-badge-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .system-index {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--accent-cyan);
+    background: rgba(0, 210, 180, 0.1);
+    border: 1px solid rgba(0, 210, 180, 0.25);
+    padding: 3px 8px;
+    border-radius: 4px;
+  }
+
+  .system-type {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+
+  .system-name {
+    font-family: var(--font-heading);
+    font-size: 2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 16px;
+  }
+
+  .system-summary {
+    font-size: 1rem;
+    color: var(--text-secondary);
+    line-height: 1.7;
+    margin-bottom: 24px;
+  }
+
+  .system-features {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .system-feature {
+    display: flex;
+    gap: 10px;
+    font-size: 0.92rem;
+    color: var(--text-secondary);
+  }
+
+  .system-feature::before {
+    content: '✓';
+    color: var(--accent-emerald);
+    font-weight: 700;
+  }
+
+  .system-feature strong {
+    color: var(--text-primary);
+  }
+
+  .system-pills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+
+  .system-code-preview {
+    background: #0B0E14;
+    border: 1px solid var(--border-strong);
+    border-radius: 10px;
+    padding: 20px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    line-height: 1.6;
+    color: #94A3B8;
+    overflow-x: auto;
+  }
+
+  /* TECHNICAL COMPETENCIES (CLEAN GRID) */
+  .skills-matrix-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  @media (max-width: 768px) {
+    .skills-matrix-grid { grid-template-columns: 1fr; }
+  }
+
+  .matrix-card {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 12px;
+    padding: 28px;
+  }
+
+  .matrix-card-title {
+    font-family: var(--font-heading);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--text-primary);
+    margin-bottom: 6px;
+  }
+
+  .matrix-card-subtitle {
+    font-size: 0.85rem;
+    color: var(--text-muted);
+    margin-bottom: 20px;
+  }
+
+  .matrix-pills-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .matrix-tag {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border-subtle);
+    color: #CBD5E1;
+    padding: 6px 12px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .matrix-tag strong {
+    color: #FFFFFF;
+  }
+
+  /* CONTACT CARD */
+  .contact-box {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-strong);
+    border-radius: 20px;
+    padding: 60px 40px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+
   .contact-title {
-    font-family: 'Syne', sans-serif; font-size: clamp(2rem, 4vw, 3rem);
-    font-weight: 800; letter-spacing: -0.02em; margin-bottom: 16px;
-  }
-  .contact-desc { color: var(--muted); font-size: 1.05rem; margin-bottom: 40px; line-height: 1.7; }
-  .contact-links { display: flex; justify-content: center; gap: 16px; flex-wrap: wrap; }
-  .contact-link {
-    display: inline-flex; align-items: center; gap: 8px;
-    padding: 13px 26px; border-radius: 10px; text-decoration: none;
-    font-weight: 600; font-size: 0.92rem; transition: all 0.2s; cursor: none;
-  }
-  .contact-link.primary {
-    background: linear-gradient(135deg, var(--accent), var(--accent2)); color: white;
-  }
-  .contact-link.primary:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(79,142,247,0.35); }
-  .contact-link.outline {
-    background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--text);
-  }
-  .contact-link.outline:hover {
-    border-color: rgba(79,142,247,0.4); background: rgba(79,142,247,0.1); transform: translateY(-2px);
+    font-family: var(--font-heading);
+    font-size: clamp(2rem, 4vw, 2.8rem);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--text-primary);
+    margin-bottom: 16px;
   }
 
+  .contact-subtitle {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto 36px;
+  }
+
+  .contact-channels {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-bottom: 24px;
+  }
+
+  .copy-toast {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--accent-emerald);
+    margin-top: 12px;
+    min-height: 18px;
+  }
+
+  /* FOOTER */
   footer {
-    text-align: center; padding: 40px; color: var(--muted);
-    font-size: 0.85rem; border-top: 1px solid var(--border);
+    border-top: 1px solid var(--border-subtle);
+    padding: 36px 0;
+    text-align: center;
+    font-size: 0.86rem;
+    color: var(--text-muted);
   }
 
-  .divider {
-    max-width: 1200px; margin: 0 auto; height: 1px;
-    background: linear-gradient(90deg, transparent, var(--border), transparent);
+  footer a {
+    color: var(--text-secondary);
+    text-decoration: none;
   }
 </style>
 </head>
 <body>
 
-<div class="cursor" id="cursor"></div>
-<div class="cursor-ring" id="cursorRing"></div>
+<div class="grid-background"></div>
+<div class="ambient-glow"></div>
 
+<!-- NAVIGATION -->
 <nav>
-  <div class="nav-logo">MB.</div>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#skills">Skills</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
+  <div class="nav-container">
+    <a href="#" class="nav-brand">
+      <div class="brand-logo">MB</div>
+      <span class="brand-name">Mohammed Basith</span>
+      <div class="status-pill">
+        <span class="status-dot"></span>
+        Available for Dubai / UAE
+      </div>
+    </a>
+    
+    <ul class="nav-menu">
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#systems">Flagship Systems</a></li>
+      <li><a href="#skills">Competencies</a></li>
+      <li><a href="#contact" class="nav-cta">Get in Touch</a></li>
+    </ul>
+  </div>
 </nav>
 
-<!-- HERO -->
-<div class="hero">
-  <div class="hero-content">
-    <div class="hero-badge">✈️ Open to Technical Roles in Dubai & UAE • Immediate Joiner (0 Days Notice)</div>
-    <h1>
-      <span class="line1">Mohammed</span>
-      <span class="line2">Basith.</span>
-    </h1>
-    <p class="hero-desc">
-      Full Stack Software Developer & Systems Analyst — BSc CS 2026 Graduate.<br>
-      Hands-on technical background at TVS Global engineering logistics platforms, relational SQL auditing, and systems infrastructure.<br>
-      Ready for immediate technical deployment across Dubai, Abu Dhabi, and the UAE.
-    </p>
-    <div class="hero-actions">
-      <a href="#projects" class="btn-primary">
-        <span>↗</span> View Flagship Systems
-      </a>
-      <a href="#experience" class="btn-secondary">
-        <span>→</span> Work Experience
-      </a>
-    </div>
-  </div>
+<div class="container">
 
-  <div class="hero-visual">
-    <div class="stat-card">
-      <div class="stat-num">2</div>
-      <div class="stat-label">Flagship Systems Built</div>
+  <!-- HERO SECTION -->
+  <section class="hero-section">
+    <div class="hero-meta">
+      <span class="role-tag">Software Engineer & Data Systems</span>
+      <span class="location-tag">📍 Immediate Joiner • 0 Days Notice</span>
     </div>
-    <div class="stat-card">
-      <div class="stat-num">TVS</div>
-      <div class="stat-label">Global Platform Experience</div>
+
+    <h1 class="hero-title">
+      Engineering resilient backend platforms, <span>database scrutiny pipelines, and endpoint systems.</span>
+    </h1>
+
+    <p class="hero-subtitle">
+      B.Sc in Computer Science (2026). Hands-on software and data operations experience gained at <strong>TVS Global</strong> building logistics platforms, relational SQL auditing, and systems infrastructure. Ready for technical deployment across Dubai and the UAE.
+    </p>
+
+    <div class="hero-actions">
+      <a href="#systems" class="btn btn-primary">
+        <span>Explore Flagship Systems</span>
+        <span>→</span>
+      </a>
+      <a href="#experience" class="btn btn-outline">
+        <span>View TVS Global Experience</span>
+      </a>
+      <a href="https://github.com/Mdbasith05" target="_blank" class="btn btn-outline">
+        <span>GitHub Profile</span>
+        <span>↗</span>
+      </a>
     </div>
-    <div class="stat-card">
-      <div class="stat-num">0 Days</div>
-      <div class="stat-label">Notice Period • Immediate</div>
+
+    <div class="system-specs-bar">
+      <div class="spec-item">
+        <span class="spec-label">Flagship Implementations</span>
+        <span class="spec-value">2 Production Systems</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">Industry Tenure</span>
+        <span class="spec-value">TVS Global (Logistics Platform)</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">Core Architecture</span>
+        <span class="spec-value">FastAPI • PostgreSQL • Win32</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">Deployment Availability</span>
+        <span class="spec-value">Immediate (0 Days Notice)</span>
+      </div>
     </div>
-  </div>
+
+    <!-- INTERACTIVE TERMINAL PREVIEW (THE ENGINEERING CREDIBILITY HOOK) -->
+    <div class="terminal-window">
+      <div class="terminal-topbar">
+        <div class="terminal-dots">
+          <span class="terminal-dot red"></span>
+          <span class="terminal-dot yellow"></span>
+          <span class="terminal-dot green"></span>
+        </div>
+        <div class="terminal-tabs">
+          <button class="terminal-tab-btn active" onclick="switchTermTab('ares')">ares_telemetry.py</button>
+          <button class="terminal-tab-btn" onclick="switchTermTab('lsr')">lsr_validation_engine.py</button>
+        </div>
+        <div class="terminal-dim" style="font-size:0.75rem;">python3.12</div>
+      </div>
+      <div class="terminal-body" id="termContent">
+<span class="term-dim"># Real-time Windows telemetry audit & live TCP socket correlation</span>
+<span class="term-cmd">$ python local_lab.py --audit --window 1h</span>
+[INFO] Initializing ARES Endpoint Telemetry Collector (Win32 Engine)
+[+] Enumerating Active Processes: <span class="term-cyan">148 PIDs discovered</span>
+[+] Correlating TCP Sockets to Process Trees: <span class="term-success">38 active endpoints validated</span>
+[+] Querying Windows Security & System Event Streams: <span class="term-cyan">1,000 records ingested</span>
+[+] Auditing Failed Logon Telemetry (EventID 4625): <span class="term-success">0 anomalies detected</span>
+[+] Writing Structured Telemetry to JSON Lines: <span class="term-dim">%LOCALAPPDATA%/CybersecurityLab/evidence/</span>
+[✓] Cryptographic Evidence Manifest Generated: <span class="term-highlight">SHA-256 Verified (4c9e88b...e91a)</span>
+<span class="term-success">[STATUS: READY] Native execution complete. Zero external cloud dependencies.</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CAREER EXPERIENCE -->
+  <section class="section" id="experience">
+    <div class="section-header">
+      <div class="section-eyebrow">Professional History</div>
+      <h2 class="section-heading">Industry Experience & Practical Training</h2>
+      <p class="section-desc">Practical engineering experience building enterprise logistics modules and configuring systems infrastructure.</p>
+    </div>
+
+    <div class="experience-grid">
+      <!-- TVS Global -->
+      <div class="experience-card">
+        <div class="experience-top">
+          <div>
+            <h3 class="exp-role-title">Technical Intern & Logistics Platform Developer</h3>
+            <div class="exp-company">TVS Global <span>• Chennai, India</span></div>
+          </div>
+          <div class="exp-dates">May 2026 – Sept 2026</div>
+        </div>
+
+        <ul class="exp-bullets">
+          <li class="exp-bullet">
+            <span><strong>Platform Architecture:</strong> Engineered and maintained core backend business logic for internal logistics operating modules (<code>tvs-express-os</code>) handling cargo bookings, dispatch manifests, and customer accounts.</span>
+          </li>
+          <li class="exp-bullet">
+            <span><strong>SQL Manifest Auditing:</strong> Formulated and executed structured PostgreSQL queries and relational joins to audit high-volume cargo weight manifests and invoice billing logs with 100% data integrity.</span>
+          </li>
+          <li class="exp-bullet">
+            <span><strong>API Verification:</strong> Validated REST API endpoints and data synchronization routines between branch client interfaces and central databases using Postman.</span>
+          </li>
+          <li class="exp-bullet">
+            <span><strong>Operational Excellence:</strong> Authored Standard Operating Procedures (SOPs) and technical troubleshooting guides to standardize documentation accuracy across regional logistics operations.</span>
+          </li>
+        </ul>
+
+        <div class="exp-tech-tags">
+          <span class="tech-pill">Internal Logistics OS</span>
+          <span class="tech-pill">PostgreSQL</span>
+          <span class="tech-pill">SQL Querying & Joins</span>
+          <span class="tech-pill">REST APIs</span>
+          <span class="tech-pill">Postman</span>
+          <span class="tech-pill">Manifest Auditing</span>
+          <span class="tech-pill">SOP Documentation</span>
+        </div>
+      </div>
+
+      <!-- Bridge Technologies -->
+      <div class="experience-card">
+        <div class="experience-top">
+          <div>
+            <h3 class="exp-role-title">Enterprise Systems & Infrastructure Training</h3>
+            <div class="exp-company">Bridge Technologies <span>• Chennai, India</span></div>
+          </div>
+          <div class="exp-dates">2026</div>
+        </div>
+
+        <ul class="exp-bullets">
+          <li class="exp-bullet">
+            <span><strong>Active Directory Administration:</strong> Administered Active Directory Domain Services (AD DS) environments across Windows Server, managing user onboarding, group policies, and credentials.</span>
+          </li>
+          <li class="exp-bullet">
+            <span><strong>Network Diagnostics:</strong> Configured local LAN subnets, IP addressing, DNS/DHCP settings, and resolved network anomalies using command-line diagnostic utilities (<code>ping</code>, <code>traceroute</code>, <code>netstat</code>).</span>
+          </li>
+          <li class="exp-bullet">
+            <span><strong>Workstation Deployment:</strong> Performed desktop assembly, SMPS testing, RAM/motherboard diagnostics, and OS installation across enterprise Windows workstations.</span>
+          </li>
+        </ul>
+
+        <div class="exp-tech-tags">
+          <span class="tech-pill">Windows Server</span>
+          <span class="tech-pill">Active Directory (AD DS)</span>
+          <span class="tech-pill">LAN Subnetting</span>
+          <span class="tech-pill">TCP/IP</span>
+          <span class="tech-pill">DNS / DHCP</span>
+          <span class="tech-pill">Hardware Diagnostics</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TWO FLAGSHIP SYSTEMS -->
+  <section class="section" id="systems">
+    <div class="section-header">
+      <div class="section-eyebrow">Production Architectures</div>
+      <h2 class="section-heading">Flagship Software Implementations</h2>
+      <p class="section-desc">Focused exclusively on two enterprise systems: high-throughput backend data scrutiny and native endpoint forensics.</p>
+    </div>
+
+    <div class="flagship-grid">
+      <!-- SYSTEM 1: LSR PLATFORM -->
+      <div class="system-card">
+        <div>
+          <div class="system-badge-row">
+            <span class="system-index">01</span>
+            <span class="system-type">Backend & Data Ingestion Service</span>
+          </div>
+
+          <h3 class="system-name">LSR Platform</h3>
+
+          <p class="system-summary">
+            An asynchronous, high-throughput legal and financial document scrutiny engine. Ingests complex structured deeds, enforces strict schema validation, and flags cross-document discrepancies with precise citation grounding.
+          </p>
+
+          <ul class="system-features">
+            <li class="system-feature">
+              <span><strong>Sub-Second Ingestion:</strong> Built with asynchronous FastAPI to parse and validate multi-document bundles.</span>
+            </li>
+            <li class="system-feature">
+              <span><strong>Strict Schema Enforcement:</strong> Employs Pydantic v2 schemas to eliminate malformed payloads before database writes.</span>
+            </li>
+            <li class="system-feature">
+              <span><strong>Evidence-Grounded Scrutiny:</strong> Detects boundary, date, and party discrepancies with exact source quotes.</span>
+            </li>
+            <li class="system-feature">
+              <span><strong>Production Ready:</strong> Fully containerized with Docker Compose, PostgreSQL, and automated Pytest suites.</span>
+            </li>
+          </ul>
+
+          <div class="system-pills">
+            <span class="tech-pill">Python 3.12</span>
+            <span class="tech-pill">FastAPI</span>
+            <span class="tech-pill">PostgreSQL</span>
+            <span class="tech-pill">Pydantic v2</span>
+            <span class="tech-pill">Docker Compose</span>
+            <span class="tech-pill">Pytest</span>
+            <span class="tech-pill">REST APIs</span>
+          </div>
+
+          <a href="https://github.com/Mdbasith05/lsr-platform" target="_blank" class="btn btn-outline">
+            <span>View Repository on GitHub</span>
+            <span>↗</span>
+          </a>
+        </div>
+
+        <div class="system-code-preview">
+<span class="term-dim"># FastAPI Pydantic v2 Ingestion Schema</span>
+<span class="term-cyan">class</span> <span class="term-success">ScrutinyPayload</span>(BaseModel):
+    document_id: UUID
+    source_type: Literal[<span class="term-highlight">"title_deed"</span>, <span class="term-highlight">"patta"</span>]
+    extracted_records: List[RecordEntry]
+    strict_audit_mode: bool = <span class="term-cyan">True</span>
+
+    <span class="term-dim">@field_validator("extracted_records")</span>
+    <span class="term-cyan">def</span> <span class="term-cmd">validate_schema</span>(cls, v):
+        <span class="term-cyan">if not</span> v:
+            <span class="term-cyan">raise</span> ValueError(<span class="term-highlight">"Payload empty"</span>)
+        <span class="term-cyan">return</span> v
+
+<span class="term-dim"># Status: 200 OK — Sub-second response</span>
+        </div>
+      </div>
+
+      <!-- SYSTEM 2: ARES TELEMETRY LAB -->
+      <div class="system-card">
+        <div>
+          <div class="system-badge-row">
+            <span class="system-index">02</span>
+            <span class="system-type">Systems Infrastructure & Forensics</span>
+          </div>
+
+          <h3 class="system-name">ARES Telemetry Lab</h3>
+
+          <p class="system-summary">
+            A native, forensic-grade Windows telemetry and endpoint investigation workbench. Built strictly with Python's standard library and Win32 APIs to correlate live sockets to active processes and generate cryptographically verified evidence packages.
+          </p>
+
+          <ul class="system-features">
+            <li class="system-feature">
+              <span><strong>Live Socket Correlation:</strong> Point-in-time TCP snapshot mapping network sockets to parent Process IDs (PIDs).</span>
+            </li>
+            <li class="system-feature">
+              <span><strong>Event Stream Ingestion:</strong> Ingests records from Windows Security, System, and PowerShell Operational logs.</span>
+            </li>
+            <li class="system-feature">
+              <span><strong>Cryptographic Manifest:</strong> Computes SHA-256 hashes for all captured streams ensuring forensic chain of custody.</span>
+            </li>
+            <li class="system-feature">
+              <span><strong>Zero External Dependencies:</strong> 100% on-device execution using native Win32 APIs; zero data leaves the machine.</span>
+            </li>
+          </ul>
+
+          <div class="system-pills">
+            <span class="tech-pill">Python 3.12</span>
+            <span class="tech-pill">Win32 API</span>
+            <span class="tech-pill">Win32evtlog</span>
+            <span class="tech-pill">SHA-256 Forensics</span>
+            <span class="tech-pill">TCP Sockets</span>
+            <span class="tech-pill">Tkinter GUI</span>
+          </div>
+
+          <a href="https://github.com/Mdbasith05/ares-system-audit" target="_blank" class="btn btn-outline">
+            <span>View Repository on GitHub</span>
+            <span>↗</span>
+          </a>
+        </div>
+
+        <div class="system-code-preview">
+<span class="term-dim"># Native SHA-256 Forensic Manifest Packaging</span>
+<span class="term-cyan">def</span> <span class="term-cmd">generate_forensic_manifest</span>(evidence_dir):
+    manifest = {
+        <span class="term-highlight">"timestamp"</span>: datetime.now(timezone.utc).isoformat(),
+        <span class="term-highlight">"sha256_digests"</span>: {}
+    }
+    <span class="term-cyan">for</span> file <span class="term-cyan">in</span> evidence_dir.glob(<span class="term-highlight">"*.jsonl"</span>):
+        digest = hashlib.sha256(file.read_bytes()).hexdigest()
+        manifest[<span class="term-highlight">"sha256_digests"</span>][file.name] = digest
+    <span class="term-cyan">return</span> manifest
+
+<span class="term-dim"># Result: Immutably signed local collection</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TECHNICAL COMPETENCIES (CLEAN ENGINEERING MATRIX) -->
+  <section class="section" id="skills">
+    <div class="section-header">
+      <div class="section-eyebrow">Technical Competencies</div>
+      <h2 class="section-heading">Core Skills & Systems Knowledge</h2>
+      <p class="section-desc">Practical abilities tested across enterprise logistics applications and system engineering projects.</p>
+    </div>
+
+    <div class="skills-matrix-grid">
+      <div class="matrix-card">
+        <h3 class="matrix-card-title">Backend & Full Stack Development</h3>
+        <p class="matrix-card-subtitle">Asynchronous architectures, API design, and clean code</p>
+        <div class="matrix-pills-list">
+          <span class="matrix-tag"><strong>Python 3.12</strong></span>
+          <span class="matrix-tag"><strong>FastAPI</strong></span>
+          <span class="matrix-tag"><strong>Java</strong></span>
+          <span class="matrix-tag">RESTful APIs</span>
+          <span class="matrix-tag">Postman Testing</span>
+          <span class="matrix-tag">JavaScript</span>
+          <span class="matrix-tag">Pydantic v2</span>
+        </div>
+      </div>
+
+      <div class="matrix-card">
+        <h3 class="matrix-card-title">Databases & Data Integrity</h3>
+        <p class="matrix-card-subtitle">Relational modeling, query optimization, and manifest auditing</p>
+        <div class="matrix-pills-list">
+          <span class="matrix-tag"><strong>PostgreSQL</strong></span>
+          <span class="matrix-tag"><strong>SQL Joins & Queries</strong></span>
+          <span class="matrix-tag">Supabase</span>
+          <span class="matrix-tag">Advanced Excel</span>
+          <span class="matrix-tag">XLOOKUP / Pivot</span>
+          <span class="matrix-tag">Data Reconciliation</span>
+        </div>
+      </div>
+
+      <div class="matrix-card">
+        <h3 class="matrix-card-title">Systems & Infrastructure</h3>
+        <p class="matrix-card-subtitle">Enterprise server administration and network diagnostics</p>
+        <div class="matrix-pills-list">
+          <span class="matrix-tag"><strong>Windows Server</strong></span>
+          <span class="matrix-tag"><strong>Active Directory (AD DS)</strong></span>
+          <span class="matrix-tag">TCP/IP Subnetting</span>
+          <span class="matrix-tag">DNS / DHCP</span>
+          <span class="matrix-tag">Win32 API</span>
+          <span class="matrix-tag">Hardware Diagnostics</span>
+        </div>
+      </div>
+
+      <div class="matrix-card">
+        <h3 class="matrix-card-title">AI-Augmented Engineering & DevOps</h3>
+        <p class="matrix-card-subtitle">Accelerated delivery, containerization, and quality assurance</p>
+        <div class="matrix-pills-list">
+          <span class="matrix-tag"><strong>GitHub Copilot</strong></span>
+          <span class="matrix-tag"><strong>Cursor AI</strong></span>
+          <span class="matrix-tag">Docker Compose</span>
+          <span class="matrix-tag">Git Version Control</span>
+          <span class="matrix-tag">Pytest</span>
+          <span class="matrix-tag">SOP Authoring</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EDUCATION & CREDENTIALS -->
+  <section class="section" id="education">
+    <div class="section-header">
+      <div class="section-eyebrow">Academic Foundation</div>
+      <h2 class="section-heading">Education & Technical Credentials</h2>
+    </div>
+
+    <div class="system-specs-bar" style="grid-template-columns: repeat(3, 1fr);">
+      <div class="spec-item">
+        <span class="spec-label">Undergraduate Degree</span>
+        <span class="spec-value">B.Sc Computer Science (2026)</span>
+        <span style="font-size:0.82rem; color:var(--text-muted); margin-top:2px;">The New College, University of Madras</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">Continuing Education</span>
+        <span class="spec-value">Master of Computer Applications</span>
+        <span style="font-size:0.82rem; color:var(--text-muted); margin-top:2px;">MCA • Online/Distance (2026–Present)</span>
+      </div>
+      <div class="spec-item">
+        <span class="spec-label">Industry Training</span>
+        <span class="spec-value">Enterprise Systems & Networking</span>
+        <span style="font-size:0.82rem; color:var(--text-muted); margin-top:2px;">Bridge Technologies • Windows Server & AD DS</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT / AVAILABILITY SECTION -->
+  <section class="section" id="contact">
+    <div class="contact-box">
+      <h2 class="contact-title">Open to Technical Opportunities.</h2>
+      <p class="contact-subtitle">
+        Available immediately for Full Stack Developer, Data Systems, and Infrastructure Support positions across Dubai, Abu Dhabi, and the UAE.
+      </p>
+
+      <div class="contact-channels">
+        <a href="mailto:mohammedbasith490@gmail.com" class="btn btn-primary" onclick="copyEmail(event)">
+          <span>✉ mohammedbasith490@gmail.com</span>
+        </a>
+        <a href="https://wa.me/918122156959" target="_blank" class="btn btn-outline">
+          <span>💬 +91 81221 56959</span>
+        </a>
+        <a href="https://linkedin.com/in/mohammedbasith05" target="_blank" class="btn btn-outline">
+          <span>LinkedIn</span>
+          <span>↗</span>
+        </a>
+        <a href="https://github.com/Mdbasith05" target="_blank" class="btn btn-outline">
+          <span>GitHub</span>
+          <span>↗</span>
+        </a>
+      </div>
+
+      <div class="copy-toast" id="copyToast"></div>
+    </div>
+  </section>
+
 </div>
 
-<div class="divider"></div>
-
-<!-- ABOUT -->
-<section id="about">
-  <div class="section-tag">About Me</div>
-  <h2 class="section-title">Turning complex logic<br>into robust systems.</h2>
-
-  <div class="about-grid">
-    <div class="about-text">
-      <p>I'm a <span>BSc Computer Science graduate</span> from The New College, University of Madras (Graduated 2026), pursuing MCA online. I specialize in backend API architecture, database integrity, and enterprise infrastructure.</p>
-      <p>During my tenure at <span>TVS Global</span>, I worked on core business logic for their internal logistics operating platform (<code>tvs-express-os</code>), querying PostgreSQL databases to audit cargo manifests, dispatch records, and verify billing synchronizations with zero error.</p>
-      <p>Trained at <span>Bridge Technologies</span> in enterprise Windows Server administration, Active Directory (AD DS), and TCP/IP networking. I leverage modern AI-augmented engineering workflows (<span>GitHub Copilot, Cursor, ChatGPT</span>) for rapid prototyping and clean code delivery.</p>
-    </div>
-    <div class="about-stats">
-      <div class="about-stat">
-        <div class="about-stat-num">FastAPI</div>
-        <div class="about-stat-label">Backend REST Engine</div>
-      </div>
-      <div class="about-stat">
-        <div class="about-stat-num">PostgreSQL</div>
-        <div class="about-stat-label">Relational Database</div>
-      </div>
-      <div class="about-stat">
-        <div class="about-stat-num">Win32</div>
-        <div class="about-stat-label">Systems & Telemetry</div>
-      </div>
-      <div class="about-stat">
-        <div class="about-stat-num">Excel</div>
-        <div class="about-stat-label">Advanced VLOOKUP / Pivot</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- EXPERIENCE -->
-<section id="experience">
-  <div class="section-tag">Career History</div>
-  <h2 class="section-title">Practical Experience & Training</h2>
-
-  <div class="experience-timeline">
-    <!-- TVS Global -->
-    <div class="experience-card">
-      <div class="experience-header">
-        <div>
-          <div class="experience-role">Technical Intern & Logistics Platform Developer</div>
-          <div class="experience-company">TVS Global • Chennai, India</div>
-        </div>
-        <div class="experience-dates">May 2026 – Sept 2026</div>
-      </div>
-      <div class="experience-focus"><strong>Core Focus:</strong> Internal Logistics Operating Platform (<code>tvs-express-os</code>), Cargo Bookings, PostgreSQL SQL Audits, REST API Testing</div>
-      <ul class="experience-points">
-        <li class="experience-point">Engineered and maintained backend business logic modules for the internal logistics operating platform managing cargo bookings, dispatch manifests, and customer accounts.</li>
-        <li class="experience-point">Formulated and executed structured SQL queries and relational joins on PostgreSQL to verify cargo weight manifests, invoice records, and shipping milestone status with zero data discrepancy.</li>
-        <li class="experience-point">Triaged operational data discrepancies and application-level inquiries reported by freight coordinators, cutting turnaround times across high-volume workflows.</li>
-        <li class="experience-point">Validated data synchronization routines and REST API endpoints between branch client interfaces and central databases using Postman.</li>
-        <li class="experience-point">Documented Standard Operating Procedures (SOPs) and step-by-step user troubleshooting guides to standardize documentation accuracy across branch operations.</li>
-      </ul>
-    </div>
-
-    <!-- Bridge Technologies -->
-    <div class="experience-card">
-      <div class="experience-header">
-        <div>
-          <div class="experience-role">Enterprise Systems, Windows Server & Networking Training</div>
-          <div class="experience-company">Bridge Technologies • Chennai, India</div>
-        </div>
-        <div class="experience-dates">2026</div>
-      </div>
-      <div class="experience-focus"><strong>Core Focus:</strong> Windows Server Infrastructure, Active Directory (AD DS), TCP/IP Subnetting, Hardware Diagnostics</div>
-      <ul class="experience-points">
-        <li class="experience-point">Administered Active Directory Domain Services (AD DS) environments, executing user onboarding, group policy assignments, and credential management across client workstations.</li>
-        <li class="experience-point">Configured local LAN subnets, IP addressing, DNS/DHCP settings, and resolved connectivity issues using command-line diagnostics (<code>ping</code>, <code>traceroute</code>, <code>netstat</code>).</li>
-        <li class="experience-point">Performed desktop assembly, SMPS testing, RAM/motherboard diagnostics, and OS installation across enterprise Windows workstations.</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- SKILLS -->
-<section id="skills">
-  <div class="section-tag">Capabilities</div>
-  <h2 class="section-title">Technical Competencies</h2>
-
-  <div class="skills-grid">
-    <div class="skill-card">
-      <div class="skill-icon blue">⚙️</div>
-      <div class="skill-title">Backend & Full Stack</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Python 3.12</span>
-        <span class="skill-tag">FastAPI</span>
-        <span class="skill-tag">Java</span>
-        <span class="skill-tag">RESTful APIs</span>
-        <span class="skill-tag">JavaScript</span>
-        <span class="skill-tag">Postman</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-icon green">🗄️</div>
-      <div class="skill-title">Databases & Data Analytics</div>
-      <div class="skill-tags">
-        <span class="skill-tag">PostgreSQL</span>
-        <span class="skill-tag">SQL Joins & Queries</span>
-        <span class="skill-tag">Supabase</span>
-        <span class="skill-tag">Advanced Excel</span>
-        <span class="skill-tag">XLOOKUP / Pivot</span>
-        <span class="skill-tag">Data Auditing</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-icon orange">🖥️</div>
-      <div class="skill-title">Systems & Infrastructure</div>
-      <div class="skill-tags">
-        <span class="skill-tag">Windows Server</span>
-        <span class="skill-tag">Active Directory</span>
-        <span class="skill-tag">TCP/IP Subnetting</span>
-        <span class="skill-tag">Hardware Diagnostics</span>
-        <span class="skill-tag">Win32 API</span>
-        <span class="skill-tag">Event Logs</span>
-      </div>
-    </div>
-    <div class="skill-card">
-      <div class="skill-icon purple">⚡</div>
-      <div class="skill-title">AI & Modern Tooling</div>
-      <div class="skill-tags">
-        <span class="skill-tag">GitHub Copilot</span>
-        <span class="skill-tag">Cursor AI</span>
-        <span class="skill-tag">Docker</span>
-        <span class="skill-tag">Git / GitHub</span>
-        <span class="skill-tag">Pytest</span>
-        <span class="skill-tag">SOP Authoring</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- PROJECTS (ONLY THE 2 FLAGSHIP ENTERPRISE SYSTEMS) -->
-<section id="projects">
-  <div class="section-tag">Flagship Systems</div>
-  <h2 class="section-title">Core Implementations</h2>
-
-  <div class="projects-grid">
-    <!-- LSR Platform -->
-    <div class="project-card">
-      <div>
-        <div class="project-number">01</div>
-        <div class="project-badge-tag">Backend & Data Ingestion Engine</div>
-        <div class="project-title">LSR Platform</div>
-        <p class="project-desc">A high-performance automated document scrutiny, validation, and ingestion service. Enforces strict schema validations and relational consistency for high-volume operational and legal records.</p>
-        <div class="project-features">
-          <div class="feature">FastAPI asynchronous backend with sub-second API endpoint response times</div>
-          <div class="feature">Strict Pydantic v2 schema validation preventing malformed payload inputs</div>
-          <div class="feature">Relational PostgreSQL database layer with Supabase cloud integration</div>
-          <div class="feature">Comprehensive RESTful API documentation with Postman automated testing</div>
-          <div class="feature">Docker containerized architecture for reliable production deployment</div>
-        </div>
-      </div>
-      <div>
-        <div class="project-tech">
-          <span class="tech-badge blue">Python 3.12</span>
-          <span class="tech-badge green">FastAPI</span>
-          <span class="tech-badge blue">PostgreSQL</span>
-          <span class="tech-badge purple">Pydantic v2</span>
-          <span class="tech-badge orange">Docker</span>
-          <span class="tech-badge green">REST APIs</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/Mdbasith05/lsr-platform" target="_blank" class="project-link github">⌥ View GitHub Repository ↗</a>
-        </div>
-      </div>
-    </div>
-
-    <!-- ARES Telemetry Workbench -->
-    <div class="project-card security">
-      <div>
-        <div class="project-number">02</div>
-        <div class="project-badge-tag">Systems Telemetry & Forensics</div>
-        <div class="project-title">ARES Telemetry Lab</div>
-        <p class="project-desc">A forensic-grade Windows endpoint telemetry workbench. Audits active processes, live TCP connections, and Windows Event Logs with zero external dependencies and local cryptographic evidence packaging.</p>
-        <div class="project-features">
-          <div class="feature">Native Windows Event Log extraction (Security, System, PowerShell Operational)</div>
-          <div class="feature">Live TCP socket analysis correlating connections to active Process IDs (PIDs)</div>
-          <div class="feature">Automated SHA-256 cryptographic manifests for chain-of-custody evidence integrity</div>
-          <div class="feature">Zero external dependencies — built entirely on Python's standard library and Win32 APIs</div>
-          <div class="feature">Interactive Tkinter desktop GUI with multi-window evidence deep-search</div>
-        </div>
-      </div>
-      <div>
-        <div class="project-tech">
-          <span class="tech-badge blue">Python 3.12</span>
-          <span class="tech-badge orange">Windows API</span>
-          <span class="tech-badge blue">Win32evtlog</span>
-          <span class="tech-badge green">Forensics</span>
-          <span class="tech-badge blue">SHA-256</span>
-          <span class="tech-badge purple">Tkinter GUI</span>
-        </div>
-        <div class="project-links">
-          <a href="https://github.com/Mdbasith05/ares-system-audit" target="_blank" class="project-link github">⌥ View GitHub Repository ↗</a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- CREDENTIALS -->
-<section id="certs">
-  <div class="section-tag">Credentials</div>
-  <h2 class="section-title">Education & Training</h2>
-
-  <div class="cert-grid">
-    <div class="cert-card">
-      <div class="cert-icon">🎓</div>
-      <div>
-        <div class="cert-name">B.Sc Computer Science</div>
-        <div class="cert-issuer">The New College, University of Madras</div>
-        <div class="cert-year">Graduated: 2026 • Core Computer Science & Algorithms</div>
-      </div>
-    </div>
-    <div class="cert-card">
-      <div class="cert-icon">🏢</div>
-      <div>
-        <div class="cert-name">TVS Global Logistics Internship</div>
-        <div class="cert-issuer">TVS Global, Chennai</div>
-        <div class="cert-year">May 2026 – Sept 2026 • Logistics Platform & Data Auditing</div>
-      </div>
-    </div>
-    <div class="cert-card">
-      <div class="cert-icon">⚡</div>
-      <div>
-        <div class="cert-name">Systems & Network Training</div>
-        <div class="cert-issuer">Bridge Technologies, Chennai</div>
-        <div class="cert-year">2026 • Windows Server, Active Directory, LAN/TCP-IP</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- CONTACT -->
-<section id="contact">
-  <div class="contact-wrapper">
-    <div class="section-tag" style="justify-content:center; margin-bottom:20px;">Let's Connect</div>
-    <h2 class="contact-title">Open to Technical Opportunities.<br>Let's talk.</h2>
-    <p class="contact-desc">
-      Actively open to Full Stack Developer, Data Analyst, ERP & Systems Support roles across Dubai & UAE.<br>
-      2026 CS Graduate • Ready for Immediate Relocation (0 Days Notice).
-    </p>
-    <div class="contact-links">
-      <a href="mailto:mohammedbasith490@gmail.com" class="contact-link primary">✉ mohammedbasith490@gmail.com</a>
-      <a href="https://wa.me/918122156959" target="_blank" class="contact-link outline">💬 +91 81221 56959 ↗</a>
-      <a href="https://linkedin.com/in/mohammedbasith05" target="_blank" class="contact-link outline">LinkedIn ↗</a>
-      <a href="https://github.com/Mdbasith05" target="_blank" class="contact-link outline">GitHub ↗</a>
-    </div>
-  </div>
-</section>
-
+<!-- FOOTER -->
 <footer>
-  <p>Mohammed Basith • Software Engineer & Systems Analyst • 2026</p>
+  <div class="container">
+    <p>© 2026 Mohammed Basith • Software Engineer & Systems Infrastructure Analyst • <a href="https://github.com/Mdbasith05">github.com/Mdbasith05</a></p>
+  </div>
 </footer>
 
 <script>
-  const cursor = document.getElementById('cursor');
-  const ring = document.getElementById('cursorRing');
-  let mx = 0, my = 0, rx = 0, ry = 0;
-
-  document.addEventListener('mousemove', e => {
-    mx = e.clientX; my = e.clientY;
-    cursor.style.left = mx - 6 + 'px';
-    cursor.style.top = my - 6 + 'px';
-  });
-
-  function animateRing() {
-    rx += (mx - rx - 18) * 0.12;
-    ry += (my - ry - 18) * 0.12;
-    ring.style.left = rx + 'px';
-    ring.style.top = ry + 'px';
-    requestAnimationFrame(animateRing);
+  // Tab switcher for interactive terminal
+  function switchTermTab(tab) {
+    const btns = document.querySelectorAll('.terminal-tab-btn');
+    btns.forEach(b => b.classList.remove('active'));
+    
+    const content = document.getElementById('termContent');
+    if (tab === 'ares') {
+      btns[0].classList.add('active');
+      content.innerHTML = `<span class="term-dim"># Real-time Windows telemetry audit & live TCP socket correlation</span>
+<span class="term-cmd">$ python local_lab.py --audit --window 1h</span>
+[INFO] Initializing ARES Endpoint Telemetry Collector (Win32 Engine)
+[+] Enumerating Active Processes: <span class="term-cyan">148 PIDs discovered</span>
+[+] Correlating TCP Sockets to Process Trees: <span class="term-success">38 active endpoints validated</span>
+[+] Querying Windows Security & System Event Streams: <span class="term-cyan">1,000 records ingested</span>
+[+] Auditing Failed Logon Telemetry (EventID 4625): <span class="term-success">0 anomalies detected</span>
+[+] Writing Structured Telemetry to JSON Lines: <span class="term-dim">%LOCALAPPDATA%/CybersecurityLab/evidence/</span>
+[✓] Cryptographic Evidence Manifest Generated: <span class="term-highlight">SHA-256 Verified (4c9e88b...e91a)</span>
+<span class="term-success">[STATUS: READY] Native execution complete. Zero external cloud dependencies.</span>`;
+    } else {
+      btns[1].classList.add('active');
+      content.innerHTML = `<span class="term-dim"># FastAPI Pydantic v2 Ingestion & Schema Scrutiny Request</span>
+<span class="term-cmd">$ curl -X POST http://localhost:8000/api/v1/scrutiny/analyze -H "Content-Type: application/json" -d @bundle.json</span>
+<span class="term-cyan">HTTP/1.1 200 OK</span>
+<span class="term-dim">Server: uvicorn / Python 3.12</span>
+{
+  <span class="term-highlight">"status"</span>: <span class="term-success">"SUCCESS"</span>,
+  <span class="term-highlight">"execution_time_ms"</span>: <span class="term-cyan">142</span>,
+  <span class="term-highlight">"records_parsed"</span>: <span class="term-cyan">48</span>,
+  <span class="term-highlight">"schema_validation"</span>: <span class="term-success">"PASSED_PYDANTIC_V2"</span>,
+  <span class="term-highlight">"cross_discrepancy_flags"</span>: [],
+  <span class="term-highlight">"audit_trail_id"</span>: <span class="term-dim">"8b24ef09-d7e1-4c19-9403-5182189a741c"</span>
+}
+<span class="term-success">[STATUS: 200 OK] Asynchronous document validation completed with 0 errors.</span>`;
+    }
   }
-  animateRing();
 
-  document.querySelectorAll('a, button').forEach(el => {
-    el.addEventListener('mouseenter', () => {
-      cursor.style.transform = 'scale(2)';
-      ring.style.transform = 'scale(1.5)';
-    });
-    el.addEventListener('mouseleave', () => {
-      cursor.style.transform = 'scale(1)';
-      ring.style.transform = 'scale(1)';
-    });
-  });
+  // Quick copy email
+  function copyEmail(e) {
+    e.preventDefault();
+    navigator.clipboard.writeText('mohammedbasith490@gmail.com');
+    const toast = document.getElementById('copyToast');
+    toast.textContent = '✓ Email copied to clipboard: mohammedbasith490@gmail.com';
+    setTimeout(() => {
+      toast.textContent = '';
+    }, 3500);
+  }
 </script>
 
 </body>
