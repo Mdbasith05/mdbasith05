@@ -24,7 +24,7 @@
 - 🎓 **Education:** B.Sc in Computer Science (Graduated 2026, The New College, University of Madras) • Pursuing MCA (Distance/Online).
 - 💼 **Practical Experience:** Technical Intern at **TVS Global**, engineering logistics platform backend logic (`tvs-express-os`), executing SQL manifest audits, and building REST API validation pipelines.
 - 🛠️ **Systems Infrastructure:** Trained at **Bridge Technologies** in Windows Server Administration, Active Directory (AD DS), LAN/TCP-IP networking, and hardware diagnostics.
-- ⚡ **AI-Augmented Engineering:** Proficient in leveraging modern AI tools (**GitHub Copilot, ChatGPT, Cursor**) to accelerate development, prototype rapid POCs, and maintain flawless documentation.
+- ⚡ **AI-Augmented Engineering:** Proficient in leveraging modern AI tools (**GitHub Copilot, ChatGPT, Cursor**) to accelerate development, prototype rapid POCs, and maintain clean code.
 - 🌍 **Current Focus:** Open to **Full Stack Developer, Data Analyst, ERP / Systems Support, and Operations** opportunities in the UAE with immediate relocation capability.
 
 ---
@@ -46,64 +46,40 @@
 
 ---
 
-### 🚀 Featured Systems & Implementations
+### 🚀 Flagship Systems & Architecture
 
 <table>
   <tr>
-    <td width="50%">
+    <td width="50%" valign="top">
       <h3 align="center">📄 LSR Platform</h3>
-      <p align="center"><b>Automated Document Scrutiny & Validation Pipeline</b></p>
+      <p align="center"><b>Automated Document Scrutiny & Ingestion Service</b></p>
       <ul>
-        <li>High-performance backend service engineered with <b>FastAPI</b> to parse, validate, and extract structured records.</li>
-        <li>Strict <b>Pydantic</b> validation schema layers eliminating payload inconsistencies.</li>
+        <li>High-throughput backend service engineered with <b>FastAPI</b> to parse, validate, and extract structured records with sub-second response times.</li>
+        <li>Strict <b>Pydantic schema validation</b> layers eliminating malformed payload inputs and guaranteeing downstream data integrity.</li>
         <li>Relational <b>PostgreSQL & Supabase</b> database backend with Docker containerization.</li>
+        <li>Automated <b>Postman testing suites</b> verifying endpoint reliability across staging environments.</li>
       </ul>
       <p align="center">
-        <code>FastAPI</code> • <code>PostgreSQL</code> • <code>Pydantic</code> • <code>Docker</code><br>
-        <a href="https://github.com/Mdbasith05/lsr-platform"><b>⌥ View Repository</b></a>
+        <code>FastAPI</code> • <code>PostgreSQL</code> • <code>Pydantic</code> • <code>Docker</code> • <code>REST APIs</code><br><br>
+        <a href="https://github.com/Mdbasith05/lsr-platform">
+          <img src="https://img.shields.io/badge/⌥_View_Repository-LSR_Platform-009688?style=for-the-badge&logo=github&logoColor=white" />
+        </a>
       </p>
     </td>
-    <td width="50%">
+    <td width="50%" valign="top">
       <h3 align="center">🛡️ ARES Telemetry Lab</h3>
-      <p align="center"><b>Windows System Telemetry & Event Audit Workbench</b></p>
+      <p align="center"><b>Windows System Telemetry & Endpoint Investigation Workbench</b></p>
       <ul>
-        <li>Forensic-grade desktop investigation workbench inspecting real-time processes, threads, and sockets.</li>
-        <li>Extracts critical <b>Windows Event Logs</b> (Security, System, PowerShell Operational) into JSON Lines.</li>
-        <li>Generates automated <b>SHA-256 cryptographic manifests</b> for chain-of-custody verification.</li>
+        <li>Forensic-grade desktop investigation workbench inspecting real-time processes, threads, and active sockets on Windows.</li>
+        <li>Ingests and parses records from <b>Windows Security, System, Application, and PowerShell</b> event streams.</li>
+        <li>Correlates active TCP connections directly to originating Windows Process IDs (PIDs).</li>
+        <li>Generates automated <b>SHA-256 cryptographic manifests</b> for evidence chain-of-custody verification.</li>
       </ul>
       <p align="center">
-        <code>Python</code> • <code>Win32 API</code> • <code>Tkinter</code> • <code>Forensics</code><br>
-        <a href="https://github.com/Mdbasith05/ares-system-audit"><b>⌥ View Repository</b></a>
-      </p>
-    </td>
-  </tr>
-  <tr>
-    <td width="50%">
-      <h3 align="center">📊 SalesBI Dashboard</h3>
-      <p align="center"><b>Full-Stack Business Intelligence Platform</b></p>
-      <ul>
-        <li>Multi-user SaaS platform deployed live on Render with secure session management.</li>
-        <li>Uploads raw CSVs and dynamically computes 18+ KPI cards, revenue forecasts, and trend breakdowns.</li>
-        <li>Interactive Chart.js visualizations and automated PDF/Excel export.</li>
-      </ul>
-      <p align="center">
-        <code>Flask</code> • <code>PostgreSQL</code> • <code>Chart.js</code> • <code>Live Render</code><br>
-        <a href="https://salesbi.onrender.com" target="_blank"><b>↗ Live Demo</b></a> • 
-        <a href="https://github.com/Mdbasith05/Salesbi"><b>⌥ GitHub</b></a>
-      </p>
-    </td>
-    <td width="50%">
-      <h3 align="center">🔐 Phishing Investigation Tool</h3>
-      <p align="center"><b>Automated Threat Intelligence & IOC Analyzer</b></p>
-      <ul>
-        <li>Analyzes suspicious URLs and IP addresses in real-time across 70+ threat engines via VirusTotal API.</li>
-        <li>Automated risk scoring, malicious payload classification, and IOC summaries.</li>
-        <li>Deployed live on Streamlit Cloud for instant security analyst triage.</li>
-      </ul>
-      <p align="center">
-        <code>Streamlit</code> • <code>VirusTotal API</code> • <code>Threat Intel</code> • <code>Cloud</code><br>
-        <a href="https://phishing-investigation-tool-nthxnwdgm3vyu4unsu9gsj.streamlit.app/" target="_blank"><b>↗ Live Demo</b></a> • 
-        <a href="https://github.com/Mdbasith05/phishing-investigation-tool"><b>⌥ GitHub</b></a>
+        <code>Python 3.12</code> • <code>Win32 API</code> • <code>Win32evtlog</code> • <code>Tkinter</code> • <code>SHA-256</code><br><br>
+        <a href="https://github.com/Mdbasith05/ares-system-audit">
+          <img src="https://img.shields.io/badge/⌥_View_Repository-ARES_Telemetry-0078D6?style=for-the-badge&logo=github&logoColor=white" />
+        </a>
       </p>
     </td>
   </tr>
@@ -117,6 +93,10 @@
 
 <img src="https://github-readme-stats.vercel.app/api?username=Mdbasith05&show_icons=true&theme=radical&hide_border=true&bg_color=0E1420&title_color=4F8EF7&icon_color=00D9A3&text_color=E8EDF5" width="48%" />
 <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=Mdbasith05&layout=compact&theme=radical&hide_border=true&bg_color=0E1420&title_color=4F8EF7&text_color=E8EDF5" width="48%" />
+
+<br><br>
+
+<img src="https://github-readme-streak-stats.herokuapp.com/?user=Mdbasith05&theme=radical&background=0E1420&border=4F8EF7&stroke=4F8EF7&ring=4F8EF7&fire=00D9A3&currStreakNum=E8EDF5" width="97%" />
 
 </div>
 
@@ -138,8 +118,8 @@
   <img src="https://img.shields.io/badge/Portfolio-mdbasith05.github.io-7C5CFC?style=for-the-badge&logo=google-chrome&logoColor=white" />
 </a>
 &nbsp;
-<a href="tel:+918122156959">
-  <img src="https://img.shields.io/badge/Phone-+91_81221_56959-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" />
+<a href="https://wa.me/918122156959">
+  <img src="https://img.shields.io/badge/WhatsApp-+91_81221_56959-25D366?style=for-the-badge&logo=whatsapp&logoColor=white" />
 </a>
 
 </div>
