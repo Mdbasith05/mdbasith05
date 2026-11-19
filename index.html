@@ -1112,6 +1112,62 @@
 <span class="term-dim"># Result: Immutably signed local collection</span>
         </div>
       </div>
+
+      <!-- SYSTEM 3: SOC SENTINEL -->
+      <div class="system-card">
+        <div>
+          <div class="system-badge-row">
+            <span class="system-index">03</span>
+            <span class="system-type">SOC Automation & Threat Intelligence</span>
+          </div>
+
+          <h3 class="system-name">SOC Sentinel — Alert Triage Engine</h3>
+
+          <p class="system-summary">
+            An automated enterprise SOC alert triage and threat intelligence workbench. Rapidly consumes live VirusTotal v3 telemetry to enrich Indicators of Compromise (IPs, URLs, domains, hashes), correlate MITRE ATT&CK techniques, compute normalized 0–100 risk scores, and generate automated containment playbooks with standardized JSON & Markdown incident tickets.
+          </p>
+
+          <ul class="system-features">
+            <li class="system-feature">
+              <span><strong>Multi-Format IOC Parser & Defanger:</strong> Automated regex extraction and RFC-compliant defanging preventing accidental analyst execution.</span>
+            </li>
+            <li class="system-feature">
+              <span><strong>VirusTotal v3 Ingestion:</strong> Real-time enrichment of vendor detection consensus, reputation, ASN network ownership, and community flags.</span>
+            </li>
+            <li class="system-feature">
+              <span><strong>MITRE ATT&CK Correlation:</strong> Automatic technique correlation across Initial Access (T1566), C2 Communication (T1071), and Execution (T1204).</span>
+            </li>
+            <li class="system-feature">
+              <span><strong>Incident Ticket Generation:</strong> Packages structured incident records with actionable L1 firewall drop rules, EDR hash blacklists, and account quarantine steps.</span>
+            </li>
+          </ul>
+
+          <div class="system-pills">
+            <span class="tech-pill">Python 3.12</span>
+            <span class="tech-pill">VirusTotal v3</span>
+            <span class="tech-pill">MITRE ATT&CK</span>
+            <span class="tech-pill">SOC Triage</span>
+            <span class="tech-pill">Streamlit UI</span>
+            <span class="tech-pill">REST APIs</span>
+          </div>
+
+          <a href="https://github.com/Mdbasith05/soc-sentinel-triage" target="_blank" class="btn btn-outline">
+            <span>View Repository on GitHub</span>
+            <span>↗</span>
+          </a>
+        </div>
+
+        <div class="system-code-preview">
+<span class="term-dim"># Automated L1 SOC Alert Triage & Containment</span>
+<span class="term-cyan">def</span> <span class="term-cmd">triage_alert</span>(ioc, ioc_type):
+    vt_data = vt_client.query_ioc(ioc, ioc_type)
+    risk = calculate_soc_risk_score(vt_data)
+    mitre = map_ioc_to_mitre(ioc_type, vt_data[<span class="term-highlight">"tags"</span>])
+    <span class="term-cyan">return</span> generate_incident_ticket(vt_data, risk, mitre)
+
+<span class="term-dim"># Telemetry Verdict: [CRITICAL 100/100] C2 Infrastructure Blocked</span>
+        </div>
+      </div>
     </div>
   </section>
 
