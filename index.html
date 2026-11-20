@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mohammed Basith — Technical Systems, Infrastructure & Security</title>
+<title>Mohammed Basith — Technical Systems, Infrastructure & Security Specialist</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
 
 <style>
   :root {
@@ -27,7 +27,6 @@
     --neon-purple: #A855F7;
     --neon-emerald: #10B981;
     --neon-amber: #F59E0B;
-    --neon-red: #EF4444;
     
     --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
     --font-heading: 'Space Grotesk', sans-serif;
@@ -56,15 +55,15 @@
     position: relative;
   }
 
-  /* INTERACTIVE SPOTLIGHT FOLLOWER */
+  /* INTERACTIVE MOUSE SPOTLIGHT FOLLOWER */
   #spotlight {
     position: fixed;
     top: 0;
     left: 0;
-    width: 600px;
-    height: 600px;
+    width: 650px;
+    height: 650px;
     border-radius: 50%;
-    background: radial-gradient(circle, rgba(0, 240, 255, 0.07) 0%, rgba(56, 139, 253, 0.03) 40%, transparent 70%);
+    background: radial-gradient(circle, rgba(0, 240, 255, 0.06) 0%, rgba(56, 139, 253, 0.03) 40%, transparent 70%);
     transform: translate(-50%, -50%);
     pointer-events: none;
     z-index: 1;
@@ -80,7 +79,7 @@
     height: 100vh;
     pointer-events: none;
     z-index: 0;
-    opacity: 0.65;
+    opacity: 0.6;
   }
 
   /* GRID OVERLAY */
@@ -102,16 +101,15 @@
     left: 0;
     right: 0;
     z-index: 1000;
-    background: rgba(7, 9, 14, 0.85);
+    background: rgba(7, 9, 14, 0.88);
     backdrop-filter: blur(18px);
     border-bottom: 1px solid var(--border-subtle);
-    transition: all 0.3s ease;
   }
 
   .nav-container {
     max-width: 1220px;
     margin: 0 auto;
-    padding: 14px 24px;
+    padding: 15px 24px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -129,12 +127,12 @@
     height: 36px;
     border-radius: 10px;
     background: linear-gradient(135deg, rgba(0, 240, 255, 0.15), rgba(168, 85, 247, 0.15));
-    border: 1px solid rgba(0, 240, 255, 0.3);
+    border: 1px solid rgba(0, 240, 255, 0.35);
     display: flex;
     align-items: center;
     justify-content: center;
     font-family: var(--font-heading);
-    font-weight: 700;
+    font-weight: 800;
     font-size: 0.95rem;
     color: var(--neon-cyan);
     box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
@@ -150,7 +148,7 @@
 
   .nav-menu {
     display: flex;
-    gap: 26px;
+    gap: 28px;
     list-style: none;
     align-items: center;
   }
@@ -166,21 +164,6 @@
 
   .nav-menu a:hover {
     color: var(--neon-cyan);
-  }
-
-  .nav-menu a::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    width: 0;
-    height: 2px;
-    background: var(--neon-cyan);
-    transition: width 0.2s ease;
-  }
-
-  .nav-menu a:hover::after {
-    width: 100%;
   }
 
   .btn-nav-cta {
@@ -201,8 +184,6 @@
     opacity: 0.95;
   }
 
-  .btn-nav-cta::after { display: none !important; }
-
   @media (max-width: 880px) {
     .nav-menu { display: none; }
   }
@@ -218,7 +199,7 @@
 
   /* HERO SECTION */
   .hero-section {
-    padding-top: 140px;
+    padding-top: 145px;
     padding-bottom: 70px;
   }
 
@@ -326,12 +307,12 @@
     transform: translateY(-2px);
   }
 
-  /* QUICK STATS CAROUSEL */
+  /* QUICK STATS STRIP */
   .stats-strip {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 16px;
-    background: rgba(13, 17, 26, 0.7);
+    background: rgba(13, 17, 26, 0.75);
     border: 1px solid var(--border-subtle);
     border-radius: 14px;
     padding: 22px 28px;
@@ -363,163 +344,6 @@
     font-size: 1.05rem;
     font-weight: 700;
     color: var(--text-primary);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  /* INTERACTIVE DOMAIN FILTER BAR */
-  .filter-section {
-    padding: 30px 0 10px 0;
-  }
-
-  .filter-wrapper {
-    background: var(--bg-surface);
-    border: 1px solid var(--border-subtle);
-    border-radius: 14px;
-    padding: 10px;
-    display: flex;
-    gap: 8px;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-
-  .filter-wrapper::-webkit-scrollbar { display: none; }
-
-  .filter-pill {
-    background: transparent;
-    border: 1px solid transparent;
-    color: var(--text-secondary);
-    font-family: var(--font-sans);
-    font-size: 0.88rem;
-    font-weight: 600;
-    padding: 10px 20px;
-    border-radius: 10px;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .filter-pill:hover {
-    color: var(--text-primary);
-    background: rgba(255, 255, 255, 0.03);
-  }
-
-  .filter-pill.active {
-    background: rgba(0, 240, 255, 0.12);
-    border-color: rgba(0, 240, 255, 0.4);
-    color: var(--neon-cyan);
-    box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
-  }
-
-  /* INTERACTIVE CLI TERMINAL PLAYGROUND */
-  .terminal-box {
-    background: #080B11;
-    border: 1px solid var(--border-strong);
-    border-radius: 14px;
-    overflow: hidden;
-    margin-top: 48px;
-    box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.75);
-    position: relative;
-  }
-
-  .terminal-topbar {
-    background: #0F141F;
-    padding: 12px 20px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid var(--border-subtle);
-  }
-
-  .terminal-buttons {
-    display: flex;
-    gap: 8px;
-  }
-
-  .t-dot {
-    width: 12px;
-    height: 12px;
-    border-radius: 50%;
-  }
-  .t-dot.red { background: #FF5F56; }
-  .t-dot.yellow { background: #FFBD2E; }
-  .t-dot.green { background: #27C93F; }
-
-  .terminal-title {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    color: var(--text-muted);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .quick-commands {
-    display: flex;
-    gap: 8px;
-    padding: 10px 20px;
-    background: rgba(255, 255, 255, 0.015);
-    border-bottom: 1px solid var(--border-subtle);
-    overflow-x: auto;
-  }
-
-  .cmd-badge {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--border-subtle);
-    color: var(--text-secondary);
-    font-family: var(--font-mono);
-    font-size: 0.76rem;
-    padding: 4px 12px;
-    border-radius: 6px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    white-space: nowrap;
-  }
-
-  .cmd-badge:hover {
-    background: rgba(0, 240, 255, 0.1);
-    color: var(--neon-cyan);
-    border-color: rgba(0, 240, 255, 0.3);
-  }
-
-  .terminal-output {
-    padding: 24px;
-    font-family: var(--font-mono);
-    font-size: 0.88rem;
-    line-height: 1.65;
-    color: #CBD5E1;
-    min-height: 190px;
-    max-height: 380px;
-    overflow-y: auto;
-  }
-
-  .cli-prompt-line {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 12px 20px;
-    background: #0A0E17;
-    border-top: 1px solid var(--border-subtle);
-  }
-
-  .cli-prompt-sign {
-    color: var(--neon-cyan);
-    font-family: var(--font-mono);
-    font-weight: 700;
-  }
-
-  #cliInput {
-    flex: 1;
-    background: transparent;
-    border: none;
-    color: var(--text-primary);
-    font-family: var(--font-mono);
-    font-size: 0.9rem;
-    outline: none;
   }
 
   /* SECTION STYLING */
@@ -560,12 +384,53 @@
     max-width: 720px;
   }
 
+  /* INTERACTIVE DOMAIN FILTER BAR */
+  .filter-wrapper {
+    background: var(--bg-surface);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 10px;
+    display: flex;
+    gap: 8px;
+    margin-top: 32px;
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+
+  .filter-wrapper::-webkit-scrollbar { display: none; }
+
+  .filter-pill {
+    background: transparent;
+    border: 1px solid transparent;
+    color: var(--text-secondary);
+    font-family: var(--font-sans);
+    font-size: 0.88rem;
+    font-weight: 600;
+    padding: 10px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    white-space: nowrap;
+    transition: all 0.2s ease;
+  }
+
+  .filter-pill:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.03);
+  }
+
+  .filter-pill.active {
+    background: rgba(0, 240, 255, 0.12);
+    border-color: rgba(0, 240, 255, 0.4);
+    color: var(--neon-cyan);
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
+  }
+
   /* 3D TILT CARDS FOR 4 PILLARS */
   .pillars-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 26px;
-    margin-top: 48px;
+    margin-top: 36px;
   }
 
   @media (max-width: 840px) {
@@ -680,145 +545,6 @@
     border-color: rgba(255, 255, 255, 0.3);
   }
 
-  /* INTERACTIVE LIVE THREAT SIMULATOR WIDGET */
-  .simulator-card {
-    background: linear-gradient(180deg, #0C1019, #080B12);
-    border: 1px solid var(--border-glow);
-    border-radius: 18px;
-    padding: 36px;
-    margin-top: 48px;
-    box-shadow: 0 20px 50px -10px rgba(0, 240, 255, 0.12);
-  }
-
-  .sim-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 16px;
-    margin-bottom: 24px;
-    padding-bottom: 20px;
-    border-bottom: 1px solid var(--border-subtle);
-  }
-
-  .sim-title {
-    font-family: var(--font-heading);
-    font-size: 1.35rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .sim-badge {
-    font-family: var(--font-mono);
-    font-size: 0.76rem;
-    color: var(--neon-emerald);
-    background: rgba(16, 185, 129, 0.1);
-    border: 1px solid rgba(16, 185, 129, 0.3);
-    padding: 4px 10px;
-    border-radius: 6px;
-  }
-
-  .sim-controls {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    margin-bottom: 24px;
-  }
-
-  .sim-ioc-btn {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--border-subtle);
-    color: var(--text-secondary);
-    font-family: var(--font-mono);
-    font-size: 0.82rem;
-    padding: 8px 16px;
-    border-radius: 8px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-  }
-
-  .sim-ioc-btn:hover {
-    background: rgba(255, 255, 255, 0.08);
-    color: var(--text-primary);
-  }
-
-  .sim-ioc-btn.active {
-    background: rgba(0, 240, 255, 0.15);
-    border-color: var(--neon-cyan);
-    color: var(--neon-cyan);
-  }
-
-  .sim-display-grid {
-    display: grid;
-    grid-template-columns: 1fr 1.3fr;
-    gap: 24px;
-  }
-
-  @media (max-width: 820px) {
-    .sim-display-grid { grid-template-columns: 1fr; }
-  }
-
-  .sim-score-box {
-    background: #090C14;
-    border: 1px solid var(--border-subtle);
-    border-radius: 12px;
-    padding: 22px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    gap: 12px;
-  }
-
-  .score-gauge-wrap {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
-  }
-
-  .score-number {
-    font-family: var(--font-heading);
-    font-size: 3rem;
-    font-weight: 800;
-    line-height: 1;
-    color: var(--neon-red);
-    transition: color 0.3s ease;
-  }
-
-  .score-max {
-    font-family: var(--font-mono);
-    font-size: 1.1rem;
-    color: var(--text-muted);
-  }
-
-  .score-bar-bg {
-    width: 100%;
-    height: 8px;
-    background: rgba(255, 255, 255, 0.08);
-    border-radius: 100px;
-    overflow: hidden;
-  }
-
-  .score-bar-fill {
-    height: 100%;
-    width: 78%;
-    background: linear-gradient(90deg, #10B981, #F59E0B, #EF4444);
-    border-radius: 100px;
-    transition: width 0.4s ease;
-  }
-
-  .sim-results-box {
-    background: #090C14;
-    border: 1px solid var(--border-subtle);
-    border-radius: 12px;
-    padding: 22px;
-    font-family: var(--font-mono);
-    font-size: 0.82rem;
-    line-height: 1.7;
-  }
-
   /* FLAGSHIP PROJECTS GRID */
   .flagship-grid {
     display: grid;
@@ -916,6 +642,26 @@
     line-height: 1.6;
     color: #CBD5E1;
     overflow-x: auto;
+  }
+
+  .term-cmd { color: #388BFD; font-weight: 600; }
+  .term-dim { color: #64748B; }
+  .term-success { color: #10B981; }
+  .term-highlight { color: #F59E0B; }
+  .term-cyan { color: #00F0FF; }
+
+  /* Cisco Lab Badge */
+  .lab-verified-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    color: var(--neon-emerald);
+    background: rgba(16, 185, 129, 0.08);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    padding: 8px 16px;
+    border-radius: 8px;
   }
 
   /* EXPERIENCE SECTION */
@@ -1227,7 +973,6 @@
     
     <ul class="nav-menu">
       <li><a href="#domains">Core Domains</a></li>
-      <li><a href="#simulator">Live Simulator</a></li>
       <li><a href="#systems">Featured Systems</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#education">Credentials</a></li>
@@ -1287,48 +1032,10 @@
         <span class="stat-value">B.Sc CS Graduate & MCA Scholar</span>
       </div>
     </div>
-
-    <!-- INTERACTIVE CLI TERMINAL -->
-    <div class="terminal-box">
-      <div class="terminal-topbar">
-        <div class="terminal-buttons">
-          <span class="t-dot red"></span>
-          <span class="t-dot yellow"></span>
-          <span class="t-dot green"></span>
-        </div>
-        <div class="terminal-title">bash — interactive-systems-console — 80x24</div>
-        <div style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);">v2.4</div>
-      </div>
-
-      <div class="quick-commands">
-        <span style="font-family: var(--font-mono); font-size: 0.76rem; color: var(--text-muted); align-self: center;">Quick Run:</span>
-        <button class="cmd-badge" onclick="runCommand('whoami')">whoami</button>
-        <button class="cmd-badge" onclick="runCommand('triage 185.220.101.5')">triage 185.220.101.5</button>
-        <button class="cmd-badge" onclick="runCommand('show network')">show network</button>
-        <button class="cmd-badge" onclick="runCommand('cat skills.json')">cat skills.json</button>
-        <button class="cmd-badge" onclick="runCommand('help')">help</button>
-        <button class="cmd-badge" onclick="runCommand('clear')">clear</button>
-      </div>
-
-      <div class="terminal-output" id="terminalOutput">
-<span class="term-dim"># Interactive Systems Terminal — Type a command below or click a quick run pill above</span>
-<span class="term-dim"># Type 'help' for available commands or 'skills' to view matrix</span>
-<span class="term-cyan">$ whoami</span>
-Mohammed Basith — Computer Science & Technical Systems Specialist
-Education: B.Sc CS (The New College) • MCA Cyber Security (SRM Institute)
-Core Stack: IT Infrastructure, Cisco Networking, PostgreSQL, Python, Threat Telemetry
-Status: Ready for technical deployment & immediate contributions.
-      </div>
-
-      <div class="cli-prompt-line">
-        <span class="cli-prompt-sign">basith@systems:~$</span>
-        <input type="text" id="cliInput" placeholder="Try typing 'help', 'skills', 'triage', or 'contact'..." autocomplete="off">
-      </div>
-    </div>
   </section>
 
   <!-- INTERACTIVE DOMAIN FILTER BAR -->
-  <section class="filter-section" id="domains">
+  <section class="section" id="domains">
     <div class="section-header">
       <div class="section-eyebrow">Interactive Skill Inspector</div>
       <h2 class="section-heading">Four Core Technical Domains</h2>
@@ -1441,61 +1148,6 @@ Status: Ready for technical deployment & immediate contributions.
           <span class="pill">MITRE ATT&CK</span>
           <span class="pill">SHA-256 Hashing</span>
           <span class="pill">Streamlit Cloud</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- INTERACTIVE THREAT SIMULATOR (MINI-WORKBENCH) -->
-  <section class="section" id="simulator">
-    <div class="section-header">
-      <div class="section-eyebrow">Interactive Threat Sandbox</div>
-      <h2 class="section-heading">Live Telemetry & IOC Triage Simulator</h2>
-      <p class="section-desc">Experience the underlying logic of <strong>SOC Sentinel</strong> directly on this page. Click any test indicator below to calculate real-time threat severity, consensus, and containment playbooks.</p>
-    </div>
-
-    <div class="simulator-card">
-      <div class="sim-header">
-        <div class="sim-title">
-          <span>⚡ Live IOC Triage Engine</span>
-          <span class="sim-badge">● REST Engine Online</span>
-        </div>
-        <div style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted);">
-          Powered by VirusTotal v3 & MITRE ATT&CK Logic
-        </div>
-      </div>
-
-      <div class="sim-controls">
-        <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--text-muted); align-self: center;">Select Indicator:</span>
-        <button class="sim-ioc-btn active" onclick="simulateThreat('c2')">185.220.101.5 (Known C2 IP)</button>
-        <button class="sim-ioc-btn" onclick="simulateThreat('phish')">login-secure-auth.top (Phishing URL)</button>
-        <button class="sim-ioc-btn" onclick="simulateThreat('clean')">8.8.8.8 (Google Public DNS)</button>
-        <button class="sim-ioc-btn" onclick="simulateThreat('malware')">eicar-test-payload.bin (Executable Hash)</button>
-      </div>
-
-      <div class="sim-display-grid">
-        <div class="sim-score-box">
-          <span class="stat-label">Calculated Severity Score</span>
-          <div class="score-gauge-wrap">
-            <span class="score-number" id="simScore">78</span>
-            <span class="score-max">/ 100</span>
-          </div>
-          <div class="score-bar-bg">
-            <div class="score-bar-fill" id="simBar" style="width: 78%; background: #EF4444;"></div>
-          </div>
-          <div style="display: flex; justify-content: space-between; font-family: var(--font-mono); font-size: 0.78rem;">
-            <span id="simVerdict" style="color: #EF4444; font-weight: 700;">VERDICT: SUSPICIOUS / MALICIOUS</span>
-            <span id="simDetections" style="color: var(--text-muted);">14 / 72 Scanners</span>
-          </div>
-        </div>
-
-        <div class="sim-results-box" id="simDetails">
-<span class="term-dim"># Live Indicator Enrichment Results</span>
-<span class="term-cyan">Indicator:</span> 185.220.101.5 (Defanged: 185[.]220[.]101[.]5)
-<span class="term-cyan">Threat Category:</span> C2 / Anonymous Proxy Node
-<span class="term-cyan">MITRE Technique:</span> <span class="term-highlight">T1071 (Application Layer Protocol)</span>
-<span class="term-cyan">Autonomous System:</span> AS208294 (Tor Network Relay)
-<span class="term-cyan">Containment Action:</span> <span class="term-success">Issue perimeter firewall DROP rule; quarantine active host sessions.</span>
         </div>
       </div>
     </div>
@@ -1620,7 +1272,7 @@ Status: Ready for technical deployment & immediate contributions.
         </div>
       </div>
 
-      <!-- SYSTEM 3: ENTERPRISE NETWORK LAB -->
+      <!-- SYSTEM 3: ENTERPRISE NETWORK LAB (NO GITHUB LINK) -->
       <div class="project-card">
         <div>
           <div>
@@ -1650,10 +1302,11 @@ Status: Ready for technical deployment & immediate contributions.
             <span class="pill">DHCP Pools</span>
           </div>
 
-          <a href="https://github.com/Mdbasith05" target="_blank" class="btn btn-glass">
-            <span>Explore Network Projects on GitHub</span>
-            <span>↗</span>
-          </a>
+          <!-- Verified Lab Architecture Badge (No GitHub Link) -->
+          <div class="lab-verified-badge">
+            <span class="pulse-dot" style="background:#10B981; box-shadow:0 0 8px #10B981;"></span>
+            <span>Cisco Packet Tracer Architecture Verified</span>
+          </div>
         </div>
 
         <div class="code-window">
@@ -1903,7 +1556,7 @@ Switch(config-if)# <span class="term-cmd">switchport trunk allowed vlan 10,20</s
     }
   }
 
-  const particleCount = Math.min(Math.floor(window.innerWidth / 20), 45);
+  const particleCount = Math.min(Math.floor(window.innerWidth / 22), 40);
   for (let i = 0; i < particleCount; i++) {
     particles.push(new Particle());
   }
@@ -1963,135 +1616,7 @@ Switch(config-if)# <span class="term-cmd">switchport trunk allowed vlan 10,20</s
     });
   }
 
-  // 5. INTERACTIVE CLI TERMINAL ENGINE
-  const terminalOutput = document.getElementById('terminalOutput');
-  const cliInput = document.getElementById('cliInput');
-
-  const cliResponses = {
-    'whoami': `<span class="term-cyan">$ whoami</span>\nMohammed Basith — Computer Science & Technical Systems Specialist\nEducation: B.Sc CS (The New College) • MCA Cyber Security (SRM Institute)\nExperience: TVS Global (Systems & Operations) | Bridge Tech (Enterprise Hardware & Networking)\nStatus: Ready for technical deployment.`,
-    
-    'help': `<span class="term-cyan">$ help</span>\nAvailable commands:\n  <span class="term-highlight">whoami</span>       - Display profile overview and credentials\n  <span class="term-highlight">skills</span>       - List full 4-pillar technical matrix\n  <span class="term-highlight">triage &lt;ioc&gt;</span> - Run simulated SOC Sentinel threat triage\n  <span class="term-highlight">show network</span> - Inspect Cisco enterprise network topology\n  <span class="term-highlight">cat skills.json</span> - Print machine-readable skills JSON\n  <span class="term-highlight">contact</span>      - Show direct contact channels\n  <span class="term-highlight">clear</span>        - Clear terminal output`,
-    
-    'skills': `<span class="term-cyan">$ cat skills.json</span>\n{\n  "it_systems": ["Hardware Assembly", "Motherboard Diagnostics", "Windows Server", "Active Directory", "Printer Support"],\n  "networking": ["802.1Q VLANs", "Cisco Switching", "TCP/IP Suite", "VLSM Subnetting", "IP CCTV/NVR", "Wireshark"],\n  "data_operations": ["PostgreSQL", "SQL Relational Joins", "Advanced Excel (XLOOKUP/Pivot)", "SOP Authoring"],\n  "security_cloud": ["Win32 Telemetry", "VirusTotal v3 REST API", "MITRE ATT&CK", "SHA-256 Hashing", "Streamlit Cloud"]\n}`,
-    
-    'cat skills.json': `<span class="term-cyan">$ cat skills.json</span>\n{\n  "it_systems": ["Hardware Assembly", "Motherboard Diagnostics", "Windows Server", "Active Directory", "Printer Support"],\n  "networking": ["802.1Q VLANs", "Cisco Switching", "TCP/IP Suite", "VLSM Subnetting", "IP CCTV/NVR", "Wireshark"],\n  "data_operations": ["PostgreSQL", "SQL Relational Joins", "Advanced Excel (XLOOKUP/Pivot)", "SOP Authoring"],\n  "security_cloud": ["Win32 Telemetry", "VirusTotal v3 REST API", "MITRE ATT&CK", "SHA-256 Hashing", "Streamlit Cloud"]\n}`,
-    
-    'show network': `<span class="term-cyan">$ show network</span>\nCisco Enterprise Multi-VLAN Topology (10.10.0.0/16):\n[+] VLAN 10 (Operations)   : 10.10.10.0/24 -> Subnet Mask: 255.255.255.0\n[+] VLAN 20 (Management)   : 10.10.20.0/24 -> Subnet Mask: 255.255.255.0\n[+] VLAN 30 (Guest / IoT)  : 10.10.30.0/24 -> Subnet Mask: 255.255.255.0\n[+] 802.1Q Trunking Enabled: GigabitEthernet0/1 (Switch-to-Router)\n[+] Inter-VLAN Routing     : Active on Cisco Layer 3 Core Router`,
-    
-    'triage 185.220.101.5': `<span class="term-cyan">$ triage 185.220.101.5</span>\n[QUERY] Connecting to VirusTotal v3 REST API...\n[RESULT] 14 / 72 Security Engines Flagged Indicator\n[SCORE] Threat Severity: 78/100 [SUSPICIOUS / MALICIOUS]\n[MITRE] T1071 — Application Layer Protocol (C2 Proxy Node)\n[CONTAINMENT] Drop perimeter traffic from 185[.]220[.]101[.]5; isolate active internal sockets.`,
-
-    'contact': `<span class="term-cyan">$ contact</span>\nDirect Communication Channels:\n• Email    : mohammedbasith490@gmail.com\n• WhatsApp : +91 81221 56959\n• LinkedIn : linkedin.com/in/mohammedbasith05\n• GitHub   : github.com/Mdbasith05`
-  };
-
-  function runCommand(cmd) {
-    cmd = cmd.trim().toLowerCase();
-    if (cmd === 'clear') {
-      terminalOutput.innerHTML = `<span class="term-dim"># Terminal cleared. Type 'help' for available commands.</span>`;
-      return;
-    }
-
-    let response = cliResponses[cmd];
-    if (!response) {
-      if (cmd.startsWith('triage')) {
-        response = `<span class="term-cyan">$ ${cmd}</span>\n[QUERY] Evaluating indicator against VirusTotal v3 telemetry...\n[MATCH] Threat Severity: 72/100 (Suspicious)\n[PLAYBOOK] Containment action generated. View full app on Streamlit.`;
-      } else {
-        response = `<span class="term-cyan">$ ${cmd}</span>\n<span style="color:#EF4444;">Command not found: '${cmd}'</span>. Type <span class="term-highlight">'help'</span> to see available commands.`;
-      }
-    }
-
-    terminalOutput.innerHTML += `\n\n${response}`;
-    terminalOutput.scrollTop = terminalOutput.scrollHeight;
-  }
-
-  cliInput.addEventListener('keydown', (e) => {
-    if (e.key === 'Enter') {
-      const val = cliInput.value;
-      if (val) {
-        runCommand(val);
-        cliInput.value = '';
-      }
-    }
-  });
-
-  // 6. INTERACTIVE THREAT SIMULATOR
-  const threatSimData = {
-    'c2': {
-      score: 78,
-      verdict: 'VERDICT: SUSPICIOUS / MALICIOUS',
-      color: '#EF4444',
-      detections: '14 / 72 Scanners',
-      bar: '78%',
-      details: `<span class="term-dim"># Live Indicator Enrichment Results</span>
-<span class="term-cyan">Indicator:</span> 185.220.101.5 (Defanged: 185[.]220[.]101[.]5)
-<span class="term-cyan">Threat Category:</span> C2 / Anonymous Proxy Node
-<span class="term-cyan">MITRE Technique:</span> <span class="term-highlight">T1071 (Application Layer Protocol)</span>
-<span class="term-cyan">Autonomous System:</span> AS208294 (Tor Network Relay)
-<span class="term-cyan">Containment Action:</span> <span class="term-success">Issue perimeter firewall DROP rule; quarantine active host sessions.</span>`
-    },
-    'phish': {
-      score: 92,
-      verdict: 'VERDICT: CRITICAL PHISHING URL',
-      color: '#EF4444',
-      detections: '23 / 72 Scanners',
-      bar: '92%',
-      details: `<span class="term-dim"># Live Indicator Enrichment Results</span>
-<span class="term-cyan">Indicator:</span> hxxp://login-secure-auth[.]top
-<span class="term-cyan">Threat Category:</span> Credential Harvester / Typosquatting
-<span class="term-cyan">MITRE Technique:</span> <span class="term-highlight">T1566.002 (Spearphishing Link)</span>
-<span class="term-cyan">Registrar:</span> NameSilo LLC (Created 48h ago)
-<span class="term-cyan">Containment Action:</span> <span class="term-success">Block domain at DNS firewall level; revoke exposed credentials immediately.</span>`
-    },
-    'clean': {
-      score: 0,
-      verdict: 'VERDICT: CLEAN / REPUTABLE',
-      color: '#10B981',
-      detections: '0 / 72 Scanners',
-      bar: '4%',
-      details: `<span class="term-dim"># Live Indicator Enrichment Results</span>
-<span class="term-cyan">Indicator:</span> 8.8.8.8 (Google Public DNS)
-<span class="term-cyan">Threat Category:</span> Legitimate Anycast Resolver
-<span class="term-cyan">MITRE Technique:</span> None (Benign Infrastructure)
-<span class="term-cyan">Autonomous System:</span> AS15169 (Google LLC)
-<span class="term-cyan">Containment Action:</span> <span class="term-success">No action required. Whitelisted trusted resolver.</span>`
-    },
-    'malware': {
-      score: 100,
-      verdict: 'VERDICT: CONFIRMED MALWARE SIGNATURE',
-      color: '#EF4444',
-      detections: '68 / 72 Scanners',
-      bar: '100%',
-      details: `<span class="term-dim"># Live Indicator Enrichment Results</span>
-<span class="term-cyan">Indicator:</span> SHA256: 44d88612fea8a8f36de82e1278abb02f3c9ce623...
-<span class="term-cyan">Threat Category:</span> EICAR Standard Antivirus Test Executable
-<span class="term-cyan">MITRE Technique:</span> <span class="term-highlight">T1204.002 (Malicious File Execution)</span>
-<span class="term-cyan">File Type:</span> DOS / Windows Executable
-<span class="term-cyan">Containment Action:</span> <span class="term-success">Isolate host endpoint; purge file from disk; submit hash to EDR blacklist.</span>`
-    }
-  };
-
-  function simulateThreat(type) {
-    const btns = document.querySelectorAll('.sim-ioc-btn');
-    btns.forEach(b => b.classList.remove('active'));
-    event.target.classList.add('active');
-
-    const data = threatSimData[type];
-    const scoreNum = document.getElementById('simScore');
-    const bar = document.getElementById('simBar');
-    const verdict = document.getElementById('simVerdict');
-    const detections = document.getElementById('simDetections');
-    const details = document.getElementById('simDetails');
-
-    scoreNum.textContent = data.score;
-    scoreNum.style.color = data.color;
-    bar.style.width = data.bar;
-    bar.style.background = data.color;
-    verdict.textContent = data.verdict;
-    verdict.style.color = data.color;
-    detections.textContent = data.detections;
-    details.innerHTML = data.details;
-  }
-
-  // 7. COPY EMAIL TO CLIPBOARD WITH TOAST
+  // 5. COPY EMAIL TO CLIPBOARD WITH TOAST
   function copyEmail(e) {
     e.preventDefault();
     navigator.clipboard.writeText('mohammedbasith490@gmail.com');
