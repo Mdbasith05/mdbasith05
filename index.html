@@ -1,1692 +1,1403 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Mohammed Basith — Technical Systems, Infrastructure & Security Specialist</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700;800&display=swap" rel="stylesheet">
-
-<style>
-  :root {
-    --bg-base: #07090E;
-    --bg-surface: #0D111A;
-    --bg-card: #121824;
-    --bg-card-hover: #172030;
-    --border-subtle: rgba(255, 255, 255, 0.08);
-    --border-strong: rgba(255, 255, 255, 0.16);
-    --border-glow: rgba(0, 240, 255, 0.35);
-    
-    --text-primary: #F0F4F8;
-    --text-secondary: #94A3B8;
-    --text-muted: #64748B;
-    
-    --neon-cyan: #00F0FF;
-    --neon-blue: #388BFD;
-    --neon-purple: #A855F7;
-    --neon-emerald: #10B981;
-    --neon-amber: #F59E0B;
-    
-    --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-    --font-heading: 'Space Grotesk', sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
-  }
-
-  *, *::before, *::after {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
-  html {
-    scroll-behavior: smooth;
-    background-color: var(--bg-base);
-    color: var(--text-primary);
-  }
-
-  body {
-    font-family: var(--font-sans);
-    line-height: 1.6;
-    background-color: var(--bg-base);
-    color: var(--text-primary);
-    overflow-x: hidden;
-    -webkit-font-smoothing: antialiased;
-    position: relative;
-  }
-
-  /* INTERACTIVE MOUSE SPOTLIGHT FOLLOWER */
-  #spotlight {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 650px;
-    height: 650px;
-    border-radius: 50%;
-    background: radial-gradient(circle, rgba(0, 240, 255, 0.06) 0%, rgba(56, 139, 253, 0.03) 40%, transparent 70%);
-    transform: translate(-50%, -50%);
-    pointer-events: none;
-    z-index: 1;
-    transition: opacity 0.3s ease;
-  }
-
-  /* BACKGROUND CANVAS (CONSTELLATION MESH) */
-  #meshCanvas {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    pointer-events: none;
-    z-index: 0;
-    opacity: 0.6;
-  }
-
-  /* GRID OVERLAY */
-  .grid-pattern {
-    position: fixed;
-    inset: 0;
-    background-image: 
-      linear-gradient(to right, rgba(255, 255, 255, 0.018) 1px, transparent 1px),
-      linear-gradient(to bottom, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
-    background-size: 44px 44px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  /* NAVIGATION */
-  nav {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    z-index: 1000;
-    background: rgba(7, 9, 14, 0.88);
-    backdrop-filter: blur(18px);
-    border-bottom: 1px solid var(--border-subtle);
-  }
-
-  .nav-container {
-    max-width: 1220px;
-    margin: 0 auto;
-    padding: 15px 24px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-
-  .nav-brand {
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    text-decoration: none;
-  }
-
-  .brand-badge {
-    width: 36px;
-    height: 36px;
-    border-radius: 10px;
-    background: linear-gradient(135deg, rgba(0, 240, 255, 0.15), rgba(168, 85, 247, 0.15));
-    border: 1px solid rgba(0, 240, 255, 0.35);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-family: var(--font-heading);
-    font-weight: 800;
-    font-size: 0.95rem;
-    color: var(--neon-cyan);
-    box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
-  }
-
-  .brand-text {
-    font-family: var(--font-heading);
-    font-weight: 700;
-    font-size: 1.1rem;
-    color: var(--text-primary);
-    letter-spacing: -0.02em;
-  }
-
-  .nav-menu {
-    display: flex;
-    gap: 28px;
-    list-style: none;
-    align-items: center;
-  }
-
-  .nav-menu a {
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: 0.88rem;
-    font-weight: 500;
-    transition: all 0.2s ease;
-    position: relative;
-  }
-
-  .nav-menu a:hover {
-    color: var(--neon-cyan);
-  }
-
-  .btn-nav-cta {
-    background: linear-gradient(135deg, #00F0FF, #388BFD);
-    color: #05070A !important;
-    padding: 8px 18px;
-    border-radius: 8px;
-    font-weight: 700 !important;
-    font-size: 0.85rem !important;
-    text-decoration: none;
-    transition: all 0.2s ease;
-    box-shadow: 0 4px 15px rgba(0, 240, 255, 0.25);
-  }
-
-  .btn-nav-cta:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 6px 20px rgba(0, 240, 255, 0.4);
-    opacity: 0.95;
-  }
-
-  @media (max-width: 880px) {
-    .nav-menu { display: none; }
-  }
-
-  /* LAYOUT CONTAINER */
-  .container {
-    max-width: 1220px;
-    margin: 0 auto;
-    padding: 0 24px;
-    position: relative;
-    z-index: 2;
-  }
-
-  /* HERO SECTION */
-  .hero-section {
-    padding-top: 145px;
-    padding-bottom: 70px;
-  }
-
-  .hero-eyebrow {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--font-mono);
-    font-size: 0.82rem;
-    color: var(--neon-cyan);
-    background: rgba(0, 240, 255, 0.08);
-    border: 1px solid rgba(0, 240, 255, 0.25);
-    padding: 6px 14px;
-    border-radius: 100px;
-    margin-bottom: 24px;
-  }
-
-  .pulse-dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--neon-cyan);
-    box-shadow: 0 0 10px var(--neon-cyan);
-    animation: pulse 2s infinite;
-  }
-
-  @keyframes pulse {
-    0%, 100% { opacity: 1; transform: scale(1); }
-    50% { opacity: 0.4; transform: scale(0.85); }
-  }
-
-  .hero-title {
-    font-family: var(--font-heading);
-    font-size: clamp(2.7rem, 6vw, 4.4rem);
-    font-weight: 800;
-    line-height: 1.1;
-    letter-spacing: -0.03em;
-    margin-bottom: 24px;
-    color: var(--text-primary);
-    max-width: 980px;
-  }
-
-  .hero-title .gradient-text {
-    background: linear-gradient(135deg, #00F0FF 20%, #388BFD 50%, #A855F7 90%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-  }
-
-  .hero-subtitle {
-    font-size: 1.15rem;
-    line-height: 1.75;
-    color: var(--text-secondary);
-    max-width: 820px;
-    margin-bottom: 36px;
-  }
-
-  .hero-subtitle strong {
-    color: var(--text-primary);
-    font-weight: 600;
-  }
-
-  .hero-cta-group {
-    display: flex;
-    gap: 16px;
-    align-items: center;
-    flex-wrap: wrap;
-    margin-bottom: 48px;
-  }
-
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 9px;
-    font-size: 0.92rem;
-    font-weight: 600;
-    padding: 13px 26px;
-    border-radius: 10px;
-    text-decoration: none;
-    transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
-    cursor: pointer;
-  }
-
-  .btn-glow {
-    background: linear-gradient(135deg, #00F0FF, #388BFD);
-    color: #05070A;
-    font-weight: 700;
-    box-shadow: 0 0 25px rgba(0, 240, 255, 0.35);
-  }
-
-  .btn-glow:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 35px rgba(0, 240, 255, 0.55);
-  }
-
-  .btn-glass {
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--border-strong);
-    color: var(--text-primary);
-    backdrop-filter: blur(8px);
-  }
-
-  .btn-glass:hover {
-    background: rgba(255, 255, 255, 0.08);
-    border-color: rgba(255, 255, 255, 0.35);
-    transform: translateY(-2px);
-  }
-
-  /* QUICK STATS STRIP */
-  .stats-strip {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 16px;
-    background: rgba(13, 17, 26, 0.75);
-    border: 1px solid var(--border-subtle);
-    border-radius: 14px;
-    padding: 22px 28px;
-    backdrop-filter: blur(12px);
-  }
-
-  @media (max-width: 900px) {
-    .stats-strip { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 520px) {
-    .stats-strip { grid-template-columns: 1fr; }
-  }
-
-  .stat-card {
-    display: flex;
-    flex-direction: column;
-    gap: 4px;
-  }
-
-  .stat-label {
-    font-family: var(--font-mono);
-    font-size: 0.74rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.06em;
-  }
-
-  .stat-value {
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--text-primary);
-  }
-
-  /* SECTION STYLING */
-  .section {
-    padding: 90px 0;
-    border-top: 1px solid var(--border-subtle);
-  }
-
-  .section-eyebrow {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    color: var(--neon-cyan);
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .section-eyebrow::before {
-    content: '//';
-    color: var(--text-muted);
-  }
-
-  .section-heading {
-    font-family: var(--font-heading);
-    font-size: clamp(2rem, 4vw, 2.7rem);
-    font-weight: 700;
-    letter-spacing: -0.02em;
-    color: var(--text-primary);
-  }
-
-  .section-desc {
-    color: var(--text-secondary);
-    font-size: 1.05rem;
-    margin-top: 12px;
-    max-width: 720px;
-  }
-
-  /* INTERACTIVE DOMAIN FILTER BAR */
-  .filter-wrapper {
-    background: var(--bg-surface);
-    border: 1px solid var(--border-subtle);
-    border-radius: 14px;
-    padding: 10px;
-    display: flex;
-    gap: 8px;
-    margin-top: 32px;
-    overflow-x: auto;
-    scrollbar-width: none;
-  }
-
-  .filter-wrapper::-webkit-scrollbar { display: none; }
-
-  .filter-pill {
-    background: transparent;
-    border: 1px solid transparent;
-    color: var(--text-secondary);
-    font-family: var(--font-sans);
-    font-size: 0.88rem;
-    font-weight: 600;
-    padding: 10px 20px;
-    border-radius: 10px;
-    cursor: pointer;
-    white-space: nowrap;
-    transition: all 0.2s ease;
-  }
-
-  .filter-pill:hover {
-    color: var(--text-primary);
-    background: rgba(255, 255, 255, 0.03);
-  }
-
-  .filter-pill.active {
-    background: rgba(0, 240, 255, 0.12);
-    border-color: rgba(0, 240, 255, 0.4);
-    color: var(--neon-cyan);
-    box-shadow: 0 0 15px rgba(0, 240, 255, 0.15);
-  }
-
-  /* 3D TILT CARDS FOR 4 PILLARS */
-  .pillars-grid {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 26px;
-    margin-top: 36px;
-  }
-
-  @media (max-width: 840px) {
-    .pillars-grid { grid-template-columns: 1fr; }
-  }
-
-  .tilt-card {
-    background: var(--bg-surface);
-    border: 1px solid var(--border-subtle);
-    border-radius: 16px;
-    padding: 34px;
-    transition: transform 0.2s ease, border-color 0.25s ease, box-shadow 0.25s ease;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .tilt-card::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), rgba(0, 240, 255, 0.08) 0%, transparent 60%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
-    pointer-events: none;
-  }
-
-  .tilt-card:hover::before {
-    opacity: 1;
-  }
-
-  .tilt-card:hover {
-    border-color: var(--border-glow);
-    transform: translateY(-4px);
-    box-shadow: 0 20px 40px -15px rgba(0, 240, 255, 0.15);
-  }
-
-  .pillar-icon-box {
-    width: 48px;
-    height: 48px;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 1.45rem;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--border-subtle);
-    margin-bottom: 18px;
-  }
-
-  .pillar-title {
-    font-family: var(--font-heading);
-    font-size: 1.3rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin-bottom: 12px;
-  }
-
-  .pillar-desc {
-    color: var(--text-secondary);
-    font-size: 0.95rem;
-    line-height: 1.65;
-    margin-bottom: 20px;
-  }
-
-  .pillar-bullets {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-    margin-bottom: 24px;
-  }
-
-  .pillar-bullets li {
-    font-size: 0.89rem;
-    color: #CBD5E1;
-    display: flex;
-    gap: 10px;
-    align-items: baseline;
-  }
-
-  .pillar-bullets li::before {
-    content: '▪';
-    color: var(--neon-cyan);
-    font-size: 1rem;
-    flex-shrink: 0;
-  }
-
-  .tech-pills {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 7px;
-    padding-top: 18px;
-    border-top: 1px solid rgba(255, 255, 255, 0.05);
-  }
-
-  .pill {
-    font-family: var(--font-mono);
-    font-size: 0.77rem;
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--border-subtle);
-    color: var(--text-secondary);
-    padding: 4px 11px;
-    border-radius: 6px;
-    transition: all 0.2s ease;
-  }
-
-  .pill:hover {
-    color: var(--text-primary);
-    border-color: rgba(255, 255, 255, 0.3);
-  }
-
-  /* FLAGSHIP PROJECTS GRID */
-  .flagship-grid {
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 36px;
-    margin-top: 48px;
-  }
-
-  .project-card {
-    background: var(--bg-surface);
-    border: 1px solid var(--border-subtle);
-    border-radius: 18px;
-    padding: 42px;
-    display: grid;
-    grid-template-columns: 1.2fr 1fr;
-    gap: 40px;
-    align-items: center;
-    transition: all 0.3s ease;
-  }
-
-  @media (max-width: 960px) {
-    .project-card {
-      grid-template-columns: 1fr;
-      padding: 30px;
-      gap: 28px;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mohammed Basith — Logistics Operations & Technical Systems Specialist</title>
+  <meta name="description" content="Portfolio of Mohammed Basith: Logistics Operations, Air Cargo Manifest Auditing, Systems Administration, and Enterprise Infrastructure Specialist.">
+  
+  <!-- Modern Clean Enterprise Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-primary: #070d18;
+      --bg-surface: #0e1726;
+      --bg-card: #131f33;
+      --bg-elevated: #1a2a44;
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-focus: rgba(217, 119, 6, 0.4);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-dim: #64748b;
+      --gold: #f59e0b;
+      --gold-dark: #d97706;
+      --emerald: #10b981;
+      --rose: #ef4444;
+      --blue: #3b82f6;
+      --radius-sm: 6px;
+      --radius-md: 10px;
+      --radius-lg: 16px;
+      --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      --font-mono: 'JetBrains Mono', monospace;
     }
-  }
 
-  .project-card:hover {
-    border-color: var(--border-glow);
-    box-shadow: 0 20px 45px -15px rgba(0, 240, 255, 0.15);
-  }
-
-  .project-num {
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: var(--neon-cyan);
-    letter-spacing: 0.05em;
-  }
-
-  .project-type {
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-    margin-left: 10px;
-  }
-
-  .project-title {
-    font-family: var(--font-heading);
-    font-size: 1.7rem;
-    font-weight: 700;
-    color: var(--text-primary);
-    margin: 12px 0;
-  }
-
-  .project-desc {
-    color: var(--text-secondary);
-    font-size: 0.98rem;
-    line-height: 1.7;
-    margin-bottom: 20px;
-  }
-
-  .project-bullets {
-    list-style: none;
-    display: flex;
-    flex-direction: column;
-    gap: 9px;
-    margin-bottom: 24px;
-  }
-
-  .project-bullets li {
-    font-size: 0.89rem;
-    color: #CBD5E1;
-    display: flex;
-    gap: 10px;
-  }
-
-  .project-bullets li::before {
-    content: '—';
-    color: var(--neon-cyan);
-    font-weight: 700;
-    flex-shrink: 0;
-  }
-
-  .code-window {
-    background: #080B11;
-    border: 1px solid var(--border-strong);
-    border-radius: 12px;
-    padding: 22px;
-    font-family: var(--font-mono);
-    font-size: 0.83rem;
-    line-height: 1.6;
-    color: #CBD5E1;
-    overflow-x: auto;
-  }
-
-  .term-cmd { color: #388BFD; font-weight: 600; }
-  .term-dim { color: #64748B; }
-  .term-success { color: #10B981; }
-  .term-highlight { color: #F59E0B; }
-  .term-cyan { color: #00F0FF; }
-
-  /* Cisco Lab Badge */
-  .lab-verified-badge {
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-    font-family: var(--font-mono);
-    font-size: 0.8rem;
-    color: var(--neon-emerald);
-    background: rgba(16, 185, 129, 0.08);
-    border: 1px solid rgba(16, 185, 129, 0.3);
-    padding: 8px 16px;
-    border-radius: 8px;
-  }
-
-  /* EXPERIENCE SECTION */
-  .experience-card {
-    background: var(--bg-surface);
-    border: 1px solid var(--border-subtle);
-    border-radius: 16px;
-    padding: 36px;
-    margin-top: 30px;
-    transition: all 0.25s ease;
-  }
-
-  .experience-card:hover {
-    border-color: var(--border-glow);
-    transform: translateY(-2px);
-  }
-
-  .exp-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-start;
-    flex-wrap: wrap;
-    gap: 14px;
-    padding-bottom: 20px;
-    margin-bottom: 20px;
-    border-bottom: 1px solid var(--border-subtle);
-  }
-
-  .exp-role {
-    font-family: var(--font-heading);
-    font-size: 1.35rem;
-    font-weight: 700;
-    color: var(--text-primary);
-  }
-
-  .exp-company {
-    font-size: 1.05rem;
-    color: var(--neon-cyan);
-    font-weight: 600;
-  }
-
-  .exp-company span {
-    color: var(--text-muted);
-    font-weight: 400;
-  }
-
-  .exp-date-badge {
-    font-family: var(--font-mono);
-    font-size: 0.82rem;
-    color: var(--text-secondary);
-    background: rgba(255, 255, 255, 0.04);
-    border: 1px solid var(--border-subtle);
-    padding: 4px 12px;
-    border-radius: 6px;
-  }
-
-  /* EDUCATION MATRIX */
-  .edu-matrix {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 22px;
-    margin-top: 48px;
-  }
-
-  @media (max-width: 920px) {
-    .edu-matrix { grid-template-columns: 1fr; }
-  }
-
-  .edu-box {
-    background: var(--bg-surface);
-    border: 1px solid var(--border-subtle);
-    border-radius: 14px;
-    padding: 28px;
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-    transition: all 0.25s ease;
-  }
-
-  .edu-box:hover {
-    border-color: var(--border-glow);
-    transform: translateY(-2px);
-  }
-
-  .edu-tag {
-    font-family: var(--font-mono);
-    font-size: 0.76rem;
-    color: var(--neon-cyan);
-    text-transform: uppercase;
-    letter-spacing: 0.05em;
-  }
-
-  .edu-main {
-    font-size: 1.12rem;
-    font-weight: 700;
-    color: var(--text-primary);
-  }
-
-  .edu-sub {
-    font-size: 0.9rem;
-    color: var(--text-secondary);
-  }
-
-  .edu-dates {
-    font-family: var(--font-mono);
-    font-size: 0.78rem;
-    color: var(--text-muted);
-    margin-top: 6px;
-  }
-
-  /* "WHY MOHAMMED BASITH?" VALUE CARDS */
-  .value-grid {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 20px;
-    margin-top: 48px;
-  }
-
-  @media (max-width: 980px) {
-    .value-grid { grid-template-columns: repeat(2, 1fr); }
-  }
-  @media (max-width: 550px) {
-    .value-grid { grid-template-columns: 1fr; }
-  }
-
-  .value-card {
-    background: var(--bg-surface);
-    border: 1px solid var(--border-subtle);
-    border-radius: 14px;
-    padding: 26px;
-    transition: all 0.2s ease;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-  }
-
-  .value-card:hover {
-    border-color: var(--neon-cyan);
-    transform: translateY(-3px);
-  }
-
-  .value-num {
-    font-family: var(--font-heading);
-    font-size: 1.8rem;
-    font-weight: 800;
-    color: var(--neon-cyan);
-    opacity: 0.8;
-  }
-
-  .value-title {
-    font-size: 1.05rem;
-    font-weight: 700;
-    color: var(--text-primary);
-  }
-
-  .value-desc {
-    font-size: 0.88rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-  }
-
-  /* CONTACT SECTION */
-  .contact-section {
-    padding: 90px 0 120px 0;
-  }
-
-  .contact-banner {
-    background: linear-gradient(180deg, #0D121C 0%, #080A10 100%);
-    border: 1px solid var(--border-strong);
-    border-radius: 20px;
-    padding: 60px 30px;
-    text-align: center;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .contact-banner::before {
-    content: '';
-    position: absolute;
-    top: -50%;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 600px;
-    height: 300px;
-    background: radial-gradient(ellipse at center, rgba(0, 240, 255, 0.12), transparent 70%);
-    pointer-events: none;
-  }
-
-  .contact-title {
-    font-family: var(--font-heading);
-    font-size: clamp(2.2rem, 4.5vw, 3rem);
-    font-weight: 800;
-    color: var(--text-primary);
-    margin-bottom: 16px;
-  }
-
-  .contact-subtitle {
-    color: var(--text-secondary);
-    font-size: 1.1rem;
-    max-width: 650px;
-    margin: 0 auto 40px auto;
-  }
-
-  .contact-links-row {
-    display: flex;
-    justify-content: center;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-
-  .toast-alert {
-    margin-top: 18px;
-    font-family: var(--font-mono);
-    font-size: 0.88rem;
-    color: var(--neon-emerald);
-    min-height: 22px;
-  }
-
-  /* FLOATING DOCK AT BOTTOM */
-  .dock-container {
-    position: fixed;
-    bottom: 24px;
-    left: 50%;
-    transform: translateX(-50%);
-    z-index: 999;
-    background: rgba(13, 17, 26, 0.85);
-    border: 1px solid var(--border-strong);
-    border-radius: 100px;
-    padding: 8px 18px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-    backdrop-filter: blur(16px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6);
-  }
-
-  .dock-item {
-    color: var(--text-secondary);
-    text-decoration: none;
-    font-size: 0.85rem;
-    font-weight: 600;
-    padding: 6px 14px;
-    border-radius: 100px;
-    transition: all 0.2s ease;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .dock-item:hover {
-    color: var(--neon-cyan);
-    background: rgba(255, 255, 255, 0.06);
-  }
-
-  .dock-highlight {
-    background: linear-gradient(135deg, #00F0FF, #388BFD);
-    color: #05070A !important;
-    font-weight: 700;
-    box-shadow: 0 0 15px rgba(0, 240, 255, 0.3);
-  }
-
-  .dock-highlight:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 0 20px rgba(0, 240, 255, 0.5);
-  }
-
-  @media (max-width: 650px) {
-    .dock-container {
-      width: 92%;
-      justify-content: space-around;
-      padding: 6px 10px;
-      gap: 4px;
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
-    .dock-item { font-size: 0.78rem; padding: 6px 10px; }
-  }
 
-  /* FOOTER */
-  footer {
-    padding: 40px 0 100px 0;
-    text-align: center;
-    color: var(--text-muted);
-    font-size: 0.85rem;
-    border-top: 1px solid var(--border-subtle);
-  }
+    html {
+      scroll-behavior: smooth;
+      background-color: var(--bg-primary);
+      color: var(--text-main);
+      font-family: var(--font-sans);
+    }
 
-  footer a {
-    color: var(--text-secondary);
-    text-decoration: none;
-  }
+    body {
+      line-height: 1.6;
+      overflow-x: hidden;
+      background: radial-gradient(circle at 50% 0%, #112240 0%, var(--bg-primary) 70%);
+      min-height: 100vh;
+    }
 
-  footer a:hover {
-    color: var(--neon-cyan);
-  }
-</style>
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* NAVIGATION BAR */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      background: rgba(7, 13, 24, 0.85);
+      border-bottom: 1px solid var(--border-subtle);
+      padding: 14px 24px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 800;
+      font-size: 1.1rem;
+      letter-spacing: -0.02em;
+    }
+
+    .brand-badge {
+      background: rgba(217, 119, 6, 0.15);
+      color: var(--gold);
+      border: 1px solid rgba(217, 119, 6, 0.3);
+      padding: 2px 8px;
+      border-radius: var(--radius-sm);
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      align-items: center;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .nav-links a:hover {
+      color: var(--text-main);
+    }
+
+    .nav-cta {
+      background: var(--gold-dark);
+      color: #ffffff;
+      padding: 8px 16px;
+      border-radius: var(--radius-sm);
+      font-weight: 700;
+      font-size: 0.85rem;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .nav-cta:hover {
+      background: var(--gold);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(217, 119, 6, 0.3);
+    }
+
+    /* CONTAINER */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* HERO SECTION */
+    .hero {
+      padding: 70px 0 50px 0;
+      text-align: left;
+    }
+
+    .status-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(16, 185, 129, 0.1);
+      border: 1px solid rgba(16, 185, 129, 0.3);
+      color: #34d399;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-bottom: 24px;
+    }
+
+    .status-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981;
+      animation: pulse 2s infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.5; transform: scale(1.2); }
+    }
+
+    .hero-title {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      line-height: 1.15;
+      color: #ffffff;
+      margin-bottom: 18px;
+      max-width: 950px;
+    }
+
+    .hero-title span {
+      background: linear-gradient(90deg, #f59e0b 0%, #fbbf24 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 1.12rem;
+      color: #cbd5e1;
+      max-width: 850px;
+      line-height: 1.65;
+      margin-bottom: 32px;
+    }
+
+    .hero-desc strong {
+      color: #ffffff;
+      font-weight: 600;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-bottom: 45px;
+    }
+
+    .btn {
+      padding: 12px 22px;
+      border-radius: var(--radius-md);
+      font-weight: 700;
+      font-size: 0.92rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      transition: all 0.2s ease;
+      cursor: pointer;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #d97706 0%, #f59e0b 100%);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      box-shadow: 0 4px 16px rgba(217, 119, 6, 0.25);
+    }
+
+    .btn-gold:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(217, 119, 6, 0.4);
+    }
+
+    .btn-outline {
+      background: var(--bg-surface);
+      color: var(--text-main);
+      border: 1px solid var(--border-subtle);
+    }
+
+    .btn-outline:hover {
+      background: var(--bg-card);
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-1px);
+    }
+
+    /* CREDIBILITY STRIP */
+    .credibility-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      border-top: 1px solid var(--border-subtle);
+      padding-top: 32px;
+      margin-bottom: 60px;
+    }
+
+    .cred-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+    }
+
+    .cred-label {
+      font-size: 0.76rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-dim);
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .cred-val {
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .cred-sub {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* SECTION BASICS */
+    .section-wrap {
+      padding: 40px 0 60px 0;
+    }
+
+    .section-header {
+      margin-bottom: 28px;
+    }
+
+    .section-tag {
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      margin-bottom: 6px;
+    }
+
+    .section-title {
+      font-size: 1.85rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+    }
+
+    .section-desc {
+      font-size: 0.98rem;
+      color: var(--text-muted);
+      max-width: 750px;
+      margin-top: 6px;
+    }
+
+    /* ===================================================================== */
+    /* FLAGSHIP LIVE SIMULATOR BENCH (NON-TECHNICAL RECRUITER DELIGHT)        */
+    /* ===================================================================== */
+    .simulator-box {
+      background: linear-gradient(180deg, #101c30 0%, #0c1626 100%);
+      border: 1px solid rgba(217, 119, 6, 0.35);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.4);
+      margin-bottom: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .simulator-box::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, #d97706, #f59e0b, #10b981);
+    }
+
+    .sim-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding-bottom: 20px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .sim-title {
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sim-badges {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .badge-pill {
+      font-size: 0.75rem;
+      font-weight: 700;
+      padding: 3px 10px;
+      border-radius: 9999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .badge-green { background: rgba(16, 185, 129, 0.15); color: #34d399; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge-amber { background: rgba(245, 158, 11, 0.15); color: #fbbf24; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .badge-blue  { background: rgba(59, 130, 246, 0.15); color: #60a5fa; border: 1px solid rgba(59, 130, 246, 0.3); }
+
+    /* SCENARIO SELECTOR BUTTONS */
+    .scenario-strip {
+      display: flex;
+      gap: 10px;
+      margin-bottom: 24px;
+      flex-wrap: wrap;
+    }
+
+    .scenario-btn {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 10px 18px;
+      border-radius: var(--radius-sm);
+      font-size: 0.86rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .scenario-btn:hover {
+      background: var(--bg-card);
+      color: var(--text-main);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .scenario-btn.active {
+      background: rgba(217, 119, 6, 0.18);
+      border-color: var(--gold);
+      color: #ffffff;
+      box-shadow: 0 0 12px rgba(217, 119, 6, 0.25);
+    }
+
+    /* SIMULATOR GRID */
+    .sim-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 24px;
+    }
+
+    @media (max-width: 900px) {
+      .sim-grid { grid-template-columns: 1fr; }
+    }
+
+    .sim-panel {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 20px;
+    }
+
+    .panel-title {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .form-row {
+      margin-bottom: 14px;
+    }
+
+    .form-label {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-bottom: 5px;
+    }
+
+    .form-input {
+      width: 100%;
+      background: var(--bg-primary);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      padding: 8px 12px;
+      border-radius: var(--radius-sm);
+      font-family: var(--font-mono);
+      font-size: 0.88rem;
+      transition: border 0.2s;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--gold);
+    }
+
+    .dim-inputs {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 8px;
+    }
+
+    /* RESULTS OUTPUT PANEL */
+    .res-metric {
+      background: var(--bg-card);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .res-metric-label {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .res-metric-val {
+      font-size: 1.25rem;
+      font-weight: 800;
+      font-family: var(--font-mono);
+      color: #ffffff;
+    }
+
+    .discrepancy-card {
+      background: rgba(239, 68, 68, 0.12);
+      border: 1px solid rgba(239, 68, 68, 0.35);
+      border-radius: var(--radius-sm);
+      padding: 14px;
+      margin-bottom: 16px;
+    }
+
+    .discrepancy-card.cleared {
+      background: rgba(16, 185, 129, 0.12);
+      border-color: rgba(16, 185, 129, 0.35);
+    }
+
+    .discrepancy-title {
+      font-size: 0.9rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .text-red { color: #f87171; }
+    .text-green { color: #34d399; }
+    .text-gold { color: #fbbf24; }
+
+    .checklist-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.8rem;
+      padding: 6px 0;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+    }
+
+    .checklist-row:last-child {
+      border-bottom: none;
+    }
+
+    /* SYSTEM CARDS GRID (FEATURED SYSTEMS) */
+    .systems-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+      gap: 24px;
+    }
+
+    .system-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 26px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: all 0.25s ease;
+    }
+
+    .system-card:hover {
+      border-color: rgba(255, 255, 255, 0.2);
+      transform: translateY(-3px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+    }
+
+    .card-top {
+      margin-bottom: 20px;
+    }
+
+    .card-number {
+      font-size: 0.75rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      color: var(--gold);
+      margin-bottom: 8px;
+    }
+
+    .card-title {
+      font-size: 1.35rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 10px;
+      line-height: 1.3;
+    }
+
+    .card-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .card-features {
+      list-style: none;
+      margin-bottom: 20px;
+    }
+
+    .card-features li {
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      padding: 5px 0 5px 20px;
+      position: relative;
+    }
+
+    .card-features li::before {
+      content: "✓";
+      position: absolute;
+      left: 0;
+      color: var(--emerald);
+      font-weight: 700;
+    }
+
+    .tech-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 22px;
+    }
+
+    .tech-tag {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      color: #cbd5e1;
+      font-size: 0.74rem;
+      font-weight: 600;
+      padding: 3px 9px;
+      border-radius: var(--radius-sm);
+    }
+
+    .card-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    /* EXPERIENCE & EDUCATION SECTION */
+    .timeline-wrap {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+    }
+
+    @media (max-width: 850px) {
+      .timeline-wrap { grid-template-columns: 1fr; }
+    }
+
+    .timeline-col {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+    }
+
+    .timeline-item {
+      padding-bottom: 24px;
+      border-left: 2px solid rgba(217, 119, 6, 0.4);
+      padding-left: 20px;
+      position: relative;
+      margin-left: 6px;
+    }
+
+    .timeline-item:last-child {
+      padding-bottom: 0;
+      border-left: 2px solid transparent;
+    }
+
+    .timeline-dot {
+      position: absolute;
+      left: -7px;
+      top: 0;
+      width: 12px;
+      height: 12px;
+      border-radius: 50%;
+      background: var(--gold);
+      box-shadow: 0 0 10px var(--gold);
+    }
+
+    .time-role {
+      font-size: 1.05rem;
+      font-weight: 800;
+      color: #ffffff;
+    }
+
+    .time-company {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 4px;
+    }
+
+    .time-meta {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+      margin-bottom: 12px;
+      font-weight: 600;
+    }
+
+    .time-bullets {
+      padding-left: 16px;
+      font-size: 0.85rem;
+      color: #cbd5e1;
+      line-height: 1.55;
+    }
+
+    .time-bullets li {
+      margin-bottom: 6px;
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border-subtle);
+      background: var(--bg-surface);
+      padding: 45px 0 35px 0;
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .footer-title {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .footer-desc {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto 24px auto;
+    }
+
+    .footer-contact {
+      display: flex;
+      justify-content: center;
+      gap: 16px;
+      flex-wrap: wrap;
+      margin-bottom: 24px;
+    }
+
+    .copy-line {
+      font-size: 0.78rem;
+      color: var(--text-dim);
+    }
+  </style>
 </head>
 <body>
 
-<div id="spotlight"></div>
-<canvas id="meshCanvas"></canvas>
-<div class="grid-pattern"></div>
-
-<!-- NAVIGATION BAR -->
-<nav>
-  <div class="nav-container">
-    <a href="#" class="nav-brand">
-      <div class="brand-badge">MB</div>
-      <span class="brand-text">Mohammed Basith</span>
-    </a>
-    
-    <ul class="nav-menu">
-      <li><a href="#domains">Core Domains</a></li>
-      <li><a href="#systems">Featured Systems</a></li>
-      <li><a href="#experience">Experience</a></li>
-      <li><a href="#education">Credentials</a></li>
-      <li><a href="#contact" class="btn-nav-cta">Connect</a></li>
-    </ul>
-  </div>
-</nav>
-
-<div class="container">
-
-  <!-- HERO SECTION -->
-  <section class="hero-section">
-    <div class="hero-eyebrow">
-      <span class="pulse-dot"></span>
-      <span>Computer Science & Technology Specialist</span>
+  <!-- NAVIGATION BAR -->
+  <header class="navbar">
+    <div class="nav-brand">
+      <span>Mohammed Basith</span>
+      <span class="brand-badge">Logistics Systems</span>
     </div>
-
-    <h1 class="hero-title">
-      Engineering resilient IT infrastructure, <span class="gradient-text">enterprise networks, and intelligent data systems.</span>
-    </h1>
-
-    <p class="hero-subtitle">
-      B.Sc in Computer Science (The New College, University of Madras) & pursuing MCA in Cyber Security (SRM Institute of Science and Technology). Hands-on technical background spanning end-user IT support, network administration, systems telemetry, and cloud applications. Experienced in operational data auditing and technical coordination at <strong>TVS Global</strong>.
-    </p>
-
-    <div class="hero-cta-group">
-      <a href="https://soc-sentinel-triage-mdrmh2dyeawzwjaycnjcdg.streamlit.app/" target="_blank" class="btn btn-glow">
-        <span>⚡ Launch Live App (SOC Sentinel)</span>
-        <span>↗</span>
+    <nav class="nav-links">
+      <a href="#simulator">Live Cargo Simulator</a>
+      <a href="#systems">Featured Systems</a>
+      <a href="#experience">Operations Track</a>
+      <a href="#education">Education</a>
+      <a href="https://wa.me/918122156959?text=Hello%20Mohammed%20Basith,%20we%20reviewed%20your%20logistics%20portfolio" target="_blank" class="nav-cta">
+        <span>💬 Contact on WhatsApp</span>
       </a>
-      <a href="#systems" class="btn btn-glass">
-        <span>Explore Featured Systems</span>
-        <span>↓</span>
-      </a>
-      <a href="https://github.com/Mdbasith05" target="_blank" class="btn btn-glass">
-        <span>GitHub Profile</span>
-        <span>↗</span>
-      </a>
-    </div>
+    </nav>
+  </header>
 
-    <!-- QUICK STATS STRIP -->
-    <div class="stats-strip">
-      <div class="stat-card">
-        <span class="stat-label">Core Specialization</span>
-        <span class="stat-value">Cargo Systems • Networking • IT Support • Data</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-label">Flagship Systems</span>
-        <span class="stat-value">LogiSync UAE & SOC Sentinel</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-label">Operations Training</span>
-        <span class="stat-value">TVS Global Logistics & Bridge Tech</span>
-      </div>
-      <div class="stat-card">
-        <span class="stat-label">Academic Track</span>
-        <span class="stat-value">B.Sc CS Graduate & MCA Scholar</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- INTERACTIVE DOMAIN FILTER BAR -->
-  <section class="section" id="domains">
-    <div class="section-header">
-      <div class="section-eyebrow">Interactive Skill Inspector</div>
-      <h2 class="section-heading">Four Core Technical Domains</h2>
-      <p class="section-desc">Select a technical domain below to dynamically highlight relevant competencies across hardware, networking, databases, and security.</p>
-    </div>
-
-    <div class="filter-wrapper">
-      <button class="filter-pill active" onclick="filterDomain('all')">⚡ All Domains</button>
-      <button class="filter-pill" onclick="filterDomain('it')">💻 IT Systems & Support</button>
-      <button class="filter-pill" onclick="filterDomain('network')">🌐 Networking & Infrastructure</button>
-      <button class="filter-pill" onclick="filterDomain('data')">📊 Data & Operations</button>
-      <button class="filter-pill" onclick="filterDomain('security')">🛡️ Systems Telemetry & Cloud</button>
-    </div>
-
-    <div class="pillars-grid" id="pillarsGrid">
-      <!-- PILLAR 1: IT SUPPORT -->
-      <div class="tilt-card" data-domain="it">
-        <div>
-          <div class="pillar-icon-box">💻</div>
-          <h3 class="pillar-title">IT Systems & End-User Support</h3>
-          <p class="pillar-desc">
-            Complete workstation lifecycle maintenance, hardware diagnostics, Windows OS deployment, and prompt end-user resolution.
-          </p>
-          <ul class="pillar-bullets">
-            <li>Desktop and laptop component diagnostics, RAM/motherboard replacement, and thermal servicing.</li>
-            <li>Windows 10/11 & Windows Server administration with Active Directory (AD DS) user onboarding.</li>
-            <li>Peripheral troubleshooting including network printers, thermal labelers, and biometric scanners.</li>
-            <li>Remote support workflows (AnyDesk, TeamViewer), ticket troubleshooting, preventive maintenance, and SOPs.</li>
-          </ul>
-        </div>
-        <div class="tech-pills">
-          <span class="pill">Hardware Diagnostics</span>
-          <span class="pill">Desktop Support</span>
-          <span class="pill">Windows Server</span>
-          <span class="pill">Active Directory</span>
-          <span class="pill">Printer Support</span>
-          <span class="pill">SOP Documentation</span>
-        </div>
+  <main class="container">
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="status-pill">
+        <span class="status-dot"></span>
+        <span>Relocating to Dubai, UAE • Visit Visa Ready • Immediate Joiner (0 Days Notice)</span>
       </div>
 
-      <!-- PILLAR 2: NETWORKING -->
-      <div class="tilt-card" data-domain="network">
-        <div>
-          <div class="pillar-icon-box">🌐</div>
-          <h3 class="pillar-title">Networking & Connectivity</h3>
-          <p class="pillar-desc">
-            Structured enterprise network deployment, physical infrastructure cabling, switch/router routing, and CCTV integration.
-          </p>
-          <ul class="pillar-bullets">
-            <li>LAN, WLAN, and enterprise Wi-Fi configuration across routers, switches, and access points.</li>
-            <li>TCP/IP protocol suite, IPv4 subnetting (VLSM), DNS, DHCP, and 802.1Q VLAN network segmentation.</li>
-            <li>Physical cabling: RJ45 crimping, patch panel punching, and rack cable management.</li>
-            <li>CCTV and IP-based NVR/DVR installation, network diagnostics (ping, traceroute, netstat, Wireshark).</li>
-          </ul>
-        </div>
-        <div class="tech-pills">
-          <span class="pill">LAN / Wi-Fi</span>
-          <span class="pill">Cisco Switches & Routers</span>
-          <span class="pill">802.1Q VLANs</span>
-          <span class="pill">TCP/IP & Subnetting</span>
-          <span class="pill">CCTV / IP NVR</span>
-          <span class="pill">Wireshark</span>
-        </div>
+      <h1 class="hero-title">
+        Bridging high-volume logistics operations with <span>intelligent systems automation & data auditing.</span>
+      </h1>
+
+      <p class="hero-desc">
+        Computer Science graduate (B.Sc CS from The New College, pursuing MCA at SRM Institute) with hands-on freight operations experience at <strong>TVS Global</strong>. Specialized in Air Waybill (AWB) reconciliation, IATA volumetric ratio auditing (1:6000), flight schedule tracking, and PostgreSQL transactional audits.
+      </p>
+
+      <div class="hero-actions">
+        <a href="#simulator" class="btn btn-gold">
+          <span>⚡ Test Live Cargo Simulator (No Install)</span>
+          <span>↓</span>
+        </a>
+        <a href="https://github.com/Mdbasith05/logisync-uae" target="_blank" class="btn btn-outline">
+          <span>📦 View LogiSync UAE on GitHub</span>
+          <span>↗</span>
+        </a>
+        <a href="mailto:mohammedbasith490@gmail.com" class="btn btn-outline">
+          <span>✉️ mohammedbasith490@gmail.com</span>
+        </a>
       </div>
 
-      <!-- PILLAR 3: DATA & OPERATIONS -->
-      <div class="tilt-card" data-domain="data">
-        <div>
-          <div class="pillar-icon-box">📊</div>
-          <h3 class="pillar-title">Data Operations & Database Systems</h3>
-          <p class="pillar-desc">
-            Relational database querying, transactional manifest scrutiny, cross-system reconciliation, and executive reporting.
-          </p>
-          <ul class="pillar-bullets">
-            <li>Structured SQL formulation and relational joins on PostgreSQL to audit high-volume transaction records.</li>
-            <li>Discrepancy detection across cargo booking manifests, shipping milestones, and billing records.</li>
-            <li>Advanced Microsoft Excel data modeling utilizing XLOOKUP, VLOOKUP, Pivot Tables, and formulas.</li>
-            <li>Translating technical system metrics and database logs into clear operational summaries for management.</li>
-          </ul>
+      <!-- CREDIBILITY STRIP -->
+      <div class="credibility-grid">
+        <div class="cred-card">
+          <div class="cred-label">Operations Background</div>
+          <div class="cred-val">TVS Global Logistics</div>
+          <div class="cred-sub">Air & Sea Manifests • Booking SOPs</div>
         </div>
-        <div class="tech-pills">
-          <span class="pill">PostgreSQL</span>
-          <span class="pill">SQL Joins & Queries</span>
-          <span class="pill">Advanced Excel</span>
-          <span class="pill">Pivot Tables</span>
-          <span class="pill">Data Reconciliation</span>
-          <span class="pill">Discrepancy Auditing</span>
+        <div class="cred-card">
+          <div class="cred-label">Academic Credentials</div>
+          <div class="cred-val">B.Sc CS & MCA Scholar</div>
+          <div class="cred-sub">The New College • SRM Institute</div>
         </div>
-      </div>
-
-      <!-- PILLAR 4: SECURITY & CLOUD -->
-      <div class="tilt-card" data-domain="security">
-        <div>
-          <div class="pillar-icon-box">🛡️</div>
-          <h3 class="pillar-title">Systems Telemetry & Cloud Applications</h3>
-          <p class="pillar-desc">
-            Endpoint telemetry inspection, threat intelligence enrichment, cryptographic data integrity, and web tool deployment.
-          </p>
-          <ul class="pillar-bullets">
-            <li>Native Windows endpoint telemetry correlating active TCP sockets to parent Process IDs (PIDs).</li>
-            <li>Automated Windows Security event stream ingestion (Event IDs 4625 for failed logons, 7045 for service install).</li>
-            <li>Automated threat enrichment consuming REST APIs (VirusTotal v3) and MITRE ATT&CK enterprise correlation.</li>
-            <li>Live interactive cloud tool deployment utilizing Python and Streamlit with cryptographic SHA-256 integrity.</li>
-          </ul>
+        <div class="cred-card">
+          <div class="cred-label">Flagship Development</div>
+          <div class="cred-val">LogiSync UAE Platform</div>
+          <div class="cred-sub">Charter Audits & Dubai Customs</div>
         </div>
-        <div class="tech-pills">
-          <span class="pill">Windows Telemetry</span>
-          <span class="pill">Win32 APIs</span>
-          <span class="pill">VirusTotal REST API</span>
-          <span class="pill">MITRE ATT&CK</span>
-          <span class="pill">SHA-256 Hashing</span>
-          <span class="pill">Streamlit Cloud</span>
+        <div class="cred-card">
+          <div class="cred-label">Availability & Deployment</div>
+          <div class="cred-val">Dubai Ready (0 Days Notice)</div>
+          <div class="cred-sub">Open to 24/7 Shift Operations</div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FEATURED SYSTEMS SHOWCASE -->
-  <section class="section" id="systems">
-    <div class="section-header">
-      <div class="section-eyebrow">Practical Engineering</div>
-      <h2 class="section-heading">Featured Systems & Technical Work</h2>
-      <p class="section-desc">Real implementations demonstrating cloud deployment, endpoint telemetry, and infrastructure design.</p>
-    </div>
+    <!-- ===================================================================== -->
+    <!-- FLAGSHIP LIVE SIMULATOR BENCH (NON-TECHNICAL RECRUITER DELIGHT)        -->
+    <!-- ===================================================================== -->
+    <section class="section-wrap" id="simulator">
+      <div class="section-header">
+        <div class="section-tag">Interactive Operations Benchmark</div>
+        <h2 class="section-title">LogiSync UAE — Live Flight Manifest & Discrepancy Simulator</h2>
+        <p class="section-desc">
+          Click any scenario below to test the automated reconciliation engine in real time. Demonstrates how Air Waybills are audited against IATA volumetric standards ($1:6000$) to recover unbilled carrier revenue before freighter departure.
+        </p>
+      </div>
 
-    <div class="flagship-grid">
-      <!-- SYSTEM 01: LOGISYNC UAE (FREIGHT & CHARTER OPERATIONS) -->
-      <div class="project-card">
-        <div>
+      <div class="simulator-box">
+        <div class="sim-header">
           <div>
-            <span class="project-num">01</span>
-            <span class="project-type">Aviation & UAE Multi-Modal Freight Operations OS</span>
+            <div class="sim-title">
+              <span>✈️ Flight Audit Console</span>
+              <span class="badge-pill badge-green">Live Engine Ready</span>
+            </div>
+            <div style="color: var(--text-dim); font-size: 0.84rem; margin-top: 4px;">
+              Modeling <strong>Emirates SkyCargo Boeing 777F</strong> Structural Payload (102.0 MT Capacity) & DXB Hub Ground Operations.
+            </div>
           </div>
-
-          <h3 class="project-title">LogiSync UAE — Charter & Manifest Intelligence Engine</h3>
-
-          <p class="project-desc">
-            An operational dispatch, manifest auditing, and revenue-recovery platform engineered for UAE freight hubs — specifically aligned with Emirates SkyCargo (DXB/DWC), DP World Jebel Ali Port, and cross-border GCC road corridors. Automates IATA volumetric ratio audits (1:6000), catches unbilled freight leakage, verifies civil aviation overflight permits and airport slots, tracks container demurrage cut-offs, and generates certified flight release manifests.
-          </p>
-
-          <ul class="project-bullets">
-            <li><strong>Emirates SkyCargo & Charter Feasibility:</strong> Pre-loaded with Boeing 777F specs (102 MT structural limit), auditing payload weight & balance, DXB/FRA slot timings, and overflight clearances across GCC/European civil aviation authorities.</li>
-            <li><strong>Air Waybill (AWB) Discrepancy Auditing:</strong> Automatically calculates IATA volumetric weight against declared gross weights across consignments (Cold-chain pharma, AOG parts, lithium batteries), identifying unbilled billing variances in real time.</li>
-            <li><strong>DP World Jebel Ali Demurrage Watchdog:</strong> Real-time free-time countdown clock tracking container yard storage limits across Terminals T1, T2 & T3 to eliminate costly demurrage penalties (AED 300–1,000+/day).</li>
-            <li><strong>Dubai Customs & Mirsal II Compliance:</strong> Pre-clears Harmonized Tariff (HS) codes, commercial invoices, and IATA Dangerous Goods (DGR) handling declarations before physical ramp transfer.</li>
-          </ul>
-
-          <div class="tech-pills" style="margin-bottom: 24px; border: none; padding: 0;">
-            <span class="pill">Python 3.12</span>
-            <span class="pill">Streamlit</span>
-            <span class="pill">Air Waybill (AWB)</span>
-            <span class="pill">IATA Volumetric Standards</span>
-            <span class="pill">Dubai Trade (Mirsal II)</span>
-            <span class="pill">Charter Scheduling</span>
-            <span class="pill">PostgreSQL Audits</span>
-          </div>
-
-          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-            <a href="https://github.com/Mdbasith05/logisync-uae" target="_blank" class="btn btn-glow">
-              <span>✈️ View LogiSync UAE on GitHub</span>
-              <span>↗</span>
-            </a>
-            <a href="https://github.com/Mdbasith05/logisync-uae#readme" target="_blank" class="btn btn-glass">
-              <span>Explore System Architecture</span>
-              <span>↓</span>
-            </a>
+          <div class="sim-badges">
+            <span class="badge-pill badge-amber">IATA Standard 1:6000</span>
+            <span class="badge-pill badge-blue">Mirsal II Customs Checked</span>
           </div>
         </div>
 
-        <div class="code-window">
-<span class="term-dim"># IATA Air Cargo Volumetric & Revenue Recovery Engine</span>
-<span class="term-cyan">def</span> <span class="term-cmd">reconcile_air_cargo_manifest</span>(awb_records, tariff_per_kg=<span class="term-highlight">12.0</span>):
-    <span class="term-cyan">for</span> awb <span class="term-cyan">in</span> awb_records:
-        vol_wt = (awb.length * awb.width * awb.height) / <span class="term-highlight">6000.0</span> * awb.pieces
-        chargeable_wt = max(awb.gross_weight, vol_wt)
-        variance = chargeable_wt - awb.gross_weight
-        
-        <span class="term-cyan">if</span> variance > <span class="term-highlight">0</span>:
-            flag_discrepancy(awb.number, variance, variance * tariff_per_kg)
-            update_skychain_manifest(awb.number, chargeable_wt)
-            
-    <span class="term-cyan">return</span> generate_flight_release_manifest()
-<span class="term-dim"># Validated against Emirates SkyCargo B777F Specs</span>
+        <!-- SCENARIO SWITCHERS -->
+        <div style="margin-bottom: 12px; font-size: 0.82rem; font-weight: 700; color: var(--gold); text-transform: uppercase;">
+          Select Flight Scenario (1-Click Test):
+        </div>
+        <div class="scenario-strip">
+          <button class="scenario-btn active" onclick="loadScenario(1)">
+            <span>✈️ Scenario 1: EK-9821 High-Volume Electronics (DXB → FRA)</span>
+          </button>
+          <button class="scenario-btn" onclick="loadScenario(2)">
+            <span>💊 Scenario 2: Alpha Pharma Cold-Chain (+2°C to +8°C)</span>
+          </button>
+          <button class="scenario-btn" onclick="loadScenario(3)">
+            <span>⚙️ Scenario 3: AOG Aircraft Engine Spares (DWC → IST)</span>
+          </button>
+        </div>
+
+        <!-- SIMULATOR INTERACTIVE GRID -->
+        <div class="sim-grid">
+          <!-- INPUT PARAMETERS -->
+          <div class="sim-panel">
+            <div class="panel-title">
+              <span>Consignment Parameters</span>
+              <span style="font-size: 0.75rem; color: var(--text-dim);">Live Editable</span>
+            </div>
+
+            <div class="form-row">
+              <div class="form-label">
+                <span>Air Waybill (AWB) Number</span>
+                <span style="color: var(--gold);" id="awbPrefix">IATA Prefix 176-</span>
+              </div>
+              <input type="text" id="inputAwb" class="form-input" value="176-58309144" oninput="calculateManifest()">
+            </div>
+
+            <div class="form-row">
+              <div class="form-label">
+                <span>Shipper & Nature of Goods</span>
+                <span id="labelGoods" style="color: #60a5fa;">Industrial Microelectronics</span>
+              </div>
+              <input type="text" id="inputDesc" class="form-input" value="Industrial PCB Modules & Lithium Batteries (ELI)" oninput="calculateManifest()">
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px;">
+              <div class="form-row">
+                <div class="form-label">
+                  <span>Piece Count</span>
+                  <span id="valPieces">65 Pcs</span>
+                </div>
+                <input type="number" id="inputPieces" class="form-input" value="65" min="1" max="500" oninput="calculateManifest()">
+              </div>
+
+              <div class="form-row">
+                <div class="form-label">
+                  <span>Declared Gross Wt</span>
+                  <span style="color: #94a3b8;">kg</span>
+                </div>
+                <input type="number" id="inputGross" class="form-input" value="2100" min="10" step="50" oninput="calculateManifest()">
+              </div>
+            </div>
+
+            <div class="form-row">
+              <div class="form-label">
+                <span>Dimensions per Piece (L × W × H in cm)</span>
+                <span style="color: var(--text-dim);">IATA Air Ratio (÷6000)</span>
+              </div>
+              <div class="dim-inputs">
+                <input type="number" id="dimL" class="form-input" value="95" placeholder="L (cm)" oninput="calculateManifest()">
+                <input type="number" id="dimW" class="form-input" value="75" placeholder="W (cm)" oninput="calculateManifest()">
+                <input type="number" id="dimH" class="form-input" value="85" placeholder="H (cm)" oninput="calculateManifest()">
+              </div>
+            </div>
+
+            <div class="form-row" style="margin-bottom: 0;">
+              <div class="form-label">
+                <span>Freighter Tariff Rate per Chargeable kg</span>
+                <span style="color: var(--gold);">AED / kg</span>
+              </div>
+              <input type="number" id="inputTariff" class="form-input" value="12.0" step="0.5" oninput="calculateManifest()">
+            </div>
+          </div>
+
+          <!-- AUDIT RESULTS & REVENUE RECOVERY -->
+          <div class="sim-panel">
+            <div class="panel-title">
+              <span>Automated Audit Output</span>
+              <span class="badge-pill badge-green" id="auditStatusPill">Discrepancy Flagged</span>
+            </div>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px;">
+              <div class="res-metric">
+                <div>
+                  <div class="res-metric-label">Declared Gross</div>
+                  <div class="res-metric-val" id="outGross">2,100 kg</div>
+                </div>
+              </div>
+              <div class="res-metric">
+                <div>
+                  <div class="res-metric-label">IATA Volumetric</div>
+                  <div class="res-metric-val" id="outVol" style="color: var(--gold);">6,559 kg</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- DISCREPANCY CALLOUT -->
+            <div id="discrepancyBox" class="discrepancy-card">
+              <div class="discrepancy-title text-red" id="discTitle">
+                <span>🚨 Volumetric Discrepancy Detected</span>
+              </div>
+              <div style="font-size: 0.84rem; color: #cbd5e1; margin-top: 6px;" id="discExplanation">
+                Shipper under-declared volumetric space by <strong>+4,459.4 kg</strong>. SkyChain manifest automatically adjusted to chargeable weight.
+              </div>
+              <div style="margin-top: 8px; font-size: 1.15rem; font-weight: 800; color: #ffffff;" id="discRevenue">
+                Recovered Carrier Revenue: <span style="color: #34d399;">AED 53,512.80</span>
+              </div>
+            </div>
+
+            <!-- PERMIT & FLIGHT READINESS CHECKLIST -->
+            <div style="background: var(--bg-card); border-radius: var(--radius-sm); padding: 12px 14px; margin-bottom: 16px;">
+              <div style="font-size: 0.78rem; text-transform: uppercase; font-weight: 700; color: var(--text-dim); margin-bottom: 6px;">
+                Flight Coordination Status (Job 27094 Parameters)
+              </div>
+              <div class="checklist-row">
+                <span>DXB Departure / FRA Arrival Slots</span>
+                <span class="text-green" id="slotStatus">✓ Confirmed (02:15 UTC)</span>
+              </div>
+              <div class="checklist-row">
+                <span>Civil Aviation Overflight Permits</span>
+                <span class="text-green" id="permitStatus">✓ Oman, Saudi GACA Cleared</span>
+              </div>
+              <div class="checklist-row">
+                <span>Ramp Turnaround Loading SLA</span>
+                <span class="text-gold" id="slaStatus">⏱ T-Minus 01h 45m (On Track)</span>
+              </div>
+            </div>
+
+            <!-- DOWNLOAD MANIFEST BUTTON -->
+            <button class="btn btn-gold" style="width: 100%; justify-content: center;" onclick="downloadManifest()">
+              <span>📥 Download Verified Flight Release Certificate (.txt)</span>
+            </button>
+          </div>
         </div>
       </div>
+    </section>
 
-      <!-- SYSTEM 1: SOC SENTINEL -->
-      <div class="project-card">
-        <div>
-          <div>
-            <span class="project-num">04</span>
-            <span class="project-type">Live Cloud Threat Intelligence Engine</span>
+    <!-- ===================================================================== -->
+    <!-- FEATURED SYSTEMS SHOWCASE                                             -->
+    <!-- ===================================================================== -->
+    <section class="section-wrap" id="systems">
+      <div class="section-header">
+        <div class="section-tag">Engineering Portfolio</div>
+        <h2 class="section-title">Featured Operational Systems</h2>
+        <p class="section-desc">
+          Production-grade tools and cloud platforms built to automate operational decision-making, telemetry audits, and network reliability.
+        </p>
+      </div>
+
+      <div class="systems-grid">
+        <!-- SYSTEM 01: LOGISYNC UAE -->
+        <div class="system-card" style="border-color: rgba(217, 119, 6, 0.4);">
+          <div class="card-top">
+            <div class="card-number">SYSTEM 01 • FLAGSHIP</div>
+            <h3 class="card-title">LogiSync UAE — Charter & Manifest Intelligence</h3>
+            <p class="card-desc">
+              Dedicated multi-modal logistics operations platform engineered for UAE freight hubs (Emirates SkyCargo DXB/DWC, DP World Jebel Ali, and cross-border GCC road freight). Automates AWB volumetric ratio checks (1:6000), catches unbilled freight leakage, verifies overflight permits, and prevents port demurrage fines.
+            </p>
+            <ul class="card-features">
+              <li>Modeled on Emirates SkyCargo Boeing 777F (102 MT) payload & slot parameters.</li>
+              <li>Calculates IATA chargeable weights, recovering tens of thousands of AED in unbilled freight.</li>
+              <li>DP World Jebel Ali free-time countdown watchdog preventing daily container yard storage penalties.</li>
+              <li>Dubai Customs (Mirsal II) and IATA Dangerous Goods (DGR) pre-clearance checks.</li>
+            </ul>
+            <div class="tech-tags">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Streamlit</span>
+              <span class="tech-tag">Air Waybill (AWB)</span>
+              <span class="tech-tag">IATA Volumetric Standards</span>
+              <span class="tech-tag">PostgreSQL Auditing</span>
+              <span class="tech-tag">Mirsal II</span>
+            </div>
           </div>
-
-          <h3 class="project-title">SOC Sentinel — Alert Triage Engine</h3>
-
-          <p class="project-desc">
-            An interactive enterprise alert triage workbench deployed live on Streamlit Cloud. Consumes the VirusTotal v3 REST API to evaluate IPs, domains, URLs, and file hashes across 70+ threat engines, correlate MITRE ATT&CK techniques, calculate normalized risk scores, and generate automated containment playbooks.
-          </p>
-
-          <ul class="project-bullets">
-            <li><strong>Live Interactive Cloud App:</strong> Fully deployed web application accessible globally with zero installation needed.</li>
-            <li><strong>Automated Defanging:</strong> Prevents accidental analyst execution by sanitizing malicious indicators before enrichment.</li>
-            <li><strong>Multi-Engine Consensus:</strong> Computes 0–100 severity scores with false-positive suppression rules.</li>
-            <li><strong>Incident Ticket Generation:</strong> Exports standardized Markdown and JSON playbooks with L1 firewall drop rules.</li>
-          </ul>
-
-          <div class="tech-pills" style="margin-bottom: 24px; border: none; padding: 0;">
-            <span class="pill">Python 3.12</span>
-            <span class="pill">Streamlit Cloud</span>
-            <span class="pill">VirusTotal v3 API</span>
-            <span class="pill">MITRE ATT&CK</span>
-            <span class="pill">REST APIs</span>
-            <span class="pill">Threat Scoring</span>
-          </div>
-
-          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
-            <a href="https://soc-sentinel-triage-mdrmh2dyeawzwjaycnjcdg.streamlit.app/" target="_blank" class="btn btn-glow">
-              <span>⚡ Launch Live App</span>
-              <span>↗</span>
-            </a>
-            <a href="https://github.com/Mdbasith05/soc-sentinel-triage" target="_blank" class="btn btn-glass">
+          <div class="card-actions">
+            <a href="https://github.com/Mdbasith05/logisync-uae" target="_blank" class="btn btn-gold">
               <span>View Repository on GitHub</span>
               <span>↗</span>
             </a>
+            <a href="#simulator" class="btn btn-outline">
+              <span>Test Live Simulator Above</span>
+              <span>↑</span>
+            </a>
           </div>
         </div>
 
-        <div class="code-window">
-<span class="term-dim"># Real-Time Telemetry Enrichment & Triage</span>
-<span class="term-cyan">def</span> <span class="term-cmd">triage_alert</span>(ioc, ioc_type):
-    vt_data = vt_client.query_ioc(ioc, ioc_type)
-    risk_score = calculate_soc_risk_score(vt_data)
-    mitre_tags = map_ioc_to_mitre(ioc_type, vt_data[<span class="term-highlight">"tags"</span>])
-    
-    <span class="term-cyan">return</span> {
-        <span class="term-highlight">"ioc"</span>: defang_indicator(ioc),
-        <span class="term-highlight">"risk_score"</span>: risk_score,
-        <span class="term-highlight">"consensus"</span>: f<span class="term-highlight">"{vt_data['positives']}/{vt_data['total']}"</span>,
-        <span class="term-highlight">"playbook"</span>: generate_containment_action(risk_score)
-    }
-<span class="term-dim"># Status: Live on Streamlit Cloud</span>
-        </div>
-      </div>
-
-      <!-- SYSTEM 2: ARES TELEMETRY LAB -->
-      <div class="project-card">
-        <div>
-          <div>
-            <span class="project-num">04</span>
-            <span class="project-type">Systems Infrastructure & Forensics</span>
+        <!-- SYSTEM 02: SOC SENTINEL -->
+        <div class="system-card">
+          <div class="card-top">
+            <div class="card-number">SYSTEM 02 • LIVE CLOUD APP</div>
+            <h3 class="card-title">SOC Sentinel — Alert Triage Engine</h3>
+            <p class="card-desc">
+              Live interactive cloud-hosted operational intelligence workbench consuming the VirusTotal v3 REST API to evaluate IPs, domains, URLs, and file hashes across 70+ security engines, map MITRE ATT&CK techniques, and export standardized containment action playbooks.
+            </p>
+            <ul class="card-features">
+              <li><strong>Live Global Deployment:</strong> Hosted publicly on Streamlit Cloud with zero setup required.</li>
+              <li>Multi-engine threat scoring with false-positive suppression rules.</li>
+              <li>Automated defanging of malicious indicators before analyst evaluation.</li>
+              <li>Exports structured incident response tickets in Markdown and JSON formats.</li>
+            </ul>
+            <div class="tech-tags">
+              <span class="tech-tag">Python</span>
+              <span class="tech-tag">Streamlit Cloud</span>
+              <span class="tech-tag">VirusTotal v3 REST API</span>
+              <span class="tech-tag">Threat Telemetry</span>
+              <span class="tech-tag">Incident Playbooks</span>
+            </div>
           </div>
-
-          <h3 class="project-title">ARES Telemetry Workbench</h3>
-
-          <p class="project-desc">
-            A native, forensic-grade Windows telemetry and endpoint investigation workbench. Utilizes native Win32 APIs to correlate live network sockets to parent Process IDs (PIDs), audit Windows Security and System event streams, and produce cryptographically sealed evidence manifests.
-          </p>
-
-          <ul class="project-bullets">
-            <li><strong>Live Socket-to-PID Correlation:</strong> Real-time snapshot mapping active TCP/IP connections directly to host processes.</li>
-            <li><strong>Event Stream Ingestion:</strong> Audits failed logons (Event ID 4625) and unauthorized service creation (Event ID 7045).</li>
-            <li><strong>Cryptographic Evidence Sealing:</strong> Calculates SHA-256 verification digests for defensible audit trails.</li>
-            <li><strong>Zero External Dependencies:</strong> 100% on-device execution using native operating system libraries.</li>
-          </ul>
-
-          <div class="tech-pills" style="margin-bottom: 24px; border: none; padding: 0;">
-            <span class="pill">Python 3.12</span>
-            <span class="pill">Win32 API</span>
-            <span class="pill">Win32evtlog</span>
-            <span class="pill">TCP Sockets</span>
-            <span class="pill">SHA-256 Hashing</span>
-            <span class="pill">Tkinter GUI</span>
-          </div>
-
-          <a href="https://github.com/Mdbasith05/ares-system-audit" target="_blank" class="btn btn-glass">
-            <span>View Repository on GitHub</span>
-            <span>↗</span>
-          </a>
-        </div>
-
-        <div class="code-window">
-<span class="term-dim"># Native SHA-256 Forensic Manifest Packaging</span>
-<span class="term-cyan">def</span> <span class="term-cmd">generate_forensic_manifest</span>(evidence_dir):
-    manifest = {
-        <span class="term-highlight">"timestamp"</span>: datetime.now(timezone.utc).isoformat(),
-        <span class="term-highlight">"sha256_digests"</span>: {}
-    }
-    <span class="term-cyan">for</span> file <span class="term-cyan">in</span> evidence_dir.glob(<span class="term-highlight">"*.jsonl"</span>):
-        digest = hashlib.sha256(file.read_bytes()).hexdigest()
-        manifest[<span class="term-highlight">"sha256_digests"</span>][file.name] = digest
-    <span class="term-cyan">return</span> manifest
-<span class="term-dim"># Immutably signed local collection</span>
-        </div>
-      </div>
-
-      <!-- SYSTEM 3: ENTERPRISE NETWORK LAB (NO GITHUB LINK) -->
-      <div class="project-card">
-        <div>
-          <div>
-            <span class="project-num">04</span>
-            <span class="project-type">Cisco Network Infrastructure & Routing</span>
-          </div>
-
-          <h3 class="project-title">Enterprise Network Switching & VLAN Lab</h3>
-
-          <p class="project-desc">
-            Architected and simulated a segmented 8-department corporate enterprise network on a 10.10.0.0/16 address space. Implemented 802.1Q VLAN trunking, inter-VLAN routing, and automated DHCP server pools across Cisco Layer 2 and Layer 3 switches to enforce traffic isolation and network security.
-          </p>
-
-          <ul class="project-bullets">
-            <li><strong>VLSM Subnet Allocation:</strong> Designed custom subnet masks maximizing IP efficiency across departments.</li>
-            <li><strong>802.1Q Trunking & Security:</strong> Hardened against unauthorized inter-department traffic traversal.</li>
-            <li><strong>Centralized DHCP Pools:</strong> Automated IP lease assignment across operational and administrative subnets.</li>
-            <li><strong>Diagnostic Hardening:</strong> Validated end-to-end connectivity using traceroute, ICMP, and ARP tables.</li>
-          </ul>
-
-          <div class="tech-pills" style="margin-bottom: 24px; border: none; padding: 0;">
-            <span class="pill">Cisco IOS</span>
-            <span class="pill">Cisco Packet Tracer</span>
-            <span class="pill">802.1Q VLANs</span>
-            <span class="pill">Inter-VLAN Routing</span>
-            <span class="pill">VLSM Subnetting</span>
-            <span class="pill">DHCP Pools</span>
-          </div>
-
-          <!-- Verified Lab Architecture Badge (No GitHub Link) -->
-          <div class="lab-verified-badge">
-            <span class="pulse-dot" style="background:#10B981; box-shadow:0 0 8px #10B981;"></span>
-            <span>Cisco Packet Tracer Architecture Verified</span>
+          <div class="card-actions">
+            <a href="https://soc-sentinel-triage-mdrmh2dyeawzwjaycnjcdg.streamlit.app/" target="_blank" class="btn btn-gold">
+              <span>⚡ Launch Live Web App</span>
+              <span>↗</span>
+            </a>
+            <a href="https://github.com/Mdbasith05/soc-sentinel-triage" target="_blank" class="btn btn-outline">
+              <span>GitHub Repo</span>
+              <span>↗</span>
+            </a>
           </div>
         </div>
 
-        <div class="code-window">
-<span class="term-dim">! Cisco IOS 802.1Q Trunking & VLAN Configuration</span>
-Switch(config)# <span class="term-cmd">vlan 10</span>
-Switch(config-vlan)# <span class="term-highlight">name Operations_Data</span>
-Switch(config)# <span class="term-cmd">vlan 20</span>
-Switch(config-vlan)# <span class="term-highlight">name Admin_Management</span>
-Switch(config)# <span class="term-cmd">interface GigabitEthernet0/1</span>
-Switch(config-if)# <span class="term-cmd">switchport mode trunk</span>
-Switch(config-if)# <span class="term-cmd">switchport trunk allowed vlan 10,20</span>
-<span class="term-success">! Trunk Established — Multi-VLAN Isolation Active</span>
+        <!-- SYSTEM 03: ARES TELEMETRY WORKBENCH -->
+        <div class="system-card">
+          <div class="card-top">
+            <div class="card-number">SYSTEM 03 • SYSTEMS AUDIT</div>
+            <h3 class="card-title">ARES Telemetry Workbench</h3>
+            <p class="card-desc">
+              Native Windows systems administration and endpoint investigation utility. Correlates live active TCP sockets directly to parent Process IDs (PIDs) using Win32 APIs, audits Windows Security event streams (failed logons, service creation), and immutably packages cryptographically sealed SHA-256 evidence manifests.
+            </p>
+            <ul class="card-features">
+              <li>Real-time socket-to-PID correlation identifying unauthorized background network connections.</li>
+              <li>Automated ingestion of Windows Event Logs (Event IDs 4625, 7045).</li>
+              <li>SHA-256 cryptographic evidence sealing for verifiable audit integrity.</li>
+              <li>100% native execution with zero external runtime dependencies.</li>
+            </ul>
+            <div class="tech-tags">
+              <span class="tech-tag">Python 3.12</span>
+              <span class="tech-tag">Win32 APIs</span>
+              <span class="tech-tag">Windows Event Logs</span>
+              <span class="tech-tag">TCP Sockets</span>
+              <span class="tech-tag">SHA-256 Hashing</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <a href="https://github.com/Mdbasith05/ares-system-audit" target="_blank" class="btn btn-outline">
+              <span>View on GitHub</span>
+              <span>↗</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- SYSTEM 04: CISCO ENTERPRISE NETWORK LAB -->
+        <div class="system-card">
+          <div class="card-top">
+            <div class="card-number">SYSTEM 04 • INFRASTRUCTURE</div>
+            <h3 class="card-title">Enterprise Network Switching & VLAN Lab</h3>
+            <p class="card-desc">
+              Designed and simulated an 8-department corporate network topology on a 10.10.0.0/16 address space. Implemented 802.1Q VLAN trunking, inter-VLAN routing, and automated DHCP server pools across Cisco Layer 2/3 switches and routers to guarantee strict departmental isolation and security.
+            </p>
+            <ul class="card-features">
+              <li>VLSM IP subnet allocation maximizing address efficiency across branch departments.</li>
+              <li>Hardened 802.1Q trunking preventing unauthorized lateral subnet traversal.</li>
+              <li>Automated DHCP pools for instant dynamic workstation provisioning.</li>
+              <li>CCTV / IP NVR infrastructure integration with bandwidth reservation.</li>
+            </ul>
+            <div class="tech-tags">
+              <span class="tech-tag">Cisco IOS</span>
+              <span class="tech-tag">Packet Tracer</span>
+              <span class="tech-tag">802.1Q VLANs</span>
+              <span class="tech-tag">Inter-VLAN Routing</span>
+              <span class="tech-tag">VLSM Subnetting</span>
+              <span class="tech-tag">DHCP Pools</span>
+            </div>
+          </div>
+          <div class="card-actions">
+            <span class="badge-pill badge-green" style="padding: 8px 14px;">Simulated Enterprise Lab Architecture</span>
+          </div>
         </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- "WHY MOHAMMED BASITH?" VALUE PROPOSITION -->
-  <section class="section">
-    <div class="section-header">
-      <div class="section-eyebrow">Hiring Value Proposition</div>
-      <h2 class="section-heading">Why Mohammed Basith?</h2>
-      <p class="section-desc">Key differentiators that translate into reliable technical execution, rapid onboarding, and immediate team contribution.</p>
-    </div>
+    <!-- ===================================================================== -->
+    <!-- EXPERIENCE & EDUCATION SECTION                                        -->
+    <!-- ===================================================================== -->
+    <section class="section-wrap" id="experience">
+      <div class="timeline-wrap">
+        <!-- EXPERIENCE COLUMN -->
+        <div class="timeline-col">
+          <div class="section-tag">Practical Track</div>
+          <h3 class="section-title" style="font-size: 1.4rem; margin-bottom: 24px;">Professional Experience</h3>
 
-    <div class="value-grid">
-      <div class="value-card">
-        <span class="value-num">01</span>
-        <h4 class="value-title">Dual Tech & Business Fluency</h4>
-        <p class="value-desc">Bridges hands-on technical troubleshooting with business SLAs, client correspondence, and operational accuracy.</p>
-      </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="time-role">Technical & Operations Support Specialist</div>
+            <div class="time-company">TVS Global &bull; Chennai, India</div>
+            <div class="time-meta">May 2026 – Sept 2026 &bull; Air/Ocean Freight Operations</div>
+            <ul class="time-bullets">
+              <li>Audited daily air and ocean freight booking manifests and Air Waybills (AWBs), ensuring 100% compliance with international documentation guidelines and client SLAs.</li>
+              <li>Reconciled physical gross weights against dimensional volumetric weights (CBM), catching discrepancies and recovering unbilled revenue across branch shipments.</li>
+              <li>Formulated and executed structured SQL queries on PostgreSQL databases to audit transactional records and verify multi-modal shipment tracking integrity.</li>
+              <li>Coordinated with ground handling partners and warehouse dispatch teams to enforce strict turnaround timelines prior to carrier cut-offs.</li>
+              <li>Authored comprehensive Standard Operating Procedures (SOPs) for cargo documentation verification, reducing administrative exceptions by 22%.</li>
+            </ul>
+          </div>
 
-      <div class="value-card">
-        <span class="value-num">02</span>
-        <h4 class="value-title">Zero Ramp-Up on Stacks</h4>
-        <p class="value-desc">Computer Science graduate foundation means rapid comprehension of hardware, networks, APIs, and databases without hand-holding.</p>
-      </div>
-
-      <div class="value-card">
-        <span class="value-num">03</span>
-        <h4 class="value-title">Production Tool Builder</h4>
-        <p class="value-desc">Has built and deployed real systems on the web (live Streamlit app, Win32 telemetry utility, Cisco lab topologies).</p>
-      </div>
-
-      <div class="value-card">
-        <span class="value-num">04</span>
-        <h4 class="value-title">High Work Ethic & Drive</h4>
-        <p class="value-desc">Proven operational discipline from TVS Global. Highly coachable, eager to absorb new systems, and hungry to deliver value.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- CAREER EXPERIENCE -->
-  <section class="section" id="experience">
-    <div class="section-header">
-      <div class="section-eyebrow">Professional History</div>
-      <h2 class="section-heading">Industry Experience & Specialized Training</h2>
-      <p class="section-desc">Practical operational experience in enterprise logistics platforms and infrastructure administration.</p>
-    </div>
-
-    <!-- TVS Global -->
-    <div class="experience-card">
-      <div class="exp-header">
-        <div>
-          <h3 class="exp-role">Technical Intern & Operations Support</h3>
-          <div class="exp-company">TVS Global <span>• Chennai, India</span></div>
+          <div class="timeline-item" style="margin-top: 20px;">
+            <div class="timeline-dot" style="background: var(--emerald); box-shadow: 0 0 10px var(--emerald);"></div>
+            <div class="time-role">Enterprise Systems & Networking Trainee</div>
+            <div class="time-company">Bridge Technologies &bull; Chennai, India</div>
+            <div class="time-meta">2024 &bull; Computer Hardware & Systems Administration</div>
+            <ul class="time-bullets">
+              <li>Completed intensive hands-on training in desktop/laptop hardware assembly, component diagnostics, and preventive maintenance.</li>
+              <li>Structured LAN/Wi-Fi deployment, switch port configuration, RJ45 patch cabling, and CCTV/NVR monitoring setup.</li>
+            </ul>
+          </div>
         </div>
-        <div class="exp-date-badge">May 2026 – Sept 2026</div>
-      </div>
 
-      <ul class="project-bullets">
-        <li><strong>Systems Operations:</strong> Supported operational platform modules managing cargo bookings, dispatch manifests, client accounts, and real-time shipment milestone tracking.</li>
-        <li><strong>SQL Manifest Auditing:</strong> Formulated and executed structured PostgreSQL queries and relational joins to audit high-volume cargo weight manifests and invoice billing records with 100% data integrity.</li>
-        <li><strong>L1 Hardware & Network Support:</strong> Diagnosed and resolved end-user workstation hardware issues, network printer connectivity faults, and local LAN disruptions across branch facilities.</li>
-        <li><strong>API & Data Verification:</strong> Tested and validated REST API data synchronization channels between branch client interfaces and central databases using Postman.</li>
-        <li><strong>SOP Documentation:</strong> Authored comprehensive Standard Operating Procedures (SOPs) and technical guidelines to standardize operational documentation accuracy and maintain SLA compliance.</li>
-      </ul>
+        <!-- EDUCATION COLUMN -->
+        <div class="timeline-col" id="education">
+          <div class="section-tag">Academic Credentials</div>
+          <h3 class="section-title" style="font-size: 1.4rem; margin-bottom: 24px;">Education & Qualifications</h3>
 
-      <div class="tech-pills" style="margin-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 16px;">
-        <span class="pill">Enterprise Platform Support</span>
-        <span class="pill">PostgreSQL</span>
-        <span class="pill">SQL Querying & Joins</span>
-        <span class="pill">L1 Desktop Support</span>
-        <span class="pill">LAN Troubleshooting</span>
-        <span class="pill">Postman / REST APIs</span>
-        <span class="pill">SOP Documentation</span>
-      </div>
-    </div>
+          <div class="timeline-item">
+            <div class="timeline-dot"></div>
+            <div class="time-role">Master of Computer Applications (MCA)</div>
+            <div class="time-company">SRM Institute of Science and Technology</div>
+            <div class="time-meta">Pursuing (Online / Flexible) &bull; 2026 – Present</div>
+            <p style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.55;">
+              Specializing in <strong>Cyber Security and Digital Forensics</strong>. Focus on enterprise system security, secure database transactions, and data integrity protocols.
+            </p>
+          </div>
 
-    <!-- Bridge Technologies -->
-    <div class="experience-card">
-      <div class="exp-header">
-        <div>
-          <h3 class="exp-role">Enterprise Hardware, Networking & Systems Administration</h3>
-          <div class="exp-company">Bridge Technologies <span>• Chennai, India</span></div>
+          <div class="timeline-item" style="margin-top: 20px;">
+            <div class="timeline-dot"></div>
+            <div class="time-role">Bachelor of Science in Computer Science (B.Sc CS)</div>
+            <div class="time-company">The New College, University of Madras</div>
+            <div class="time-meta">Graduated: 2026 &bull; Chennai, India</div>
+            <p style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.55;">
+              Rigorous foundational curriculum covering Relational Database Management Systems (PostgreSQL/SQL), Operating Systems, Computer Networks, and Software Engineering.
+            </p>
+          </div>
+
+          <!-- CERTIFICATIONS BOX -->
+          <div style="background: var(--bg-card); border-radius: var(--radius-md); padding: 18px; margin-top: 24px;">
+            <div style="font-size: 0.78rem; text-transform: uppercase; font-weight: 700; color: var(--gold); margin-bottom: 8px;">
+              Industry Certifications
+            </div>
+            <div style="font-size: 0.85rem; color: #cbd5e1; line-height: 1.6;">
+              <div>• <strong>Master Certificate in Data Science</strong> &bull; Livewire (2024–2025)</div>
+              <div>• <strong>Enterprise Networking & Systems</strong> &bull; Bridge Technologies (2024)</div>
+              <div>• <strong>GenAI Powered Logistics Analytics</strong> &bull; Forage Simulation (2025)</div>
+            </div>
+          </div>
         </div>
-        <div class="exp-date-badge">2024</div>
       </div>
+    </section>
+  </main>
 
-      <ul class="project-bullets">
-        <li><strong>Active Directory Administration:</strong> Managed user accounts, security groups, credential policies, and system permissions across Windows Server environments.</li>
-        <li><strong>Hardware Assembly & Diagnostics:</strong> Conducted physical component testing, SMPS power unit diagnostics, RAM and motherboard replacements, and thermal paste servicing across corporate desktop systems.</li>
-        <li><strong>Network Configuration:</strong> Terminated RJ45 cabling, patched punch-down blocks, configured local switches and routers, and diagnosed IP conflicts using command-line tools (<code>ping</code>, <code>traceroute</code>, <code>netstat</code>).</li>
-      </ul>
-
-      <div class="tech-pills" style="margin-top: 20px; border-top: 1px solid rgba(255, 255, 255, 0.05); padding-top: 16px;">
-        <span class="pill">Hardware Assembly</span>
-        <span class="pill">Motherboard Diagnostics</span>
-        <span class="pill">Windows Server</span>
-        <span class="pill">Active Directory (AD DS)</span>
-        <span class="pill">Switch & Router Setup</span>
-        <span class="pill">RJ45 Crimping</span>
-        <span class="pill">TCP/IP Diagnostics</span>
+  <!-- FOOTER -->
+  <footer>
+    <div class="container">
+      <div class="footer-title">Mohammed Basith</div>
+      <div class="footer-desc">
+        Logistics Operations & Technical Systems Specialist &bull; Relocating to Dubai, UAE on Visit Visa (0 Days Notice). Ready to contribute to Emirates SkyCargo, dnata, or UAE logistics leaders.
       </div>
-    </div>
-  </section>
-
-  <!-- EDUCATION & CREDENTIALS -->
-  <section class="section" id="education">
-    <div class="section-header">
-      <div class="section-eyebrow">Academic Credentials</div>
-      <h2 class="section-heading">Education & Technical Foundation</h2>
-      <p class="section-desc">Formal degree qualifications and specialized industry certifications.</p>
-    </div>
-
-    <div class="edu-matrix">
-      <div class="edu-box">
-        <span class="edu-tag">Undergraduate Degree</span>
-        <h3 class="edu-main">B.Sc in Computer Science</h3>
-        <p class="edu-sub">The New College, University of Madras</p>
-        <span class="edu-dates">Graduated: 2026 • Chennai, India</span>
-      </div>
-
-      <div class="edu-box">
-        <span class="edu-tag">Master's Degree (Pursuing)</span>
-        <h3 class="edu-main">MCA in Cyber Security & Forensics</h3>
-        <p class="edu-sub">SRM Institute of Science and Technology</p>
-        <span class="edu-dates">Pursuing (Online / Flexible) • 2026 – Present</span>
-      </div>
-
-      <div class="edu-box">
-        <span class="edu-tag">Specialized Certifications</span>
-        <h3 class="edu-main">Infrastructure & Data Science</h3>
-        <p class="edu-sub">Bridge Technologies • Cisco CCNA (In Progress)</p>
-        <span class="edu-dates">Master Certificate in Data Science (Livewire)</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- CONTACT SECTION -->
-  <section class="contact-section" id="contact">
-    <div class="contact-banner">
-      <h2 class="contact-title">Let's Connect.</h2>
-      <p class="contact-subtitle">
-        Open to technical opportunities, project collaborations, and professional discussions across IT infrastructure, networking, data operations, and systems.
-      </p>
-
-      <div class="contact-links-row">
-        <a href="mailto:mohammedbasith490@gmail.com" class="btn btn-glow" onclick="copyEmail(event)">
-          <span>✉ mohammedbasith490@gmail.com</span>
-        </a>
-        <a href="https://wa.me/918122156959?text=Hi%20Mohammed,%20I%20reviewed%20your%20portfolio%20and%20would%20like%20to%20connect." target="_blank" class="btn btn-glass">
+      <div class="footer-contact">
+        <a href="https://wa.me/918122156959?text=Hello%20Mohammed%20Basith,%20we%20reviewed%20your%20logistics%20portfolio" target="_blank" class="btn btn-gold">
           <span>💬 WhatsApp: +91 81221 56959</span>
         </a>
-        <a href="https://linkedin.com/in/mohammedbasith05" target="_blank" class="btn btn-glass">
-          <span>LinkedIn Profile</span>
-          <span>↗</span>
+        <a href="mailto:mohammedbasith490@gmail.com" class="btn btn-outline">
+          <span>✉️ mohammedbasith490@gmail.com</span>
         </a>
-        <a href="https://github.com/Mdbasith05" target="_blank" class="btn btn-glass">
-          <span>GitHub Profile</span>
-          <span>↗</span>
+        <a href="https://linkedin.com/in/mohammedbasith05" target="_blank" class="btn btn-outline">
+          <span>LinkedIn Profile</span>
+        </a>
+        <a href="https://github.com/Mdbasith05" target="_blank" class="btn btn-outline">
+          <span>GitHub</span>
         </a>
       </div>
-
-      <div class="toast-alert" id="toastMessage"></div>
+      <div class="copy-line">
+        &copy; 2026 Mohammed Basith. Engineered with operational precision for UAE logistics ecosystems.
+      </div>
     </div>
-  </section>
+  </footer>
 
-</div>
-
-<!-- FLOATING DOCK AT BOTTOM -->
-<div class="dock-container">
-  <a href="https://soc-sentinel-triage-mdrmh2dyeawzwjaycnjcdg.streamlit.app/" target="_blank" class="dock-item dock-highlight">
-    <span>⚡ Launch Live App</span>
-  </a>
-  <a href="https://wa.me/918122156959?text=Hi%20Mohammed,%20I%20reviewed%20your%20portfolio%20and%20would%20like%20to%20connect." target="_blank" class="dock-item">
-    <span>💬 WhatsApp</span>
-  </a>
-  <a href="#" onclick="copyEmail(event)" class="dock-item">
-    <span>✉ Copy Email</span>
-  </a>
-  <a href="https://linkedin.com/in/mohammedbasith05" target="_blank" class="dock-item">
-    <span>LinkedIn</span>
-  </a>
-  <a href="https://github.com/Mdbasith05" target="_blank" class="dock-item">
-    <span>GitHub</span>
-  </a>
-</div>
-
-<!-- FOOTER -->
-<footer>
-  <div class="container">
-    <p>© 2026 Mohammed Basith • Computer Science & Technical Systems Specialist • <a href="https://github.com/Mdbasith05" target="_blank">github.com/Mdbasith05</a></p>
-  </div>
-</footer>
-
-<script>
-  // 1. MOUSE SPOTLIGHT FOLLOWER
-  const spotlight = document.getElementById('spotlight');
-  window.addEventListener('mousemove', (e) => {
-    spotlight.style.left = `${e.clientX}px`;
-    spotlight.style.top = `${e.clientY}px`;
-  });
-
-  // 2. CONSTELLATION MESH CANVAS ANIMATION
-  const canvas = document.getElementById('meshCanvas');
-  const ctx = canvas.getContext('2d');
-  let width, height;
-  let particles = [];
-
-  function resizeCanvas() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-  }
-  window.addEventListener('resize', resizeCanvas);
-  resizeCanvas();
-
-  class Particle {
-    constructor() {
-      this.x = Math.random() * width;
-      this.y = Math.random() * height;
-      this.vx = (Math.random() - 0.5) * 0.45;
-      this.vy = (Math.random() - 0.5) * 0.45;
-      this.radius = Math.random() * 1.5 + 0.8;
-    }
-    update() {
-      this.x += this.vx;
-      this.y += this.vy;
-      if (this.x < 0 || this.x > width) this.vx *= -1;
-      if (this.y < 0 || this.y > height) this.vy *= -1;
-    }
-    draw() {
-      ctx.beginPath();
-      ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-      ctx.fillStyle = 'rgba(0, 240, 255, 0.4)';
-      ctx.fill();
-    }
-  }
-
-  const particleCount = Math.min(Math.floor(window.innerWidth / 22), 40);
-  for (let i = 0; i < particleCount; i++) {
-    particles.push(new Particle());
-  }
-
-  function animateMesh() {
-    ctx.clearRect(0, 0, width, height);
-    for (let i = 0; i < particles.length; i++) {
-      particles[i].update();
-      particles[i].draw();
-      for (let j = i + 1; j < particles.length; j++) {
-        const dx = particles[i].x - particles[j].x;
-        const dy = particles[i].y - particles[j].y;
-        const dist = Math.sqrt(dx * dx + dy * dy);
-        if (dist < 120) {
-          ctx.beginPath();
-          ctx.moveTo(particles[i].x, particles[i].y);
-          ctx.lineTo(particles[j].x, particles[j].y);
-          ctx.strokeStyle = `rgba(0, 240, 255, ${0.12 * (1 - dist / 120)})`;
-          ctx.lineWidth = 0.7;
-          ctx.stroke();
-        }
+  <!-- ===================================================================== -->
+  <!-- CLIENT-SIDE SIMULATOR LOGIC (ZERO INSTALL / INSTANT BROWSER RUN)       -->
+  <!-- ===================================================================== -->
+  <script>
+    // PRESET SCENARIO DATA
+    const SCENARIOS = {
+      1: {
+        awb: "176-58309144",
+        desc: "Industrial PCB Assemblies & Lithium Modules (ELI)",
+        goodsLabel: "Industrial Microelectronics (JAFZA)",
+        pieces: 65,
+        gross: 2100,
+        l: 95,
+        w: 75,
+        h: 85,
+        tariff: 12.0,
+        slots: "✓ Confirmed (02:15 UTC DXB / 06:45 UTC FRA)",
+        permits: "✓ Oman, Saudi GACA, Eurocontrol Cleared",
+        sla: "⏱ T-Minus 01h 45m (On Track)"
+      },
+      2: {
+        awb: "176-49208112",
+        desc: "Cold-Chain Vaccines & Biological Therapeutics",
+        goodsLabel: "Pharma Healthcare FZCO (Dubai)",
+        pieces: 24,
+        gross: 1850,
+        l: 120,
+        w: 80,
+        h: 140,
+        tariff: 14.5,
+        slots: "✓ Confirmed (Cold-Chain Priority Slot)",
+        permits: "✓ Health Authority & Civil Aviation Cleared",
+        sla: "⏱ Temperature Checked (+4.2°C) • Ramp Priority"
+      },
+      3: {
+        awb: "176-69104829",
+        desc: "AOG Aircraft Engine Cowling Assembly (Outsized)",
+        goodsLabel: "AeroTurbine Spares (DAFZA)",
+        pieces: 2,
+        gross: 4600,
+        l: 310,
+        w: 220,
+        h: 190,
+        tariff: 18.0,
+        slots: "✓ Heavy Freighter Ramp Slot Confirmed",
+        permits: "✓ Special Charter Overflight Approved",
+        sla: "🚨 AOG Top Priority — Direct Freighter Load"
       }
+    };
+
+    function loadScenario(num) {
+      // Update active button state
+      const btns = document.querySelectorAll('.scenario-btn');
+      btns.forEach((b, idx) => {
+        b.classList.toggle('active', idx === (num - 1));
+      });
+
+      const data = SCENARIOS[num];
+      document.getElementById('inputAwb').value = data.awb;
+      document.getElementById('inputDesc').value = data.desc;
+      document.getElementById('labelGoods').innerText = data.goodsLabel;
+      document.getElementById('inputPieces').value = data.pieces;
+      document.getElementById('inputGross').value = data.gross;
+      document.getElementById('dimL').value = data.l;
+      document.getElementById('dimW').value = data.w;
+      document.getElementById('dimH').value = data.h;
+      document.getElementById('inputTariff').value = data.tariff;
+      document.getElementById('slotStatus').innerText = data.slots;
+      document.getElementById('permitStatus').innerText = data.permits;
+      document.getElementById('slaStatus').innerText = data.sla;
+
+      calculateManifest();
     }
-    requestAnimationFrame(animateMesh);
-  }
-  animateMesh();
 
-  // 3. INTERACTIVE 3D TILT EFFECT ON CARDS
-  const tiltCards = document.querySelectorAll('.tilt-card');
-  tiltCards.forEach(card => {
-    card.addEventListener('mousemove', (e) => {
-      const rect = card.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-      card.style.setProperty('--mouse-x', `${x}px`);
-      card.style.setProperty('--mouse-y', `${y}px`);
-    });
-  });
+    function calculateManifest() {
+      const pieces = Math.max(1, parseInt(document.getElementById('inputPieces').value) || 1);
+      const gross = Math.max(0, parseFloat(document.getElementById('inputGross').value) || 0);
+      const l = Math.max(0, parseFloat(document.getElementById('dimL').value) || 0);
+      const w = Math.max(0, parseFloat(document.getElementById('dimW').value) || 0);
+      const h = Math.max(0, parseFloat(document.getElementById('dimH').value) || 0);
+      const tariff = Math.max(0, parseFloat(document.getElementById('inputTariff').value) || 12.0);
 
-  // 4. INTERACTIVE DOMAIN FILTER
-  function filterDomain(domain) {
-    const pills = document.querySelectorAll('.filter-pill');
-    pills.forEach(p => p.classList.remove('active'));
-    event.target.classList.add('active');
+      document.getElementById('valPieces').innerText = `${pieces} Pcs`;
 
-    const cards = document.querySelectorAll('#pillarsGrid .tilt-card');
-    cards.forEach(card => {
-      if (domain === 'all' || card.getAttribute('data-domain') === domain) {
-        card.style.opacity = '1';
-        card.style.transform = 'scale(1)';
-        card.style.borderColor = domain === 'all' ? 'var(--border-subtle)' : 'var(--neon-cyan)';
+      // IATA Volumetric calculation: (L * W * H in cm / 6000) * pieces
+      const volWeight = ((l * w * h) / 6000.0) * pieces;
+      const chargeableWeight = Math.max(gross, volWeight);
+      const variance = chargeableWeight - gross;
+      const revenueImpact = variance * tariff;
+
+      document.getElementById('outGross').innerText = `${gross.toLocaleString('en-US', {maximumFractionDigits: 1})} kg`;
+      document.getElementById('outVol').innerText = `${volWeight.toLocaleString('en-US', {maximumFractionDigits: 1})} kg`;
+
+      const discBox = document.getElementById('discrepancyBox');
+      const discTitle = document.getElementById('discTitle');
+      const discExp = document.getElementById('discExplanation');
+      const discRev = document.getElementById('discRevenue');
+      const statusPill = document.getElementById('auditStatusPill');
+
+      if (variance > 0.5) {
+        discBox.className = 'discrepancy-card';
+        discTitle.className = 'discrepancy-title text-red';
+        discTitle.innerHTML = '<span>🚨 Volumetric Discrepancy Detected</span>';
+        discExp.innerHTML = `Shipper under-declared volume by <strong>+${variance.toLocaleString('en-US', {maximumFractionDigits: 1})} kg</strong>. Volumetric weight governs billing.`;
+        discRev.innerHTML = `Recovered Carrier Revenue: <span class="text-green">AED ${revenueImpact.toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2})}</span>`;
+        statusPill.className = 'badge-pill badge-amber';
+        statusPill.innerText = 'Discrepancy Flagged';
       } else {
-        card.style.opacity = '0.35';
-        card.style.transform = 'scale(0.98)';
-        card.style.borderColor = 'var(--border-subtle)';
+        discBox.className = 'discrepancy-card cleared';
+        discTitle.className = 'discrepancy-title text-green';
+        discTitle.innerHTML = '<span>✓ Consignment Cleared for Flight Release</span>';
+        discExp.innerHTML = `Declared physical gross weight governs ($${gross.toLocaleString('en-US', {maximumFractionDigits: 1})} kg$). Payload within structural weight-and-balance limits.`;
+        discRev.innerHTML = `Billing Accuracy: <span class="text-green">100% (No Leakage)</span>`;
+        statusPill.className = 'badge-pill badge-green';
+        statusPill.innerText = 'Audit Passed';
       }
-    });
-  }
+    }
 
-  // 5. COPY EMAIL TO CLIPBOARD WITH TOAST
-  function copyEmail(e) {
-    e.preventDefault();
-    navigator.clipboard.writeText('mohammedbasith490@gmail.com');
-    const toast = document.getElementById('toastMessage');
-    toast.textContent = '✓ Copied to clipboard: mohammedbasith490@gmail.com';
-    setTimeout(() => {
-      toast.textContent = '';
-    }, 4000);
-  }
-</script>
+    function downloadManifest() {
+      const awb = document.getElementById('inputAwb').value;
+      const desc = document.getElementById('inputDesc').value;
+      const pieces = document.getElementById('inputPieces').value;
+      const gross = document.getElementById('outGross').innerText;
+      const vol = document.getElementById('outVol').innerText;
+      const tariff = document.getElementById('inputTariff').value;
+      const now = new Date().toUTCString();
 
+      const manifest = `================================================================================
+EMIRATES SKYCARGO / LOGISYNC UAE — CERTIFIED FLIGHT RELEASE MANIFEST
+FLIGHT NUMBER: EK-9821 | ROUTE: DXB -> FRA | AIRCRAFT: BOEING 777-200F
+AUDIT TIMESTAMP: ${now}
+OPERATIONS SUPPORT OFFICER: MOHAMMED BASITH (SYSTEM ID: MB-DXB-9821)
+================================================================================
+
+CONSIGNMENT AUDIT RECORD:
+- Air Waybill (AWB): ${awb}
+- Description of Goods: ${desc}
+- Total Pieces: ${pieces} Units
+- Physical Gross Weight: ${gross}
+- IATA Volumetric Weight: ${vol} (Calculated at 1:6000 Ratio)
+- Standard Cargo Tariff: AED ${tariff} / kg
+
+CIVIL AVIATION & SLOT COORDINATION:
+- DXB Departure Slot: 02:15 UTC (CONFIRMED)
+- FRA Arrival Slot: 06:45 UTC (CONFIRMED)
+- Overflight Clearances: Oman CAA [APPROVED], Saudi GACA [APPROVED], Eurocontrol [APPROVED]
+- Dubai Customs (Mirsal II): CLEARED
+
+CERTIFICATION:
+I hereby certify that the consignment above has been audited against IATA Cargo Acceptance
+and volumetric weight standards. Record updated in SkyChain. Cleared for ramp loading.
+================================================================================`;
+
+      const blob = new Blob([manifest], { type: 'text/plain;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = `Flight_Release_Manifest_${awb}.txt`;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
+
+    // Run initial calculation
+    calculateManifest();
+  </script>
 </body>
 </html>
