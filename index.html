@@ -81,6 +81,19 @@
       padding: 0 32px;
     }
 
+        .nav-links-clean {
+      display: flex;
+      gap: 28px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--ink-muted);
+    }
+    .nav-links-clean a:hover {
+      color: var(--ink);
+    }
+    @media (max-width: 768px) {
+      .nav-links-clean { display: none; }
+    }
     /* -------------------------------------------------------------------------
        EDITORIAL TOP BAR
        ------------------------------------------------------------------------- */
@@ -613,13 +626,14 @@
         <span class="brand-role">Systems & Operations</span>
       </div>
 
-      <div class="top-clocks">
-        <div class="clock-item">CHENNAI <span id="clockMaa">--:--</span></div>
-        <div class="clock-item">DUBAI <span id="clockDxb">--:--</span></div>
-      </div>
+      <nav class="nav-links-clean">
+        <a href="#work">Projects</a>
+        <a href="#chronicle">Experience</a>
+        <a href="#education">Education</a>
+      </nav>
 
       <a href="https://wa.me/918122156959?text=Hello%20Mohammed%20Basith,%20we%20reviewed%20your%20portfolio" target="_blank" class="top-contact-btn">
-        <span>Say Hello ↗</span>
+        <span>Contact on WhatsApp ↗</span>
       </a>
     </div>
   </header>
@@ -629,7 +643,7 @@
     <section class="hero">
       <div class="hero-eyebrow">
         <span class="eyebrow-line"></span>
-        <span>Candidate Dossier • Relocating to Dubai (Visit Visa)</span>
+        <span>Available for Immediate Deployment • Dubai, UAE (Visit Visa)</span>
       </div>
 
       <h1 class="hero-heading">
@@ -915,26 +929,13 @@
       </div>
 
       <div class="footer-colophon">
-        <div>&copy; 2026 Mohammed Basith. Crafted with operational precision.</div>
-        <div>COORDINATES: 25.2048° N, 55.2708° E (DUBAI READY)</div>
+        <div>&copy; 2026 Mohammed Basith. All rights reserved.</div>
+        <div>Chennai, India &bull; Relocating to Dubai, UAE</div>
       </div>
     </div>
   </footer>
 
   <!-- SCRIPT: LIVE DUAL-TIME CLOCK -->
-  <script>
-    function updateClocks() {
-      const now = new Date();
-      // Chennai: UTC+5.5
-      const maaTime = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Kolkata', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(now);
-      // Dubai: UTC+4
-      const dxbTime = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Dubai', hour: '2-digit', minute: '2-digit', second: '2-digit' }).format(now);
-
-      document.getElementById('clockMaa').innerText = maaTime;
-      document.getElementById('clockDxb').innerText = dxbTime;
-    }
-    setInterval(updateClocks, 1000);
-    updateClocks();
-  </script>
+  
 </body>
 </html>
