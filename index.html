@@ -1016,16 +1016,16 @@
     <!-- QUICK STATS STRIP -->
     <div class="stats-strip">
       <div class="stat-card">
-        <span class="stat-label">Core Pillars</span>
-        <span class="stat-value">IT Support • Networking • Security • Data</span>
+        <span class="stat-label">Core Specialization</span>
+        <span class="stat-value">Cargo Systems • Networking • IT Support • Data</span>
       </div>
       <div class="stat-card">
-        <span class="stat-label">Live Deployment</span>
-        <span class="stat-value">SOC Sentinel (Streamlit Cloud)</span>
+        <span class="stat-label">Flagship Systems</span>
+        <span class="stat-value">LogiSync UAE & SOC Sentinel</span>
       </div>
       <div class="stat-card">
-        <span class="stat-label">Industry Training</span>
-        <span class="stat-value">TVS Global & Bridge Tech</span>
+        <span class="stat-label">Operations Training</span>
+        <span class="stat-value">TVS Global Logistics & Bridge Tech</span>
       </div>
       <div class="stat-card">
         <span class="stat-label">Academic Track</span>
@@ -1162,11 +1162,71 @@
     </div>
 
     <div class="flagship-grid">
-      <!-- SYSTEM 1: SOC SENTINEL -->
+      <!-- SYSTEM 01: LOGISYNC UAE (FREIGHT & CHARTER OPERATIONS) -->
       <div class="project-card">
         <div>
           <div>
             <span class="project-num">01</span>
+            <span class="project-type">Aviation & UAE Multi-Modal Freight Operations OS</span>
+          </div>
+
+          <h3 class="project-title">LogiSync UAE — Charter & Manifest Intelligence Engine</h3>
+
+          <p class="project-desc">
+            An operational dispatch, manifest auditing, and revenue-recovery platform engineered for UAE freight hubs — specifically aligned with Emirates SkyCargo (DXB/DWC), DP World Jebel Ali Port, and cross-border GCC road corridors. Automates IATA volumetric ratio audits (1:6000), catches unbilled freight leakage, verifies civil aviation overflight permits and airport slots, tracks container demurrage cut-offs, and generates certified flight release manifests.
+          </p>
+
+          <ul class="project-bullets">
+            <li><strong>Emirates SkyCargo & Charter Feasibility:</strong> Pre-loaded with Boeing 777F specs (102 MT structural limit), auditing payload weight & balance, DXB/FRA slot timings, and overflight clearances across GCC/European civil aviation authorities.</li>
+            <li><strong>Air Waybill (AWB) Discrepancy Auditing:</strong> Automatically calculates IATA volumetric weight against declared gross weights across consignments (Cold-chain pharma, AOG parts, lithium batteries), identifying unbilled billing variances in real time.</li>
+            <li><strong>DP World Jebel Ali Demurrage Watchdog:</strong> Real-time free-time countdown clock tracking container yard storage limits across Terminals T1, T2 & T3 to eliminate costly demurrage penalties (AED 300–1,000+/day).</li>
+            <li><strong>Dubai Customs & Mirsal II Compliance:</strong> Pre-clears Harmonized Tariff (HS) codes, commercial invoices, and IATA Dangerous Goods (DGR) handling declarations before physical ramp transfer.</li>
+          </ul>
+
+          <div class="tech-pills" style="margin-bottom: 24px; border: none; padding: 0;">
+            <span class="pill">Python 3.12</span>
+            <span class="pill">Streamlit</span>
+            <span class="pill">Air Waybill (AWB)</span>
+            <span class="pill">IATA Volumetric Standards</span>
+            <span class="pill">Dubai Trade (Mirsal II)</span>
+            <span class="pill">Charter Scheduling</span>
+            <span class="pill">PostgreSQL Audits</span>
+          </div>
+
+          <div style="display: flex; gap: 12px; flex-wrap: wrap;">
+            <a href="https://github.com/Mdbasith05/logisync-uae" target="_blank" class="btn btn-glow">
+              <span>✈️ View LogiSync UAE on GitHub</span>
+              <span>↗</span>
+            </a>
+            <a href="https://github.com/Mdbasith05/logisync-uae#readme" target="_blank" class="btn btn-glass">
+              <span>Explore System Architecture</span>
+              <span>↓</span>
+            </a>
+          </div>
+        </div>
+
+        <div class="code-window">
+<span class="term-dim"># IATA Air Cargo Volumetric & Revenue Recovery Engine</span>
+<span class="term-cyan">def</span> <span class="term-cmd">reconcile_air_cargo_manifest</span>(awb_records, tariff_per_kg=<span class="term-highlight">12.0</span>):
+    <span class="term-cyan">for</span> awb <span class="term-cyan">in</span> awb_records:
+        vol_wt = (awb.length * awb.width * awb.height) / <span class="term-highlight">6000.0</span> * awb.pieces
+        chargeable_wt = max(awb.gross_weight, vol_wt)
+        variance = chargeable_wt - awb.gross_weight
+        
+        <span class="term-cyan">if</span> variance > <span class="term-highlight">0</span>:
+            flag_discrepancy(awb.number, variance, variance * tariff_per_kg)
+            update_skychain_manifest(awb.number, chargeable_wt)
+            
+    <span class="term-cyan">return</span> generate_flight_release_manifest()
+<span class="term-dim"># Validated against Emirates SkyCargo B777F Specs</span>
+        </div>
+      </div>
+
+      <!-- SYSTEM 1: SOC SENTINEL -->
+      <div class="project-card">
+        <div>
+          <div>
+            <span class="project-num">04</span>
             <span class="project-type">Live Cloud Threat Intelligence Engine</span>
           </div>
 
@@ -1225,7 +1285,7 @@
       <div class="project-card">
         <div>
           <div>
-            <span class="project-num">02</span>
+            <span class="project-num">04</span>
             <span class="project-type">Systems Infrastructure & Forensics</span>
           </div>
 
@@ -1276,7 +1336,7 @@
       <div class="project-card">
         <div>
           <div>
-            <span class="project-num">03</span>
+            <span class="project-num">04</span>
             <span class="project-type">Cisco Network Infrastructure & Routing</span>
           </div>
 
