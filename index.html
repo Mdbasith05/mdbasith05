@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mohammed Basith — Systems, Networks & Logistics Operations</title>
-  <meta name="description" content="Mohammed Basith: Systems administration, enterprise networking, and air cargo manifest operations. Based in Chennai, relocating to Dubai.">
+  <title>Mohammed Basith — Computer Science Graduate • IT Systems & Network Infrastructure</title>
+  <meta name="description" content="Mohammed Basith: 2026 Computer Science Graduate seeking junior IT Systems Support, Network Infrastructure, and Technical Operations roles in Dubai, UAE.">
   
-  <!-- Curated Editorial Typography (Lusion Aesthetic) -->
+  <!-- Curated Editorial Typography (Lusion-Inspired Aesthetic) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
@@ -29,6 +29,7 @@
       --accent-terracotta: #c25327;
       --accent-forest: #204e38;
       --accent-amber: #b86a04;
+      --accent-blue: #1e3a8a;
       --font-serif: 'Instrument Serif', Georgia, serif;
       --font-sans: 'Plus Jakarta Sans', -apple-system, sans-serif;
       --font-mono: 'Space Mono', monospace;
@@ -76,36 +77,22 @@
     }
 
     .container {
-      max-width: 1120px;
+      max-width: 1140px;
       margin: 0 auto;
       padding: 0 32px;
     }
 
-        .nav-links-clean {
-      display: flex;
-      gap: 28px;
-      font-size: 0.9rem;
-      font-weight: 600;
-      color: var(--ink-muted);
-    }
-    .nav-links-clean a:hover {
-      color: var(--ink);
-    }
-    @media (max-width: 768px) {
-      .nav-links-clean { display: none; }
-    }
     /* -------------------------------------------------------------------------
        EDITORIAL TOP BAR
        ------------------------------------------------------------------------- */
     .top-bar {
       border-bottom: 1px solid var(--border);
-      padding: 20px 0;
-      background: var(--bg-canvas);
+      padding: 18px 0;
       position: sticky;
       top: 0;
       z-index: 100;
-      backdrop-filter: blur(8px);
-      background: rgba(246, 245, 239, 0.92);
+      backdrop-filter: blur(10px);
+      background: rgba(246, 245, 239, 0.94);
     }
 
     .top-bar-inner {
@@ -121,7 +108,7 @@
     }
 
     .brand-title {
-      font-size: 1.15rem;
+      font-size: 1.18rem;
       font-weight: 800;
       letter-spacing: -0.02em;
       color: var(--ink);
@@ -135,6 +122,18 @@
       letter-spacing: 0.06em;
       border-left: 1px solid var(--border);
       padding-left: 12px;
+    }
+
+    .nav-links-clean {
+      display: flex;
+      gap: 28px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--ink-muted);
+    }
+
+    .nav-links-clean a:hover {
+      color: var(--ink);
     }
 
     .top-clocks {
@@ -168,16 +167,19 @@
       transform: translateY(-1px);
     }
 
-    @media (max-width: 768px) {
+    @media (max-width: 900px) {
       .top-clocks { display: none; }
       .brand-role { display: none; }
+    }
+    @media (max-width: 720px) {
+      .nav-links-clean { display: none; }
     }
 
     /* -------------------------------------------------------------------------
        HERO: BOLD EDITORIAL CONFIDENCE
        ------------------------------------------------------------------------- */
     .hero {
-      padding: 80px 0 60px 0;
+      padding: 76px 0 54px 0;
       border-bottom: 1px solid var(--border);
     }
 
@@ -190,24 +192,24 @@
       text-transform: uppercase;
       letter-spacing: 0.08em;
       color: var(--accent-terracotta);
-      margin-bottom: 24px;
+      margin-bottom: 22px;
       font-weight: 700;
     }
 
     .eyebrow-line {
       width: 24px;
-      height: 1px;
+      height: 1.5px;
       background: var(--accent-terracotta);
     }
 
     .hero-heading {
       font-family: var(--font-serif);
-      font-size: clamp(3rem, 6.5vw, 5.2rem);
+      font-size: clamp(2.8rem, 5.8vw, 4.8rem);
       font-weight: 400;
-      line-height: 1.05;
+      line-height: 1.08;
       letter-spacing: -0.02em;
       color: var(--ink);
-      margin-bottom: 32px;
+      margin-bottom: 28px;
       max-width: 1000px;
     }
 
@@ -217,11 +219,11 @@
     }
 
     .hero-narrative {
-      font-size: 1.22rem;
-      line-height: 1.68;
+      font-size: 1.18rem;
+      line-height: 1.7;
       color: var(--ink-soft);
-      max-width: 800px;
-      margin-bottom: 40px;
+      max-width: 820px;
+      margin-bottom: 36px;
     }
 
     .hero-narrative strong {
@@ -231,71 +233,75 @@
 
     .hero-actions {
       display: flex;
-      gap: 16px;
+      gap: 14px;
       flex-wrap: wrap;
       align-items: center;
-      margin-bottom: 50px;
+      margin-bottom: 44px;
     }
 
     .btn-primary {
       background: var(--ink);
-      color: #ffffff;
-      padding: 14px 26px;
+      color: #ffffff !important;
+      padding: 13px 24px;
       border-radius: 9999px;
-      font-size: 0.94rem;
+      font-size: 0.92rem;
       font-weight: 700;
       display: inline-flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       box-shadow: 0 4px 12px rgba(17, 17, 17, 0.12);
+      transition: all 0.2s ease;
     }
 
     .btn-primary:hover {
       background: var(--accent-terracotta);
       transform: translateY(-2px);
-      box-shadow: 0 6px 18px rgba(194, 83, 39, 0.25);
+      box-shadow: 0 6px 18px rgba(194, 83, 39, 0.22);
     }
 
     .btn-secondary {
-      background: transparent;
-      color: var(--ink);
-      border: 1px solid var(--border-dark);
-      padding: 13px 24px;
+      background: var(--bg-surface);
+      color: var(--ink) !important;
+      padding: 13px 22px;
       border-radius: 9999px;
-      font-size: 0.94rem;
+      font-size: 0.92rem;
       font-weight: 700;
+      border: 1px solid var(--border);
       display: inline-flex;
       align-items: center;
       gap: 8px;
+      transition: all 0.2s ease;
     }
 
     .btn-secondary:hover {
-      background: var(--ink);
-      color: #ffffff;
+      border-color: var(--ink);
+      background: var(--bg-tint);
       transform: translateY(-2px);
     }
 
-    /* -------------------------------------------------------------------------
-       HUMAN DOSSIER (AT A GLANCE)
-       ------------------------------------------------------------------------- */
+    /* HUMAN DOSSIER */
     .dossier-grid {
       display: grid;
       grid-template-columns: repeat(4, 1fr);
-      gap: 1px;
-      background: var(--border);
+      gap: 16px;
+      background: var(--bg-tint);
+      padding: 16px;
+      border-radius: 14px;
       border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      margin-bottom: 20px;
     }
 
-    @media (max-width: 800px) {
-      .dossier-grid { grid-template-columns: 1fr 1fr; }
+    @media (max-width: 900px) {
+      .dossier-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 500px) {
+      .dossier-grid { grid-template-columns: 1fr; }
     }
 
     .dossier-box {
       background: var(--bg-surface);
-      padding: 22px 24px;
+      padding: 18px 20px;
+      border-radius: 10px;
+      border: 1px solid rgba(17, 17, 17, 0.06);
     }
 
     .dossier-label {
@@ -312,16 +318,16 @@
       font-weight: 800;
       color: var(--ink);
       letter-spacing: -0.01em;
+      margin-bottom: 2px;
     }
 
     .dossier-sub {
-      font-size: 0.82rem;
+      font-size: 0.8rem;
       color: var(--ink-muted);
-      margin-top: 3px;
     }
 
     /* -------------------------------------------------------------------------
-       EXHIBITION: CRAFTED WORK & SYSTEMS
+       SECTION GENERAL STYLING
        ------------------------------------------------------------------------- */
     .section-wrap {
       padding: 70px 0;
@@ -332,31 +338,110 @@
       display: flex;
       justify-content: space-between;
       align-items: flex-end;
+      margin-bottom: 44px;
+      gap: 24px;
       flex-wrap: wrap;
-      gap: 16px;
-      margin-bottom: 45px;
+    }
+
+    .section-tag {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent-terracotta);
+      font-weight: 700;
+      margin-bottom: 8px;
     }
 
     .section-title {
       font-family: var(--font-serif);
-      font-size: 2.8rem;
+      font-size: clamp(2.3rem, 4.2vw, 3.4rem);
       font-weight: 400;
+      letter-spacing: -0.02em;
       color: var(--ink);
-      letter-spacing: -0.01em;
       line-height: 1.1;
     }
 
     .section-desc {
-      font-size: 1.02rem;
+      font-size: 1.04rem;
       color: var(--ink-muted);
       max-width: 520px;
       line-height: 1.6;
     }
 
-    /* EXHIBIT CARDS */
-    .exhibit-grid {
+    /* -------------------------------------------------------------------------
+       TECHNICAL COMPETENCY MATRIX
+       ------------------------------------------------------------------------- */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 24px;
+    }
+
+    @media (max-width: 768px) {
+      .skills-grid { grid-template-columns: 1fr; }
+    }
+
+    .skill-card {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 28px;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .skill-card:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(17, 17, 17, 0.05);
+    }
+
+    .skill-card-num {
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      color: var(--accent-terracotta);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    .skill-card-title {
+      font-size: 1.22rem;
+      font-weight: 800;
+      color: var(--ink);
+      margin-bottom: 12px;
+      letter-spacing: -0.01em;
+    }
+
+    .skill-card-desc {
+      font-size: 0.92rem;
+      color: var(--ink-muted);
+      line-height: 1.6;
+      margin-bottom: 18px;
+    }
+
+    .skill-pills {
       display: flex;
-      flex-direction: column;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .skill-pill {
+      background: var(--bg-tint);
+      color: var(--ink-soft);
+      font-family: var(--font-mono);
+      font-size: 0.78rem;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      border: 1px solid rgba(17, 17, 17, 0.08);
+    }
+
+    /* -------------------------------------------------------------------------
+       EXHIBITS / PROJECTS
+       ------------------------------------------------------------------------- */
+    .exhibit-grid {
+      display: grid;
       gap: 36px;
     }
 
@@ -364,40 +449,39 @@
       background: var(--bg-surface);
       border: 1px solid var(--border);
       border-radius: 16px;
-      padding: 40px;
-      box-shadow: 0 2px 10px rgba(17, 17, 17, 0.03);
+      padding: 38px;
       display: grid;
       grid-template-columns: 1.25fr 1fr;
       gap: 40px;
       align-items: center;
-      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
     }
 
     .exhibit-card:hover {
-      border-color: rgba(17, 17, 17, 0.3);
-      box-shadow: 0 16px 36px rgba(17, 17, 17, 0.08);
-      transform: translateY(-3px);
+      transform: translateY(-2px);
+      box-shadow: 0 10px 30px rgba(17, 17, 17, 0.06);
     }
 
     @media (max-width: 900px) {
-      .exhibit-card { grid-template-columns: 1fr; padding: 28px; gap: 24px; }
+      .exhibit-card { grid-template-columns: 1fr; gap: 28px; padding: 28px; }
     }
 
     .exhibit-num {
       font-family: var(--font-mono);
-      font-size: 0.78rem;
+      font-size: 0.74rem;
       color: var(--accent-terracotta);
       font-weight: 700;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
       margin-bottom: 8px;
     }
 
     .exhibit-title {
       font-family: var(--font-serif);
-      font-size: 2.1rem;
+      font-size: 2rem;
       font-weight: 400;
-      line-height: 1.15;
       color: var(--ink);
+      line-height: 1.15;
       margin-bottom: 14px;
     }
 
@@ -405,28 +489,24 @@
       font-size: 0.98rem;
       color: var(--ink-soft);
       line-height: 1.68;
-      margin-bottom: 22px;
-    }
-
-    .exhibit-narrative strong {
-      color: var(--ink);
+      margin-bottom: 20px;
     }
 
     .exhibit-tags {
       display: flex;
       flex-wrap: wrap;
-      gap: 6px;
+      gap: 7px;
       margin-bottom: 24px;
     }
 
     .exhibit-tag {
       font-family: var(--font-mono);
-      font-size: 0.72rem;
-      padding: 3px 10px;
-      border-radius: 4px;
+      font-size: 0.74rem;
+      font-weight: 700;
+      color: var(--ink-muted);
       background: var(--bg-tint);
-      color: var(--ink-soft);
-      border: 1px solid rgba(17, 17, 17, 0.06);
+      padding: 4px 10px;
+      border-radius: 5px;
     }
 
     .exhibit-links {
@@ -439,13 +519,14 @@
     .link-live {
       background: var(--ink);
       color: #ffffff !important;
-      padding: 10px 20px;
-      border-radius: 9999px;
       font-size: 0.86rem;
       font-weight: 700;
+      padding: 9px 18px;
+      border-radius: 9999px;
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      transition: all 0.2s ease;
     }
 
     .link-live:hover {
@@ -455,14 +536,15 @@
 
     .link-repo {
       color: var(--ink);
-      font-size: 0.88rem;
+      font-size: 0.86rem;
       font-weight: 700;
-      padding: 9px 16px;
+      padding: 8px 16px;
       border-radius: 9999px;
       border: 1px solid var(--border);
       display: inline-flex;
       align-items: center;
       gap: 6px;
+      transition: all 0.2s ease;
     }
 
     .link-repo:hover {
@@ -488,32 +570,33 @@
       letter-spacing: 0.08em;
       color: var(--accent-forest);
       background: rgba(32, 78, 56, 0.08);
-      padding: 2px 8px;
+      padding: 3px 10px;
       border-radius: 4px;
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
     .artifact-code-line {
       font-size: 0.82rem;
       color: var(--ink-soft);
-      line-height: 1.7;
+      line-height: 1.75;
     }
 
     .artifact-code-line span.hl-green { color: var(--accent-forest); font-weight: 700; }
     .artifact-code-line span.hl-red { color: #b91c1c; font-weight: 700; }
     .artifact-code-line span.hl-amber { color: var(--accent-amber); font-weight: 700; }
+    .artifact-code-line span.hl-blue { color: var(--accent-blue); font-weight: 700; }
     .artifact-code-line span.hl-bold { color: var(--ink); font-weight: 700; }
 
     /* -------------------------------------------------------------------------
-       HUMAN CAREER & ACADEMICS
+       HUMAN CAREER & ACADEMICS (CHRONICLE)
        ------------------------------------------------------------------------- */
     .chronicle-grid {
       display: grid;
       grid-template-columns: 1.15fr 1fr;
-      gap: 48px;
+      gap: 44px;
     }
 
-    @media (max-width: 850px) {
+    @media (max-width: 860px) {
       .chronicle-grid { grid-template-columns: 1fr; gap: 32px; }
     }
 
@@ -526,10 +609,10 @@
 
     .chronicle-header {
       font-family: var(--font-serif);
-      font-size: 1.9rem;
+      font-size: 1.95rem;
       font-weight: 400;
       color: var(--ink);
-      margin-bottom: 24px;
+      margin-bottom: 26px;
       padding-bottom: 12px;
       border-bottom: 1px solid var(--border);
     }
@@ -543,16 +626,16 @@
     }
 
     .chron-title {
-      font-size: 1.1rem;
+      font-size: 1.12rem;
       font-weight: 800;
       color: var(--ink);
     }
 
     .chron-org {
-      font-size: 0.92rem;
+      font-size: 0.94rem;
       font-weight: 700;
       color: var(--accent-terracotta);
-      margin-bottom: 4px;
+      margin-bottom: 3px;
     }
 
     .chron-meta {
@@ -562,14 +645,60 @@
       margin-bottom: 12px;
     }
 
-    .chron-text {
-      font-size: 0.94rem;
+    .chron-list {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+
+    .chron-list li {
+      position: relative;
+      padding-left: 18px;
+      font-size: 0.93rem;
       color: var(--ink-soft);
       line-height: 1.65;
+      margin-bottom: 8px;
+    }
+
+    .chron-list li::before {
+      content: "•";
+      position: absolute;
+      left: 0;
+      color: var(--accent-terracotta);
+      font-weight: 700;
+    }
+
+    .cert-card {
+      background: var(--bg-canvas);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 18px;
+      margin-top: 24px;
+    }
+
+    .cert-title {
+      font-family: var(--font-mono);
+      font-size: 0.74rem;
+      text-transform: uppercase;
+      color: var(--accent-terracotta);
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      margin-bottom: 8px;
+    }
+
+    .cert-item {
+      font-size: 0.88rem;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      margin-bottom: 6px;
+    }
+
+    .cert-item:last-child {
+      margin-bottom: 0;
     }
 
     /* -------------------------------------------------------------------------
-       FOOTER: AUTHENTIC, CLEAN, GROUNDED
+       FOOTER: AUTHENTIC, GROUNDED
        ------------------------------------------------------------------------- */
     footer {
       padding: 70px 0 50px 0;
@@ -579,24 +708,24 @@
 
     .footer-heading {
       font-family: var(--font-serif);
-      font-size: clamp(2.2rem, 4vw, 3.4rem);
+      font-size: clamp(2.3rem, 4.2vw, 3.5rem);
       font-weight: 400;
       color: var(--ink);
       line-height: 1.15;
-      margin-bottom: 20px;
+      margin-bottom: 18px;
     }
 
     .footer-desc {
-      font-size: 1.1rem;
+      font-size: 1.12rem;
       color: var(--ink-muted);
-      max-width: 650px;
+      max-width: 680px;
       line-height: 1.65;
       margin-bottom: 36px;
     }
 
     .footer-actions {
       display: flex;
-      gap: 16px;
+      gap: 14px;
       flex-wrap: wrap;
       align-items: center;
       margin-bottom: 50px;
@@ -623,17 +752,23 @@
     <div class="container top-bar-inner">
       <div class="brand-mark">
         <span class="brand-title">Mohammed Basith</span>
-        <span class="brand-role">Systems & Operations</span>
+        <span class="brand-role">CS Graduate • Systems & Infrastructure</span>
       </div>
 
       <nav class="nav-links-clean">
-        <a href="#work">Projects</a>
+        <a href="#work">Systems & Work</a>
+        <a href="#competencies">Competencies</a>
         <a href="#chronicle">Experience</a>
         <a href="#education">Education</a>
       </nav>
 
+      <div class="top-clocks">
+        <div class="clock-item">DXB: <span id="clock-dxb">--:-- GST</span></div>
+        <div class="clock-item">MAA: <span id="clock-maa">--:-- IST</span></div>
+      </div>
+
       <a href="https://wa.me/918122156959?text=Hello%20Mohammed%20Basith,%20we%20reviewed%20your%20portfolio" target="_blank" class="top-contact-btn">
-        <span>Contact on WhatsApp ↗</span>
+        <span>WhatsApp ↗</span>
       </a>
     </div>
   </header>
@@ -643,15 +778,15 @@
     <section class="hero">
       <div class="hero-eyebrow">
         <span class="eyebrow-line"></span>
-        <span>Available for Immediate Deployment • Dubai, UAE (Visit Visa)</span>
+        <span>Computer Science Graduate • Available Immediately in Dubai, UAE (Visit Visa)</span>
       </div>
 
       <h1 class="hero-heading">
-        Bridging daily logistics operations with <em>systems precision</em>, network infrastructure, and database auditing.
+        Computer Science graduate focused on <em>IT systems support</em>, network infrastructure, and practical operational platforms.
       </h1>
 
       <p class="hero-narrative">
-        Hey, I'm <strong>Mohammed Basith</strong>. I graduated with a B.Sc in Computer Science from The New College and am currently pursuing an MCA in Cyber Security at SRM Institute. At <strong>TVS Express Cargo</strong>, I managed daily cargo booking manifests, verified Air Waybills (AWBs), and applied <strong>IATA volumetric standards</strong> (1:6000 ratio) to eliminate billing discrepancies. Combined with a strong Computer Science foundation, I bring operational accuracy, systems discipline, and fast software adoption to any team.
+        Hey, I'm <strong>Mohammed Basith</strong>. I graduated with a B.Sc in Computer Science from <strong>The New College</strong> (University of Madras) and am actively pursuing an MCA in Cyber Security at <strong>SRM Institute</strong>. I focus on what I genuinely deliver: managing workstations and office IT environments, configuring network switches and VLANs, and developing practical software tools. At <strong>TVS Express Cargo</strong>, I served as a <strong>Technical Systems & Web Operations Intern</strong>, developing their modern web platform and internal operations tracking system (<code>tvs-express-os</code>) using Next.js and Supabase (PostgreSQL) to digitize company shipment records, quotes, and customer accounts, alongside day-to-day office hardware and local network troubleshooting.
       </p>
 
       <div class="hero-actions">
@@ -672,44 +807,79 @@
       <!-- HUMAN DOSSIER -->
       <div class="dossier-grid">
         <div class="dossier-box">
-          <div class="dossier-label">Core Roots</div>
-          <div class="dossier-val">TVS Express Cargo</div>
-          <div class="dossier-sub">Air Waybills &bull; IATA Standards</div>
-        </div>
-        <div class="dossier-box">
-          <div class="dossier-label">Academic Track</div>
+          <div class="dossier-label">Academic Degrees</div>
           <div class="dossier-val">B.Sc CS • MCA Scholar</div>
           <div class="dossier-sub">The New College • SRM Institute</div>
         </div>
         <div class="dossier-box">
-          <div class="dossier-label">Infrastructure</div>
-          <div class="dossier-val">Cisco & PostgreSQL</div>
-          <div class="dossier-sub">Bridge Tech Hardware Certified</div>
+          <div class="dossier-label">Technical Operations</div>
+          <div class="dossier-val">TVS Web & Ops Suite</div>
+          <div class="dossier-sub">Next.js • Supabase (PostgreSQL)</div>
         </div>
         <div class="dossier-box">
-          <div class="dossier-label">Availability</div>
+          <div class="dossier-label">Infrastructure & Net</div>
+          <div class="dossier-val">Cisco & IT Support</div>
+          <div class="dossier-sub">VLANs • Diagnostics • Active Directory</div>
+        </div>
+        <div class="dossier-box">
+          <div class="dossier-label">Deployment Status</div>
           <div class="dossier-val">Dubai Ready</div>
-          <div class="dossier-sub">Immediate / 0 Days Notice</div>
+          <div class="dossier-sub">Visit Visa • Immediate / 0 Days Notice</div>
         </div>
       </div>
     </section>
 
-    <!-- SELECTED EXHIBITS / PROJECTS -->
+    <!-- SELECTED SYSTEMS & WORK -->
     <section class="section-wrap" id="work">
       <div class="section-meta-header">
         <div>
+          <div class="section-tag">Engineering Exhibits</div>
           <h2 class="section-title">Selected Systems & Work</h2>
         </div>
         <p class="section-desc">
-          Tactile, working tools built to solve genuine bottlenecks in cargo billing, security threat response, and network segmentation.
+          Working platforms, cloud tools, endpoint auditing utilities, and network topology labs built with tangible code.
         </p>
       </div>
 
       <div class="exhibit-grid">
+        <!-- EXHIBIT 01: TVS OPERATIONS SUITE -->
+        <article class="exhibit-card">
+          <div>
+            <div class="exhibit-num">EXHIBIT 01 / INTERNAL WEB & OPERATIONS SUITE</div>
+            <h3 class="exhibit-title">TVS Global Web & Internal Operations Platform</h3>
+            <p class="exhibit-narrative">
+              An enterprise web platform and internal operations system engineered for TVS Express Cargo to digitize physical paperwork and manual registers. Built with Next.js (App Router), TypeScript, and Supabase (PostgreSQL), featuring internal operations portals (<code>/ops</code>) for real-time tracking of customer accounts, quotation pipelines, order manifests, and financial records, coupled with a client self-service portal (<code>/portal</code>).
+            </p>
+            <div class="exhibit-tags">
+              <span class="exhibit-tag">Next.js 16</span>
+              <span class="exhibit-tag">React 19</span>
+              <span class="exhibit-tag">Supabase (PostgreSQL)</span>
+              <span class="exhibit-tag">TypeScript</span>
+              <span class="exhibit-tag">Tailwind CSS</span>
+              <span class="exhibit-tag">Role-Based Access</span>
+            </div>
+            <div class="exhibit-links">
+              <span style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--accent-forest); font-weight: 700; background: rgba(32, 78, 56, 0.08); padding: 6px 12px; border-radius: 6px;">
+                ✓ Production Operations System & Database
+              </span>
+            </div>
+          </div>
+
+          <!-- TACTILE VISUAL ARTIFACT -->
+          <div class="artifact-bench">
+            <span class="artifact-badge" style="color: var(--accent-forest); background: rgba(32, 78, 56, 0.08);">Operational Architecture</span>
+            <div class="artifact-code-line"><span class="hl-bold">MODULE:</span> /ops/orders &bull; /ops/shipments</div>
+            <div class="artifact-code-line"><span class="hl-bold">DATABASE:</span> <span class="hl-green">Supabase PostgreSQL Schema</span></div>
+            <div class="artifact-code-line"><span class="hl-bold">AUTH:</span> Staff Role-Based Access Control</div>
+            <div class="artifact-code-line"><span class="hl-bold">CLIENT PORTAL:</span> /portal/track/[id] Live Lookup</div>
+            <div class="artifact-code-line"><span class="hl-bold">AUDIT:</span> Real-time record tracking & status logs</div>
+          </div>
+        </article>
+
         <!-- EXHIBIT 02: SOC SENTINEL -->
         <article class="exhibit-card">
           <div>
-            <div class="exhibit-num">EXHIBIT 01 / LIVE CLOUD APP</div>
+            <div class="exhibit-num">EXHIBIT 02 / LIVE CLOUD APPLICATION</div>
             <h3 class="exhibit-title">SOC Sentinel — Alert Triage Engine</h3>
             <p class="exhibit-narrative">
               An interactive operational intelligence workbench deployed live on Streamlit Cloud. Consumes the VirusTotal v3 REST API to evaluate IPs, domains, and file hashes across 70+ security engines, map MITRE ATT&CK techniques, and export standardized incident containment playbooks in seconds.
@@ -745,7 +915,7 @@
         <!-- EXHIBIT 03: ARES TELEMETRY WORKBENCH -->
         <article class="exhibit-card">
           <div>
-            <div class="exhibit-num">EXHIBIT 02 / SYSTEMS FORENSICS</div>
+            <div class="exhibit-num">EXHIBIT 03 / SYSTEMS FORENSICS & AUDITING</div>
             <h3 class="exhibit-title">ARES Telemetry Workbench</h3>
             <p class="exhibit-narrative">
               A forensic-grade Windows endpoint telemetry tool engineered using native Win32 APIs. Correlates live active TCP sockets directly to parent Process IDs (PIDs), audits Windows Security and System event streams (Event IDs 4625 & 7045), and cryptographically seals evidence manifests using SHA-256 digests.
@@ -777,10 +947,10 @@
         <!-- EXHIBIT 04: CISCO ENTERPRISE LAB -->
         <article class="exhibit-card">
           <div>
-            <div class="exhibit-num">EXHIBIT 03 / INFRASTRUCTURE</div>
+            <div class="exhibit-num">EXHIBIT 04 / ENTERPRISE NETWORKING</div>
             <h3 class="exhibit-title">Enterprise Network Switching & VLAN Lab</h3>
             <p class="exhibit-narrative">
-              Architected and simulated a segmented 8-department corporate enterprise network on a 10.10.0.0/16 address space. Implemented 802.1Q VLAN trunking, inter-VLAN routing, and automated DHCP server pools across Cisco Layer 2 and Layer 3 switches to enforce strict traffic isolation and network security.
+              Architected and simulated a segmented multi-department corporate enterprise network on a 10.10.0.0/16 address space. Implemented 802.1Q VLAN trunking, inter-VLAN routing with Layer 3 switches, and automated DHCP server pools across Cisco switches to enforce strict departmental traffic isolation.
             </p>
             <div class="exhibit-tags">
               <span class="exhibit-tag">Cisco IOS</span>
@@ -791,7 +961,7 @@
               <span class="exhibit-tag">DHCP Pools</span>
             </div>
             <div class="exhibit-links">
-              <span style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-forest); font-weight: 700;">
+              <span style="font-family: var(--font-mono); font-size: 0.82rem; color: var(--accent-forest); font-weight: 700; background: rgba(32, 78, 56, 0.08); padding: 6px 12px; border-radius: 6px;">
                 ✓ Verified Lab Architecture (Cisco IOS)
               </span>
             </div>
@@ -799,7 +969,7 @@
 
           <!-- TACTILE VISUAL ARTIFACT -->
           <div class="artifact-bench">
-            <span class="artifact-badge">Network Topology</span>
+            <span class="artifact-badge" style="color: #204e38; background: rgba(32, 78, 56, 0.08);">Network Topology</span>
             <div class="artifact-code-line"><span class="hl-bold">ADDRESS SPACE:</span> 10.10.0.0/16 (VLSM)</div>
             <div class="artifact-code-line"><span class="hl-bold">VLANs:</span> 8 Isolated Corporate Segments</div>
             <div class="artifact-code-line"><span class="hl-bold">TRUNKING:</span> 802.1Q Encapsulation</div>
@@ -810,46 +980,124 @@
       </div>
     </section>
 
-    <!-- CHRONICLE: CAREER & ACADEMICS -->
+    <!-- TECHNICAL COMPETENCY MATRIX -->
+    <section class="section-wrap" id="competencies">
+      <div class="section-meta-header">
+        <div>
+          <div class="section-tag">Core Technical Toolkit</div>
+          <h2 class="section-title">Technical Competencies</h2>
+        </div>
+        <p class="section-desc">
+          Structured capabilities across IT support, network administration, database records, and endpoint forensics.
+        </p>
+      </div>
+
+      <div class="skills-grid">
+        <div class="skill-card">
+          <div class="skill-card-num">01 / SYSTEMS & SUPPORT</div>
+          <h3 class="skill-card-title">IT Systems & Workstation Support</h3>
+          <p class="skill-card-desc">
+            Hands-on provisioning, diagnostics, and maintenance for Windows and Linux endpoints. User administration, hardware troubleshooting, driver configuration, and remote assistance.
+          </p>
+          <div class="skill-pills">
+            <span class="skill-pill">Windows 10 / 11</span>
+            <span class="skill-pill">Windows Server Basics</span>
+            <span class="skill-pill">Linux (Ubuntu)</span>
+            <span class="skill-pill">Active Directory Basics</span>
+            <span class="skill-pill">Hardware Diagnostics</span>
+            <span class="skill-pill">Remote Desktop / TeamViewer</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card-num">02 / INFRASTRUCTURE</div>
+          <h3 class="skill-card-title">Enterprise Networking & Cisco</h3>
+          <p class="skill-card-desc">
+            Designing and configuring LAN switching, VLAN segmentation, and routing protocols. Solid grounding in IP addressing, subnetting, DHCP scopes, and perimeter security concepts.
+          </p>
+          <div class="skill-pills">
+            <span class="skill-pill">Cisco IOS</span>
+            <span class="skill-pill">Packet Tracer</span>
+            <span class="skill-pill">802.1Q VLAN Trunking</span>
+            <span class="skill-pill">IPv4 VLSM Subnetting</span>
+            <span class="skill-pill">DHCP & DNS Config</span>
+            <span class="skill-pill">Inter-VLAN Routing</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card-num">03 / WEB & DATA SYSTEMS</div>
+          <h3 class="skill-card-title">Web Operations & Database Systems</h3>
+          <p class="skill-card-desc">
+            Building internal operational tools to digitize physical records. Proficient in database schemas, SQL queries, RESTful API integration, and version control.
+          </p>
+          <div class="skill-pills">
+            <span class="skill-pill">Next.js (App Router)</span>
+            <span class="skill-pill">React</span>
+            <span class="skill-pill">Supabase (PostgreSQL)</span>
+            <span class="skill-pill">SQL Queries & Schemas</span>
+            <span class="skill-pill">REST APIs</span>
+            <span class="skill-pill">Git & GitHub</span>
+          </div>
+        </div>
+
+        <div class="skill-card">
+          <div class="skill-card-num">04 / SECURITY & AUDITING</div>
+          <h3 class="skill-card-title">Endpoint Auditing & Event Analysis</h3>
+          <p class="skill-card-desc">
+            Analyzing security event logs, inspecting live network sockets, packet sniffing, and evaluating IOCs against threat intelligence feeds for incident containment.
+          </p>
+          <div class="skill-pills">
+            <span class="skill-pill">Windows Event Viewer</span>
+            <span class="skill-pill">Wireshark</span>
+            <span class="skill-pill">Syslog Analysis</span>
+            <span class="skill-pill">VirusTotal API</span>
+            <span class="skill-pill">Win32 Telemetry</span>
+            <span class="skill-pill">SHA-256 Verification</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CHRONICLE: EXPERIENCE & EDUCATION -->
     <section class="section-wrap" id="chronicle">
       <div class="chronicle-grid">
-        <!-- WORK EXPERIENCE -->
+        <!-- PRACTICAL EXPERIENCE -->
         <div class="chronicle-box">
           <h3 class="chronicle-header">Practical Experience</h3>
 
           <div class="chronicle-entry">
-            <div class="chron-title">Freight Operations & Documentation Support Intern</div>
-            <div class="chron-org">TVS Express Cargo &bull; Chennai, India</div>
-            <div class="chron-meta">May 2026 – Sept 2026 &bull; Air & Ocean Cargo Operations</div>
-            <p class="chron-text">
-              Managed daily air and ocean cargo manifests, auditing piece counts, physical package dimensions, and gross weights against client bookings. Applied <strong>IATA cargo standards and volumetric density ratios (1:6000)</strong> to calculate chargeable weights and prevent billing disputes. Verified Air Waybill (AWB) paperwork for compliance prior to departure cut-offs, and maintained audit-ready dispatch logs using Microsoft Excel (VLOOKUP, Pivot Tables) and database queries.
-            </p>
-          </div>
-            <div class="chron-meta">May 2026 – Sept 2026 &bull; Air & Ocean Freight Forwarding</div>
-            <p class="chron-text">
-              Coordinated daily cargo bookings and carrier hand-offs to major international carriers, including <strong> and </strong> (air express) and <strong> and </strong> (ocean freight). Verified package dimensions, piece counts, and gross weights prior to carrier tendering to prevent volumetric weight surcharges. Monitored carrier Air Waybill (AWB) milestones, maintained dispatch logs, and reconciled operational records using Microsoft Excel and internal databases.
-            </p>
+            <div class="chron-title">Technical Systems & Web Operations Intern</div>
+            <div class="chron-org">TVS Express Cargo &bull; Dubai / Chennai</div>
+            <div class="chron-meta">May 2026 – Sept 2026 &bull; Technical Systems & Internal Tooling</div>
+            <ul class="chron-list">
+              <li>Designed and developed the company's internal operations system (<code>tvs-express-os</code>) and web platform using Next.js, React, and Supabase (PostgreSQL) to digitize physical paper records, client quotes, and shipment records.</li>
+              <li>Engineered internal operations modules (<code>/ops/orders</code>, <code>/ops/quotes</code>, <code>/ops/customers</code>) with role-based access control, isolating staff workflows from public tracking.</li>
+              <li>Supported local office workstation hardware, network printers, LAN cabling, and Wi-Fi connectivity for operational staff.</li>
+              <li>Conducted daily database backup checks in PostgreSQL and maintained reconciled operational logs in Excel to eliminate tracking discrepancies.</li>
+            </ul>
           </div>
 
           <div class="chronicle-entry" style="border-top: 1px solid var(--border); padding-top: 24px;">
             <div class="chron-title">Systems & Networking Trainee</div>
             <div class="chron-org">Bridge Technologies &bull; Chennai, India</div>
             <div class="chron-meta">2024 &bull; Computer Hardware & Systems Administration</div>
-            <p class="chron-text">
-              Hands-on training in desktop/laptop hardware assembly, component-level diagnostics, and preventive maintenance. Configured local office LAN/Wi-Fi connectivity, switch ports, patch panels, and IP CCTV monitoring systems.
-            </p>
+            <ul class="chron-list">
+              <li>Completed hands-on practical training in desktop/laptop PC hardware assembly, component-level diagnostics, and operating system deployment.</li>
+              <li>Configured office LAN cabling, RJ-45 crimping, patch panels, switch port connections, Wi-Fi access points, and basic IP CCTV cameras.</li>
+            </ul>
           </div>
         </div>
 
-        <!-- EDUCATION -->
-        <div class="chronicle-box">
+        <!-- EDUCATION & CREDENTIALS -->
+        <div class="chronicle-box" id="education">
           <h3 class="chronicle-header">Education & Credentials</h3>
 
           <div class="chronicle-entry">
             <div class="chron-title">Master of Computer Applications (MCA)</div>
             <div class="chron-org">SRM Institute of Science and Technology</div>
             <div class="chron-meta">2026 – Present &bull; Online / Flexible Track</div>
-            <p class="chron-text">
+            <p style="font-size: 0.93rem; color: var(--ink-soft); line-height: 1.65;">
               Specializing in <strong>Cyber Security & Digital Forensics</strong>. Focus on secure systems administration, relational database integrity, and enterprise threat analysis.
             </p>
           </div>
@@ -858,20 +1106,16 @@
             <div class="chron-title">Bachelor of Science in Computer Science (B.Sc CS)</div>
             <div class="chron-org">The New College, University of Madras</div>
             <div class="chron-meta">Graduated: 2026 &bull; Chennai, India</div>
-            <p class="chron-text">
-              Foundational degree in Relational Database Management Systems (PostgreSQL/SQL), Computer Networks, Operating Systems, and Data Structures.
+            <p style="font-size: 0.93rem; color: var(--ink-soft); line-height: 1.65;">
+              Rigorous foundation in Relational Database Management Systems (PostgreSQL/SQL), Computer Networks, Operating Systems, and Data Structures.
             </p>
           </div>
 
-          <div style="background: var(--bg-canvas); border: 1px solid var(--border); border-radius: 8px; padding: 16px; margin-top: 20px;">
-            <div style="font-family: var(--font-mono); font-size: 0.74rem; text-transform: uppercase; color: var(--accent-terracotta); font-weight: 700; margin-bottom: 6px;">
-              Technical Certifications
-            </div>
-            <div style="font-size: 0.86rem; color: var(--ink-soft); line-height: 1.6;">
-              <div>• <strong>Master Certificate in Data Science</strong> &bull; Livewire (2024–2025)</div>
-              <div>• <strong>Enterprise Networking & Systems</strong> &bull; Bridge Technologies (2024)</div>
-              <div>• <strong>GenAI Powered Logistics Analytics</strong> &bull; Forage Simulation (2025)</div>
-            </div>
+          <div class="cert-card">
+            <div class="cert-title">Technical Certifications & Training</div>
+            <div class="cert-item">• <strong>Master Certificate in Data Science</strong> &bull; Livewire (2024–2025)</div>
+            <div class="cert-item">• <strong>Enterprise Networking & Systems</strong> &bull; Bridge Technologies (2024)</div>
+            <div class="cert-item">• <strong>GenAI Technical Workflows</strong> &bull; Forage Simulation (2025)</div>
           </div>
         </div>
       </div>
@@ -883,7 +1127,7 @@
     <div class="container">
       <h2 class="footer-heading">Let's build something reliable together.</h2>
       <p class="footer-desc">
-        Currently based in Chennai, relocating to Dubai on a Visit Visa with immediate availability (0 days notice). Ready for roles across IT systems support, enterprise networking, and freight logistics operations.
+        Graduated Computer Science candidate currently preparing for immediate relocation to Dubai on a Visit Visa (0 days notice). Ready for entry-level and junior roles across IT systems support, network infrastructure, and technical operations.
       </p>
 
       <div class="footer-actions">
@@ -896,16 +1140,41 @@
         <a href="https://linkedin.com/in/mohammedbasith05" target="_blank" class="btn-secondary">
           <span>LinkedIn Profile ↗</span>
         </a>
+        <a href="https://github.com/Mdbasith05" target="_blank" class="btn-secondary">
+          <span>GitHub Profile ↗</span>
+        </a>
       </div>
 
       <div class="footer-colophon">
         <div>&copy; 2026 Mohammed Basith. All rights reserved.</div>
-        <div>Chennai, India &bull; Relocating to Dubai, UAE</div>
+        <div>Chennai, India &bull; Relocating to Dubai, UAE (Visit Visa)</div>
       </div>
     </div>
   </footer>
 
   <!-- SCRIPT: LIVE DUAL-TIME CLOCK -->
-  
+  <script>
+    function updateClocks() {
+      const now = new Date();
+      
+      // Dubai: UTC+4
+      const dxbTime = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Dubai" }));
+      const dxbHours = String(dxbTime.getHours()).padStart(2, '0');
+      const dxbMinutes = String(dxbTime.getMinutes()).padStart(2, '0');
+      const elDxb = document.getElementById("clock-dxb");
+      if (elDxb) elDxb.textContent = `${dxbHours}:${dxbMinutes} GST`;
+
+      // Chennai: UTC+5:30
+      const maaTime = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Kolkata" }));
+      const maaHours = String(maaTime.getHours()).padStart(2, '0');
+      const maaMinutes = String(maaTime.getMinutes()).padStart(2, '0');
+      const elMaa = document.getElementById("clock-maa");
+      if (elMaa) elMaa.textContent = `${maaHours}:${maaMinutes} IST`;
+    }
+
+    updateClocks();
+    setInterval(updateClocks, 1000);
+  </script>
+
 </body>
 </html>
