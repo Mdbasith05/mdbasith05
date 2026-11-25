@@ -83,7 +83,7 @@
     }
 
     /* -------------------------------------------------------------------------
-       EDITORIAL TOP BAR
+       EDITORIAL TOP BAR (CLEAN & MINIMALIST)
        ------------------------------------------------------------------------- */
     .top-bar {
       border-bottom: 1px solid var(--border);
@@ -136,19 +136,6 @@
       color: var(--ink);
     }
 
-    .top-clocks {
-      display: flex;
-      gap: 20px;
-      font-family: var(--font-mono);
-      font-size: 0.76rem;
-      color: var(--ink-muted);
-    }
-
-    .clock-item span {
-      color: var(--ink);
-      font-weight: 700;
-    }
-
     .top-contact-btn {
       background: var(--ink);
       color: #ffffff !important;
@@ -168,7 +155,6 @@
     }
 
     @media (max-width: 900px) {
-      .top-clocks { display: none; }
       .brand-role { display: none; }
     }
     @media (max-width: 720px) {
@@ -747,7 +733,7 @@
 </head>
 <body>
 
-  <!-- TOP BAR -->
+  <!-- TOP BAR (CLEAN, NO DUAL CLOCKS) -->
   <header class="top-bar">
     <div class="container top-bar-inner">
       <div class="brand-mark">
@@ -762,13 +748,8 @@
         <a href="#education">Education</a>
       </nav>
 
-      <div class="top-clocks">
-        <div class="clock-item">DXB: <span id="clock-dxb">--:-- GST</span></div>
-        <div class="clock-item">MAA: <span id="clock-maa">--:-- IST</span></div>
-      </div>
-
-      <a href="https://wa.me/971551245572?text=Hello%20Mohammed%20Basith,%20we%20reviewed%20your%20portfolio" target="_blank" class="top-contact-btn">
-        <span>WhatsApp: +971 55 124 5572 ↗</span>
+      <a href="https://wa.me/918122156959?text=Hello%20Mohammed%20Basith,%20we%20reviewed%20your%20portfolio" target="_blank" class="top-contact-btn">
+        <span>Contact on WhatsApp ↗</span>
       </a>
     </div>
   </header>
@@ -790,8 +771,8 @@
       </p>
 
       <div class="hero-actions">
-        <a href="https://wa.me/971551245572?text=Hello%20Mohammed%20Basith,%20we%20reviewed%20your%20portfolio" target="_blank" class="btn-primary">
-          <span>💬 WhatsApp: +971 55 124 5572</span>
+        <a href="https://wa.me/918122156959?text=Hello%20Mohammed%20Basith,%20we%20reviewed%20your%20portfolio" target="_blank" class="btn-primary">
+          <span>💬 WhatsApp: +91 81221 56959</span>
         </a>
         <a href="mailto:mohammedbasith490@gmail.com" class="btn-secondary">
           <span>✉️ mohammedbasith490@gmail.com</span>
@@ -1128,8 +1109,8 @@
       </p>
 
       <div class="footer-actions">
-        <a href="https://wa.me/971551245572?text=Hello%20Mohammed%20Basith,%20we%20reviewed%20your%20portfolio" target="_blank" class="btn-primary">
-          <span>💬 WhatsApp: +971 55 124 5572</span>
+        <a href="https://wa.me/918122156959?text=Hello%20Mohammed%20Basith,%20we%20reviewed%20your%20portfolio" target="_blank" class="btn-primary">
+          <span>💬 WhatsApp: +91 81221 56959</span>
         </a>
         <a href="mailto:mohammedbasith490@gmail.com" class="btn-secondary">
           <span>✉️ mohammedbasith490@gmail.com</span>
@@ -1144,34 +1125,10 @@
 
       <div class="footer-colophon">
         <div>&copy; 2026 Mohammed Basith. All rights reserved.</div>
-        <div>Dubai, UAE (Visit Visa) &bull; Phone: +971 55 124 5572</div>
+        <div>Chennai, India &bull; Relocating to Dubai, UAE (Visit Visa)</div>
       </div>
     </div>
   </footer>
-
-  <!-- SCRIPT: LIVE DUAL-TIME CLOCK -->
-  <script>
-    function updateClocks() {
-      const now = new Date();
-      
-      // Dubai: UTC+4
-      const dxbTime = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Dubai" }));
-      const dxbHours = String(dxbTime.getHours()).padStart(2, '0');
-      const dxbMinutes = String(dxbTime.getMinutes()).padStart(2, '0');
-      const elDxb = document.getElementById("clock-dxb");
-      if (elDxb) elDxb.textContent = `${dxbHours}:${dxbMinutes} GST`;
-
-      // Chennai: UTC+5:30
-      const maaTime = new Date(now.toLocaleString("en-US", { timeZone: "Asia/Kolkata" }));
-      const maaHours = String(maaTime.getHours()).padStart(2, '0');
-      const maaMinutes = String(maaTime.getMinutes()).padStart(2, '0');
-      const elMaa = document.getElementById("clock-maa");
-      if (elMaa) elMaa.textContent = `${maaHours}:${maaMinutes} IST`;
-    }
-
-    updateClocks();
-    setInterval(updateClocks, 1000);
-  </script>
 
 </body>
 </html>
